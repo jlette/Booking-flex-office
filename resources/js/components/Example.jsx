@@ -10,6 +10,7 @@ function Example() {
                     <div className="card-header"><h2>Bienvenue chez Booking Flex Office</h2></div>
                     <div className="card-body">Je suis une page de test</div>
                     <div className="card-body">Premier test de GIT yes</div>
+                    <div className="card-body">Deuxieme test de GIT yes</div>
                 </div>
             </div>
         </div>
