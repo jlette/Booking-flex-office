@@ -9,6 +9,7 @@ function Example() {
                 <div className="card text-center">
                     <div className="card-header"><h2>Bienvenue chez Booking Flex Office</h2></div>
                     <div className="card-body">Je suis une page de test</div>
+                    <div className="card-body">Premier test de GIT</div>
                 </div>
             </div>
         </div>
