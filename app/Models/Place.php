@@ -15,9 +15,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idplace
  * @property int $numplace
  * @property int $localisation
- * @property int $idfavp
  * 
- * @property Favoriplace $favoriplace
+ * @property Collection|Favoriplace[] $favoriplaces
  * @property Collection|Reservation[] $reservations
  *
  * @package App\Models
@@ -26,29 +25,25 @@ class Place extends Model
 {
 	protected $table = 'place';
 	protected $primaryKey = 'idplace';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idplace' => 'int',
 		'numplace' => 'int',
-		'localisation' => 'int',
-		'idfavp' => 'int'
+		'localisation' => 'int'
 	];
 
 	protected $fillable = [
 		'numplace',
-		'localisation',
-		'idfavp'
+		'localisation'
 	];
 
-	public function favoriplace()
+	public function favoriplaces()
 	{
-		return $this->belongsTo(Favoriplace::class, 'idfavp');
+		return $this->hasMany(Favoriplace::class, 'id_place');
 	}
 
 	public function reservations()
 	{
-		return $this->hasMany(Reservation::class, 'idplace');
+		return $this->hasMany(Reservation::class, 'id_place');
 	}
 }

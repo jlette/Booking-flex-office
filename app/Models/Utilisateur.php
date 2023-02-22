@@ -18,11 +18,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $fonction
  * @property string $mail
  * @property string $password
- * @property int $idfavuser
- * @property int $idfavp
  * 
- * @property Favoriplace $favoriplace
- * @property Favoriuser $favoriuser
+ * @property Collection|Favoriplace[] $favoriplaces
+ * @property Collection|Favoriuser[] $favoriusers
  * @property Collection|Reservation[] $reservations
  *
  * @package App\Models
@@ -31,14 +29,7 @@ class Utilisateur extends Model
 {
 	protected $table = 'utilisateur';
 	protected $primaryKey = 'iduser';
-	public $incrementing = false;
 	public $timestamps = false;
-
-	protected $casts = [
-		'iduser' => 'int',
-		'idfavuser' => 'int',
-		'idfavp' => 'int'
-	];
 
 	protected $hidden = [
 		'password'
@@ -49,23 +40,21 @@ class Utilisateur extends Model
 		'prenom',
 		'fonction',
 		'mail',
-		'password',
-		'idfavuser',
-		'idfavp'
+		'password'
 	];
 
-	public function favoriplace()
+	public function favoriplaces()
 	{
-		return $this->belongsTo(Favoriplace::class, 'idfavp');
+		return $this->hasMany(Favoriplace::class, 'id_user');
 	}
 
-	public function favoriuser()
+	public function favoriusers()
 	{
-		return $this->belongsTo(Favoriuser::class, 'idfavuser');
+		return $this->hasMany(Favoriuser::class, 'id_user');
 	}
 
 	public function reservations()
 	{
-		return $this->hasMany(Reservation::class, 'iduser');
+		return $this->hasMany(Reservation::class, 'id_user');
 	}
 }

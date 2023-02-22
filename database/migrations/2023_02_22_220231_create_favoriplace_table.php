@@ -15,7 +15,9 @@ return new class extends Migration
     {
         Schema::create('favoriplace', function (Blueprint $table) {
             $table->comment('');
-            $table->integer('idfavp')->primary();
+            $table->integer('idfavp', true);
+            $table->integer('id_user')->index('favoriplace_user_fk');
+            $table->integer('id_place')->index('favoriplace_place_fk');
         });
     }
 

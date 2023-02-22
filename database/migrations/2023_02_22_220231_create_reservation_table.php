@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('favoriuser', function (Blueprint $table) {
+        Schema::create('reservation', function (Blueprint $table) {
             $table->comment('');
-            $table->integer('idfavuser')->primary();
+            $table->integer('idreservation', true);
+            $table->time('heuredebut');
+            $table->time('heurefin');
+            $table->date('date');
+            $table->integer('id_user')->index('resrvation_user_fk');
+            $table->integer('id_place')->index('resrvation_place_fk');
         });
     }
 
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('favoriuser');
+        Schema::dropIfExists('reservation');
     }
 };

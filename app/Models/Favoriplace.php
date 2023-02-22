@@ -6,16 +6,17 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Favoriplace
  * 
  * @property int $idfavp
+ * @property int $id_user
+ * @property int $id_place
  * 
- * @property Collection|Place[] $places
- * @property Collection|Utilisateur[] $utilisateurs
+ * @property Place $place
+ * @property Utilisateur $utilisateur
  *
  * @package App\Models
  */
@@ -23,20 +24,25 @@ class Favoriplace extends Model
 {
 	protected $table = 'favoriplace';
 	protected $primaryKey = 'idfavp';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idfavp' => 'int'
+		'id_user' => 'int',
+		'id_place' => 'int'
 	];
 
-	public function places()
+	protected $fillable = [
+		'id_user',
+		'id_place'
+	];
+
+	public function place()
 	{
-		return $this->hasMany(Place::class, 'idfavp');
+		return $this->belongsTo(Place::class, 'id_place');
 	}
 
-	public function utilisateurs()
+	public function utilisateur()
 	{
-		return $this->hasMany(Utilisateur::class, 'idfavp');
+		return $this->belongsTo(Utilisateur::class, 'id_user');
 	}
 }

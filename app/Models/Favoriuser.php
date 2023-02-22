@@ -6,15 +6,16 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Favoriuser
  * 
  * @property int $idfavuser
+ * @property int $id_user
+ * @property int $id_favori
  * 
- * @property Collection|Utilisateur[] $utilisateurs
+ * @property Utilisateur $utilisateur
  *
  * @package App\Models
  */
@@ -22,15 +23,20 @@ class Favoriuser extends Model
 {
 	protected $table = 'favoriuser';
 	protected $primaryKey = 'idfavuser';
-	public $incrementing = false;
 	public $timestamps = false;
 
 	protected $casts = [
-		'idfavuser' => 'int'
+		'id_user' => 'int',
+		'id_favori' => 'int'
 	];
 
-	public function utilisateurs()
+	protected $fillable = [
+		'id_user',
+		'id_favori'
+	];
+
+	public function utilisateur()
 	{
-		return $this->hasMany(Utilisateur::class, 'idfavuser');
+		return $this->belongsTo(Utilisateur::class, 'id_user');
 	}
 }

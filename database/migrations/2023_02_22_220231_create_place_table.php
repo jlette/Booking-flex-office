@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('place', function (Blueprint $table) {
             $table->comment('');
-            $table->integer('idplace')->primary();
+            $table->integer('idplace', true);
             $table->integer('numplace');
             $table->integer('localisation');
-            $table->integer('idfavp')->index('place_favoriplace_FK');
         });
     }
 

@@ -16,8 +16,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $heuredebut
  * @property Carbon $heurefin
  * @property Carbon $date
- * @property int $idplace
- * @property int $iduser
+ * @property int $id_user
+ * @property int $id_place
  * 
  * @property Place $place
  * @property Utilisateur $utilisateur
@@ -31,8 +31,8 @@ class Reservation extends Model
 	public $timestamps = false;
 
 	protected $casts = [
-		'idplace' => 'int',
-		'iduser' => 'int'
+		'id_user' => 'int',
+		'id_place' => 'int'
 	];
 
 	protected $dates = [
@@ -45,17 +45,17 @@ class Reservation extends Model
 		'heuredebut',
 		'heurefin',
 		'date',
-		'idplace',
-		'iduser'
+		'id_user',
+		'id_place'
 	];
 
 	public function place()
 	{
-		return $this->belongsTo(Place::class, 'idplace');
+		return $this->belongsTo(Place::class, 'id_place');
 	}
 
 	public function utilisateur()
 	{
-		return $this->belongsTo(Utilisateur::class, 'iduser');
+		return $this->belongsTo(Utilisateur::class, 'id_user');
 	}
 }
