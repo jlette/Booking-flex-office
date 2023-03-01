@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('reservation', function (Blueprint $table) {
             $table->foreign(['id_place'], 'resrvation_place_fk')->references(['idplace'])->on('place');
-            $table->foreign(['id_user'], 'resrvation_user_fk')->references(['iduser'])->on('utilisateur');
+            $table->foreign(['id_user'], 'resrvation_user_fk')->references(['iduser'])->on('users');
         });
     }
 
