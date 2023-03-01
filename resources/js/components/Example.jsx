@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import Inscrption from './Inscription/Index';
 
 function Example() {
     return (
@@ -26,7 +27,7 @@ if (document.getElementById('example')) {
 
     Index.render(
         <React.StrictMode>
-            <Example />
+            <Inscrption />
         </React.StrictMode>
     )
 }
