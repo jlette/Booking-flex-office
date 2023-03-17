@@ -16,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id_place
  * 
  * @property Place $place
- * @property Utilisateur $utilisateur
+ * @property User $user
  *
  * @package App\Models
  */
@@ -41,8 +41,8 @@ class Favoriplace extends Model
 		return $this->belongsTo(Place::class, 'id_place');
 	}
 
-	public function utilisateur()
+	public function user()
 	{
-		return $this->belongsTo(Utilisateur::class, 'id_user');
+		return $this->belongsTo(User::class, 'id_user');
 	}
 }

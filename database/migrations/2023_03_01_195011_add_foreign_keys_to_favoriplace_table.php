@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('favoriplace', function (Blueprint $table) {
             $table->foreign(['id_place'], 'favoriplace_place_fk')->references(['idplace'])->on('place')->onDelete('CASCADE');
-            $table->foreign(['id_user'], 'favoriplace_user_fk')->references(['iduser'])->on('utilisateur')->onDelete('CASCADE');
+            $table->foreign(['id_user'], 'favoriplace_user_fk')->references(['iduser'])->on('users')->onDelete('CASCADE');
         });
     }
 

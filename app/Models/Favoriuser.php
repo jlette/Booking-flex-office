@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $id_user
  * @property int $id_favori
  * 
- * @property Utilisateur $utilisateur
+ * @property User $user
  *
  * @package App\Models
  */
@@ -35,8 +35,8 @@ class Favoriuser extends Model
 		'id_favori'
 	];
 
-	public function utilisateur()
+	public function user()
 	{
-		return $this->belongsTo(Utilisateur::class, 'id_user');
+		return $this->belongsTo(User::class, 'id_user');
 	}
 }
