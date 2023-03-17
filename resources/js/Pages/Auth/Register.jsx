@@ -5,14 +5,23 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import Select from 'react-select';
 
 export default function Register() {
+    const fonction = [
+        { label: "développeur web", value: "dev" },
+        { label: "Comptable", value: "comptable" },
+        { label: "chef de projet", value: "master" },
+
+    ]
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         username: '',
+        fonction: '',
         email: '',
         password: '',
         password_confirmation: '',
+
     });
 
     useEffect(() => {
@@ -68,7 +77,10 @@ export default function Register() {
                     <InputError message={errors.username} className="mt-2" />
                 </div>
 
-
+                <div className="mt-4">
+                    <InputLabel htmFor="fonction" value="Fonction" />
+                    <Select options={fonction} />
+                </div>
 
                 <div className="mt-4">
                     <InputLabel htmlFor="email" value="Email" />
