@@ -9,9 +9,9 @@ import Select from 'react-select';
 
 export default function Register() {
     const fonction = [
-        { label: "développeur web", value: "dev" },
+        { label: "Développeur web", value: "dev" },
         { label: "Comptable", value: "comptable" },
-        { label: "chef de projet", value: "master" },
+        { label: "Chef de projet", value: "projet" },
 
     ]
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -23,6 +23,10 @@ export default function Register() {
         password_confirmation: '',
 
     });
+
+    const onFonctionChange = (selectedOption) => {
+        setData('fonction', selectedOption.label);
+    };
 
     useEffect(() => {
         return () => {
@@ -79,7 +83,8 @@ export default function Register() {
 
                 <div className="mt-4">
                     <InputLabel htmFor="fonction" value="Fonction" />
-                    <Select options={fonction} />
+                    <Select options={fonction} onChange={onFonctionChange}/>
+                    <InputError message={errors.fonction} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
