@@ -5,14 +5,23 @@ export default function Welcome(props) {
         <>
             <Head title="Welcome" />
             <div className="relative sm:flex sm:justify-center sm:items-center min-h-screen  bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
-                <div className="sm:fixed sm:top-0 sm:right-0 p-6 text-right">
+            <div className="fixed top-0 right-0 px-6 py-4 sm:block">
                     {props.auth.user ? (
-                        <Link
-                            href={route('dashboard')}
-                            className="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                        >
+                <>
+                    {props.auth.user.roles === 'admin' ? (
+                        <Link href={route('admin.dashboard')} className="text-sm text-gray-700 dark:text-gray-500 underline">
+                            DashboardAdmin
+                        </Link>
+                    ) : props.auth.user.roles === 'manager' ? (
+                        <Link href={route('dashboard')} className="text-sm text-gray-700 dark:text-gray-500 underline">
+                            DashboardManager
+                        </Link>
+                    ) : (
+                        <Link href={route('dashboard')} className="text-sm text-gray-700 dark:text-gray-500 underline">
                             Dashboard
                         </Link>
+                    )}
+                </>
                     ) : (
                         <>
                             <Link
