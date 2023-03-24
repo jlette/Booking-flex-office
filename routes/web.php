@@ -35,8 +35,14 @@ Route::get('/reservation', function () {
 
 Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::get('/admin', function() {
-        return Inertia::render('Admin/AdminD');
+        return Inertia::render('Admin/DashboardA');
     })->name('admin.dashboard');
+    Route::get('/useradmin', function(){
+        return Inertia::render('Admin/UserA');
+    })->name('admin.user');
+    Route::get('/reservationadmin', function(){
+        return Inertia::render('Admin/ReservationA');
+    })->name('admin.reservation');
 });
 
 Route::middleware('auth')->group(function () {

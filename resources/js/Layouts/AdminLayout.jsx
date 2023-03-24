@@ -22,13 +22,13 @@ export default function AdminLayout({ auth, header, children}){
                                 </Link>
                             </div>
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                                    DashboardAdmin
+                                <NavLink href={route('admin.dashboard')} active={route().current('admin.dashboard')}>
+                                    Dashboard Admin
                                 </NavLink>
-                                <NavLink href={route('reservation')} active={route().current('reservation')}>
+                                <NavLink href={route('admin.user')} active={route().current('admin.user')}>
                                     Gerer les utilisateurs 
                                 </NavLink>
-                                <NavLink href={route('reservation')} active={route().current('reservation')}>
+                                <NavLink href={route('admin.reservation')} active={route().current('admin.reservation')}>
                                     Gerer les réservations 
                                 </NavLink>
                             </div>
