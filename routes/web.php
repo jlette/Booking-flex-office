@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\UserAController;
 use App\Http\Controllers\Admin\ProfileAdminController;
 
 /*
@@ -40,9 +41,11 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     })->name('admin.dashboard');
 
     // Gerer la partie user
-    Route::get('/useradmin', function(){
-        return Inertia::render('Admin/UserA');
-    })->name('admin.user');
+    Route::prefix('/useradmin')->group(function(){
+        Route::get('/', [UserAController::class, 'index'])->name('admin.user');
+        Route::get('/createFormUser', [UserAController::class, 'create'])->name('admin.createFormUser');
+        Route::post('createUser', [UserAController::class, 'store'])->name('admin.createUser');
+    });
 
     // Gerer les reservations
     Route::get('/reservationadmin', function(){
