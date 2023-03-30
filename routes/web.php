@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
-use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\ProfileAdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,31 @@ Route::get('/dashboard', function () {
 Route::get('/reservation', function () {
     return Inertia::render('Reservation');
 })->middleware(['auth', 'verified'])->name('reservation');
+
+Route::middleware(['auth', 'roles:admin'])->group(function () {
+    Route::get('/admin', function() {
+        return Inertia::render('Admin/DashboardA');
+    })->name('admin.dashboard');
+
+    // Gerer la partie user
+    Route::get('/useradmin', function(){
+        return Inertia::render('Admin/UserA');
+    })->name('admin.user');
+
+    // Gerer les reservations
+    Route::get('/reservationadmin', function(){
+        return Inertia::render('Admin/ReservationA');
+    })->name('admin.reservation');
+
+
+    // Profile Admin
+    Route::get('/profile/admin', [ProfileAdminController::class, 'edit'])
+        ->name('admin.profile.edit');
+    Route::patch('/profile/admin', [ProfileAdminController::class, 'update'])
+        ->name('admin.profile.update');
+    Route::delete('/profile/admin', [ProfileAdminController::class, 'destroy'])
+        ->name('admin.profile.destroy');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
