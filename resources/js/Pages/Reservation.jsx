@@ -10,13 +10,6 @@ export default function Reservation(props) {
         >
             <Head title="Reservation" />
 
-            <div className="py-12">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">Page de Reservation</div>
-                    </div>
-                </div>
-            </div>
 
             <div className="pt-5 flex flex-wrap">
                 <div className="w-full md:w-1/3 px-4 mb-4">
