@@ -3,13 +3,21 @@ import Dropdown from "@/components/Dropdown";
 import NavLink from "@/components/NavLink";
 import ResponsiveNavLink from "@/components/ResponsiveNavLink";
 import { Link } from "@inertiajs/react";
+import { usePage } from '@inertiajs/react'
+
 
 
 export default function AdminLayout({ auth, header, children}){
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
+    const { flash } = usePage().props
+
 
     return (
         <div className="min-h-screen bg-gray-100">
+            {flash.message && (
+                <div class="alert bg-green-800 p-5">{flash.message}</div>
+            )}
+
             <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
