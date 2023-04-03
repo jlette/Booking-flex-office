@@ -12,7 +12,7 @@ class UserAController extends Controller
     public function index(){
         $users = User::all();
 
-        return Inertia::render('Admin/AllUserA',[
+        return Inertia::render('Admin/Users/UserIndex',[
             'users' => $users,
         ]);
     }
@@ -20,7 +20,7 @@ class UserAController extends Controller
     
     public function create(){
         
-        return Inertia::render('Admin/CreateUser');
+        return Inertia::render('Admin/Users/UserCreate');
     }
     
 

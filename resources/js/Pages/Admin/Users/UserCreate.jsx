@@ -5,7 +5,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import { Head, Link, useForm } from "@inertiajs/react";
 import Select from "react-select";
 
-export default function FormUserA(props) {
+export default function UserCreate(props) {
     
     const { data, setData, post, processing, errors } = useForm({
         name: "",
