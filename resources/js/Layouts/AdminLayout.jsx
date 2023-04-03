@@ -33,10 +33,10 @@ export default function AdminLayout({ auth, header, children}){
                                 <NavLink href={route('admin.dashboard')} active={route().current('admin.dashboard')}>
                                     Dashboard Admin
                                 </NavLink>
-                                <NavLink href={route('admin.user')} active={route().current('admin.user')}>
+                                <NavLink href={route('useradmin.index')} active={route().current('useradmin.index')}>
                                     Gerer les utilisateurs 
                                 </NavLink>
-                                <NavLink href={route('admin.reservation')} active={route().current('admin.reservation')}>
+                                <NavLink href={route('reservationadmin.index')} active={route().current('reservationadmin.index')}>
                                     Gerer les réservations 
                                 </NavLink>
                             </div>

@@ -6,6 +6,7 @@ use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserAController;
 use App\Http\Controllers\Admin\ProfileAdminController;
+use App\Http\Controllers\Admin\ReservationAController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,16 +42,10 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     })->name('admin.dashboard');
 
     // Gerer la partie user
-    Route::prefix('/useradmin')->group(function(){
-        Route::get('/', [UserAController::class, 'index'])->name('admin.user');
-        Route::get('/createFormUser', [UserAController::class, 'create'])->name('admin.createFormUser');
-        Route::post('createUser', [UserAController::class, 'store'])->name('admin.createUser');
-    });
-
+    Route::resource('/useradmin', UserAController::class);
+    
     // Gerer les reservations
-    Route::get('/reservationadmin', function(){
-        return Inertia::render('Admin/ReservationA');
-    })->name('admin.reservation');
+    Route::resource('/reservationadmin', ReservationAController::class);
 
 
     // Profile Admin
