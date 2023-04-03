@@ -44,9 +44,6 @@ class User extends Authenticatable implements MustVerifyEmail
 	protected $primaryKey = 'iduser';
 	protected $guarded = ['iduser'];
 
-	protected $casts = [
-		'is_admin' => 'bool'
-	];
 
 	protected $dates = [
 		'email_verified_at'
