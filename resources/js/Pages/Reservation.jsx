@@ -95,7 +95,26 @@ export default function Reservation(props) {
                     </div>
                     <div className="py-4 px-6 w-50 bg-gray-50">
                         <ReservationLayout>
-                            <Bureau />
+                            <div>
+                                <Bureau />
+                                <Bureau />
+                                <Bureau />
+                            </div>
+                            <div>
+                                <Bureau />
+                                <Bureau />
+                                <Bureau />
+                            </div>
+                            <div>
+                                <Bureau />
+                                <Bureau />
+                                <Bureau />
+                            </div>
+                            <div>
+                                <Bureau />
+                                <Bureau />
+                                <Bureau />
+                            </div>
                         </ReservationLayout>
                     </div>
                 </div>
