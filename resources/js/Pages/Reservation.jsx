@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Bureau from "@/components/Bureau";
+import ReservationLayout from "@/Layouts/ReservationLayout";
 
 export default function Reservation(props) {
     const [date, setDate] = useState(new Date());
@@ -93,7 +94,9 @@ export default function Reservation(props) {
                         <div className="p-6 text-gray-900">Filter</div>
                     </div>
                     <div className="py-4 px-6 w-50 bg-gray-50">
-                        <Bureau />
+                        <ReservationLayout>
+                            <Bureau />
+                        </ReservationLayout>
                     </div>
                 </div>
             </div>
