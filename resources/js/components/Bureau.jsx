@@ -7,7 +7,9 @@ export default function Bureau() {
     const [reserver, setReserver] = useState("");
     const [shadow, setShadow] = useState("");
     const handleOnChange = (event) => {
-        setReserver("green");
+        {
+            reserver === "" ? setReserver("green") : setReserver("");
+        }
     };
 
     const handleOnMouse = (event) => {
