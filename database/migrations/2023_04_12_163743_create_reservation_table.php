@@ -19,8 +19,8 @@ return new class extends Migration
             $table->time('heuredebut');
             $table->time('heurefin');
             $table->date('date');
-            $table->integer('id_user')->index('resrvation_user_fk');
-            $table->integer('id_place')->index('resrvation_place_fk');
+            $table->integer('id_user')->index('reservation_user_fk');
+            $table->integer('id_place')->index('reservation_place_fk');
         });
     }
 
