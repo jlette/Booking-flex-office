@@ -7,7 +7,7 @@ export default function ReservationLayout({ children }) {
                 className="container border border-dark flex justify-center"
                 style={{ padding: 25 }}
             >
-                <div>{children}</div>
+                {children}
             </div>
 
             <h4 className="mt-3 flex justify-center">
