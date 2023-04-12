@@ -2,26 +2,40 @@ import AdminLayout from "@/Layouts/AdminLayout";
 import InputError from "@/Components/InputError";
 import TextInput from "@/Components/TextInput";
 import PrimaryButton from '@/Components/PrimaryButton';
-import { Head, Link, useForm } from "@inertiajs/react";
+import { useEffect } from 'react';
+import { Head, useForm } from "@inertiajs/react";
 import Select from "react-select";
 
 export default function UserCreate(props) {
     
-    const { data, setData, post, processing, errors } = useForm({
-        name: "",
-        username: "",
-        fonction: "",
-        email: "",
+    const { data, setData, post, processing, errors, reset } = useForm({
+        name: '',
+        email: '',
+        username: '',
+        fonction: '',
+        password: '',
+        password_confirmation: '',
     });
     
+    //  ce code permet de nettoyer les valeurs de deux champs de mot de passe 
+    //  lorsqu'un composant est démonté ou que les dépendances du hook changent.
+    useEffect(() => {
+        return () => {
+            reset('password', 'password_confirmation');
+        };
+    }, []);
+
     const fonction = [
         { label: "Développeur(se)", value: "developpeur" },
+        { label: "Chef de projet", value: "chef de projet" },
+        { label: "Comptable", value: "comptable" },
         
     ];
     
     const onFonctionChange = (selectedOption) => {
         setData('fonction', selectedOption.label);
     };
+
 
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.type === 'checkbox' ? event.target.checked : event.target.value);
@@ -30,7 +44,7 @@ export default function UserCreate(props) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('admin.createUser'));
+        post(route('useradmin.store'));
     };
 
     return (
@@ -64,7 +78,6 @@ export default function UserCreate(props) {
                                     value={data.name}
                                     autoComplete="name"
                                     onChange={onHandleChange}
-                                    isfo
                                     
                                 />
                                 <InputError message={errors.name} className="mt-2" />
@@ -101,7 +114,7 @@ export default function UserCreate(props) {
                                     class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                     id="email"
                                     name="email"
-                                    type="emal"
+                                    type="email"
                                     value={data.email}
                                     autoComplete="email"
                                     onChange={onHandleChange}
@@ -113,12 +126,55 @@ export default function UserCreate(props) {
                             <div class="w-full px-3">
                                 <label
                                     class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                                    for="grid-password"
+                                    for="fonction"
                                 >
                                     Fonction
                                 </label>
                                 <Select options={fonction} onChange={onFonctionChange}/>
                                 <InputError message={errors.fonction} className="mt-2" />
+                            </div>
+                        </div>
+
+                        <div class="flex flex-wrap -mx-3 mb-6">
+                            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                <label
+                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="password"
+                                >
+                                    Mot de passe
+                                </label>
+                                <input
+                                    className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    value={data.password}
+                                    autoComplete="new-password"
+                                    onChange={onHandleChange}
+                                    required
+                                    
+                                />
+                                <InputError message={errors.password} className="mt-2" />
+                            </div>
+
+                            <div class="w-full md:w-1/2 px-3">
+                                <label
+                                    class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                    for="password_confirmation"
+                                >
+                                    Confirmez mot de passe
+                                </label>
+                                <input
+                                    class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    id="password_confirmation"
+                                    type="password"
+                                    name="password_confirmation"
+                                    value={data.password_confirmation}
+                                    autoComplete="new-password"
+                                    onChange={onHandleChange}
+                                    required
+                                />
+                                <InputError message={errors.password_confirmation} className="mt-2" />
                             </div>
                         </div>
                         <PrimaryButton processing={processing}>
