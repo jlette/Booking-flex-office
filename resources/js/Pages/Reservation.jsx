@@ -3,24 +3,31 @@ import { Head, usePage } from "@inertiajs/react";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Bureau from "@/components/Bureau";
+import Place from "@/components/Place";
 import ReservationLayout from "@/Layouts/ReservationLayout";
 
 export default function Reservation(props) {
-
-    // permet d'accéder aux propriétés envoyées à la page du côté 
+    // permet d'accéder aux propriétés envoyées à la page du côté
     // serveur depuis le côté client en utilisant le hook React usePage()
-    // contient les informations sur les places récupérées 
+    // contient les informations sur les places récupérées
     // depuis la base de données grâce au contrôleur Laravel
+
     const { places } = usePage().props;
     console.log(places);
     const title = "test";
     const [date, setDate] = useState(new Date());
-
+    const [etagerecup, setEtagerecup] = useState("1");
     const handleDateSelect = (date) => {
         setDate(date);
     };
+    const etageChange = (event) => {
+        {
+            const choice = event.target.value;
+            setEtagerecup(choice);
 
+            console.log(choice);
+        }
+    };
     const handleDateChange = (date) => {
         setDate(date);
     };
@@ -77,19 +84,23 @@ export default function Reservation(props) {
                             <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5">
                                 Étage
                             </div>
-                            <select className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent">
-                                <option value="etage1">Étage 1</option>
-                                <option value="etage2">Étage 2</option>
-                                <option value="etage3">Étage 3</option>
+                            <select
+                                className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                                id="monselect"
+                                onChange={etageChange}
+                            >
+                                <option value="1">Étage 1</option>
+                                <option value="2">Étage 2</option>
+                                <option value="3">Étage 3</option>
                             </select>
-                            <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5">
+                            {/* <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5">
                                 Bureau
                             </div>
                             <select className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent">
                                 <option value="bureau1">Bureau 1</option>
                                 <option value="bureau2">Bureau 2</option>
                                 <option value="bureau3">Bureau 3</option>
-                            </select>
+                            </select> */}
                             <button className="w-full text-center py-2 mt-4 bg-black text-white rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75">
                                 Réserver
                             </button>
@@ -106,7 +117,11 @@ export default function Reservation(props) {
                             <div>
                                 {places.map((place, index) => (
                                     <div key={index}>
-                                        <Bureau places={place.numplace}/>
+                                        {etagerecup == place.numetage ? (
+                                            <Place places={place.numplace} />
+                                        ) : (
+                                            ""
+                                        )}
                                     </div>
                                 ))}
                             </div>
