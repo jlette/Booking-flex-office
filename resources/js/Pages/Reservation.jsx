@@ -17,6 +17,7 @@ export default function Reservation(props) {
     const title = "test";
     const [date, setDate] = useState(new Date());
     const [etagerecup, setEtagerecup] = useState("1");
+    const [horairerecup, setHoraireRecup] = useState("Matin");
     const handleDateSelect = (date) => {
         setDate(date);
     };
@@ -70,15 +71,24 @@ export default function Reservation(props) {
                                 Horaires
                             </div>
                             <div className="flex">
-                                <button className="w-1/3 flex-1 text-center py-2 rounded-l-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:bg-black focus:text-white">
-                                    Matin
-                                </button>
-                                <button className="w-1/3 flex-1 text-center py-2 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:bg-black focus:text-white">
-                                    Après-midi
-                                </button>
-                                <button className="w-1/3 flex-1 text-center py-2 rounded-r-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:bg-black focus:text-white">
-                                    Journée
-                                </button>
+                                <input
+                                    defaultChecked
+                                    className="w-1/3 flex-1 text-center py-2 rounded-l-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:bg-black focus:text-white"
+                                    value="matin"
+                                    type="button"
+                                />
+
+                                <input
+                                    type="button"
+                                    value="Apres-midi"
+                                    className="w-1/3 flex-1 text-center py-2 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:bg-black focus:text-white"
+                                />
+
+                                <input
+                                    type="button"
+                                    value="Journée"
+                                    className="w-1/3 flex-1 text-center py-2 rounded-r-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:bg-black focus:text-white"
+                                />
                             </div>
 
                             <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5">
