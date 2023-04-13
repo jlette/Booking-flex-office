@@ -8,6 +8,9 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 export default function Bureau(props) {
     
     
+    // const { places } = props;
+    console.log(props);
+
     const [reserver, setReserver] = useState("");
     const [shadow, setShadow] = useState("");
     const handleOnChange = (event) => {

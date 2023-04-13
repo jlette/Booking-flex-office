@@ -14,7 +14,7 @@ export default function Reservation(props) {
     // depuis la base de données grâce au contrôleur Laravel
     const { places } = usePage().props;
     console.log(places);
-
+    const title = "test";
     const [date, setDate] = useState(new Date());
 
     const handleDateSelect = (date) => {
@@ -110,7 +110,6 @@ export default function Reservation(props) {
                                     </div>
                                 ))}
                             </div>
-                            
                         </ReservationLayout>
                     </div>
                 </div>
