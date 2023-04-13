@@ -1,5 +1,5 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { Head } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -7,6 +7,10 @@ import Bureau from "@/components/Bureau";
 import ReservationLayout from "@/Layouts/ReservationLayout";
 
 export default function Reservation(props) {
+
+    const { places } = usePage().props;
+    console.log(places);
+
     const [date, setDate] = useState(new Date());
 
     const handleDateSelect = (date) => {
@@ -96,25 +100,13 @@ export default function Reservation(props) {
                     <div className="py-4 px-6 w-50 bg-gray-50">
                         <ReservationLayout>
                             <div>
-                                <Bureau />
-                                <Bureau />
-                                <Bureau />
+                                {places.map((place) => (
+                                    <div key={place.id}>
+                                        <Bureau places={props.places} />
+                                    </div>
+                                ))}
                             </div>
-                            <div>
-                                <Bureau />
-                                <Bureau />
-                                <Bureau />
-                            </div>
-                            <div>
-                                <Bureau />
-                                <Bureau />
-                                <Bureau />
-                            </div>
-                            <div>
-                                <Bureau />
-                                <Bureau />
-                                <Bureau />
-                            </div>
+                            
                         </ReservationLayout>
                     </div>
                 </div>
