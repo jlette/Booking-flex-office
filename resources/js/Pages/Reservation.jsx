@@ -7,10 +7,9 @@ import Bureau from "@/components/Bureau";
 import ReservationLayout from "@/Layouts/ReservationLayout";
 
 export default function Reservation(props) {
-
     const { places } = usePage().props;
     console.log(places);
-
+    const title = "test";
     const [date, setDate] = useState(new Date());
 
     const handleDateSelect = (date) => {
@@ -102,11 +101,10 @@ export default function Reservation(props) {
                             <div>
                                 {places.map((place) => (
                                     <div key={place.id}>
-                                        <Bureau places={props.places} />
+                                        <Bureau data={place.numplace} />
                                     </div>
                                 ))}
                             </div>
-                            
                         </ReservationLayout>
                     </div>
                 </div>

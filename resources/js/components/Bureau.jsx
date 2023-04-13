@@ -4,11 +4,9 @@ import { useState } from "react";
 import "react-tooltip/dist/react-tooltip.css";
 import { Tooltip as ReactTooltip } from "react-tooltip";
 export default function Bureau(props) {
+    // const { places } = props;
+    console.log(props);
 
-    const { places } = props;
-    console.log(places);
-    
-    
     const [reserver, setReserver] = useState("");
     const [shadow, setShadow] = useState("");
     const handleOnChange = (event) => {
@@ -22,16 +20,19 @@ export default function Bureau(props) {
     };
 
     return (
-            <div key={props.places.id} data-tooltip-id="my-tooltip" data-tooltip-content={`Place ${props.places.numplace}`}>
-              <ReactTooltip type="success" id="my-tooltip" />
+        <div
+            // key={places.id}
+            data-tooltip-id="my-tooltip"
+            data-tooltip-content={props.data}
+        >
+            <ReactTooltip type="success" id="my-tooltip" />
             <MdEventSeat
-              onMouseEnter={handleOnMouse}
-              onClick={handleOnChange}
-              color={reserver}
-              size={"2em"}
-              className={{ shadow }}
+                onMouseEnter={handleOnMouse}
+                onClick={handleOnChange}
+                color={reserver}
+                size={"2em"}
+                className={{ shadow }}
             />
-          </div>
+        </div>
     );
-    
 }
