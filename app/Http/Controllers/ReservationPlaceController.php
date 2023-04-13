@@ -11,8 +11,7 @@ class ReservationPlaceController extends Controller
 {
     public function selectplace(){
         $places = DB::table('place')
-                ->select('idplace', 'numplace') 
-                ->where ('numetage', '=', '1')
+                ->select('*') 
                 ->get();  
                 
         //dd($places);
