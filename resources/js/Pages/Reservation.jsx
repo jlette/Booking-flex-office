@@ -1,13 +1,29 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+
 
 export default function Reservation(props) {
+    const [date, setDate] = useState(new Date());
+
+    const handleDateSelect = (date) => {
+        setDate(date);
+    };
+
+    const handleDateChange = (date) => {
+        setDate(date);
+    };
+
     return (
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Réservation</h2>}
         >
+
             <Head title="Reservation" />
 
 
@@ -19,18 +35,25 @@ export default function Reservation(props) {
                         </div>
 
                         <div className="flex flex-col py-4 px-6 bg-gray-50">
-                            <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide">Horaires</div>
+                                <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5">Date</div>
+                                <div className="flex flex-colbg-gray-50">
+
+                                <DatePicker
+                                    className="w-full"
+                                    selected={date}
+                                    onSelect={handleDateSelect}
+                                    onChange={handleDateChange}
+                                />
+                            </div>
+
+                            <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5">Horaires</div>
                             <div className="flex">
                                 <button className="w-1/3 flex-1 text-center py-2 rounded-l-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:bg-black focus:text-white">Matin</button>
                                 <button className="w-1/3 flex-1 text-center py-2 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:bg-black focus:text-white">Après-midi</button>
                                 <button className="w-1/3 flex-1 text-center py-2 rounded-r-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:bg-black focus:text-white">Journée</button>
                             </div>
-                            <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5">Bâtiment</div>
-                            <select className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent">
-                                <option value="batiment1">Bâtiment 1</option>
-                                <option value="batiment2">Bâtiment 2</option>
-                                <option value="batiment3">Bâtiment 3</option>
-                            </select>
+
+
                             <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5">Étage</div>
                             <select className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent">
                                 <option value="etage1">Étage 1</option>
@@ -56,9 +79,9 @@ export default function Reservation(props) {
                         <div className="p-6 text-gray-900">Filter</div>
                     </div>
 
-                    
+
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        
+
                     </div>
                 </div>
             </div>
