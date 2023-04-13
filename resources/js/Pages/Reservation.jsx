@@ -8,6 +8,10 @@ import ReservationLayout from "@/Layouts/ReservationLayout";
 
 export default function Reservation(props) {
 
+    // permet d'accéder aux propriétés envoyées à la page du côté 
+    // serveur depuis le côté client en utilisant le hook React usePage()
+    // contient les informations sur les places récupérées 
+    // depuis la base de données grâce au contrôleur Laravel
     const { places } = usePage().props;
     console.log(places);
 
@@ -100,9 +104,9 @@ export default function Reservation(props) {
                     <div className="py-4 px-6 w-50 bg-gray-50">
                         <ReservationLayout>
                             <div>
-                                {places.map((place) => (
-                                    <div key={place.id}>
-                                        <Bureau places={props.places} />
+                                {places.map((place, index) => (
+                                    <div key={index}>
+                                        <Bureau places={place.numplace}/>
                                     </div>
                                 ))}
                             </div>
