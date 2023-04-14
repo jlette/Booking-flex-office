@@ -14,20 +14,25 @@ export default function Reservation(props) {
 
     const { places } = usePage().props;
     console.log(places);
-    const title = "test";
     const [date, setDate] = useState(new Date());
     const [etagerecup, setEtagerecup] = useState("1");
-    const [horairerecup, setHoraireRecup] = useState("Matin");
+    const [horairerecup, setHoraireRecup] = useState("");
+    const [placerecup, setPlaceRecup] = useState("false");
+    // const [stateplace, setStateNumber] = useState("false");
     const handleDateSelect = (date) => {
         setDate(date);
     };
+
     const etageChange = (event) => {
         {
             const choice = event.target.value;
             setEtagerecup(choice);
-
-            console.log(choice);
         }
+    };
+
+    const horaireChange = (event) => {
+        const choice = event.target.value;
+        setHoraireRecup(choice);
     };
     const handleDateChange = (date) => {
         setDate(date);
@@ -52,6 +57,7 @@ export default function Reservation(props) {
                             <h3 className="text-lg font-medium text-gray-900">
                                 Réservation
                             </h3>
+                            <h2>La valeur de la place est {placerecup}</h2>
                         </div>
 
                         <div className="flex flex-col py-4 px-6 bg-gray-50">
@@ -72,22 +78,24 @@ export default function Reservation(props) {
                             </div>
                             <div className="flex">
                                 <input
-                                    defaultChecked
                                     className="w-1/3 flex-1 text-center py-2 rounded-l-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:bg-black focus:text-white"
                                     value="matin"
                                     type="button"
+                                    onClick={horaireChange}
                                 />
 
                                 <input
                                     type="button"
                                     value="Apres-midi"
                                     className="w-1/3 flex-1 text-center py-2 border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:bg-black focus:text-white"
+                                    onClick={horaireChange}
                                 />
 
                                 <input
                                     type="button"
                                     value="Journée"
                                     className="w-1/3 flex-1 text-center py-2 rounded-r-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:bg-black focus:text-white"
+                                    onClick={horaireChange}
                                 />
                             </div>
 
@@ -120,22 +128,40 @@ export default function Reservation(props) {
 
                 <div className="w-full md:w-2/3 px-4 mb-4">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">Filter</div>
+                        <div className="p-6 text-gray-900">Filtre</div>
                     </div>
                     <div className="py-4 px-6 w-50 bg-gray-50">
-                        <ReservationLayout>
-                            <div>
-                                {places.map((place, index) => (
-                                    <div key={index}>
-                                        {etagerecup == place.numetage ? (
-                                            <Place places={place.numplace} />
-                                        ) : (
-                                            ""
-                                        )}
-                                    </div>
-                                ))}
+                        {horairerecup == "" ? (
+                            <div className="w-50 h-50 bg-success ">
+                                <div
+                                    className="container border border-dark flex justify-center"
+                                    style={{ padding: 25 }}
+                                >
+                                    <p>
+                                        Veuillez choisir votre tranche horaire
+                                    </p>
+                                </div>
                             </div>
-                        </ReservationLayout>
+                        ) : (
+                            <ReservationLayout>
+                                <div>
+                                    {places.map((place, index) => (
+                                        <div key={index}>
+                                            {etagerecup == place.numetage ? (
+                                                <Place
+                                                    modifyparentstatevalue={
+                                                        setPlaceRecup
+                                                    }
+                                                    places={place.numplace}
+                                                />
+                                            ) : (
+                                                ""
+                                            )}
+                                        </div>
+                                    ))}
+                                </div>
+                            </ReservationLayout>
+                        )}
                     </div>
                 </div>
             </div>

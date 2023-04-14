@@ -9,15 +9,12 @@ export default function Place(props) {
     console.log(props);
 
     const [reserver, setReserver] = useState("");
-    const [shadow, setShadow] = useState("");
     const handleOnChange = (event) => {
         {
-            reserver === "" ? setReserver("green") : setReserver("");
+            reserver === ""
+                ? setReserver("green") & props.modifyparentstatevalue("true")
+                : setReserver("") & props.modifyparentstatevalue("false");
         }
-    };
-
-    const handleOnMouse = (event) => {
-        setShadow("drop-shadow-2xl");
     };
 
     return (
@@ -28,11 +25,9 @@ export default function Place(props) {
         >
             <ReactTooltip type="success" id="my-tooltip" />
             <MdEventSeat
-                onMouseEnter={handleOnMouse}
                 onClick={handleOnChange}
                 color={reserver}
                 size={"2em"}
-                className={{ shadow }}
             />
         </div>
     );
