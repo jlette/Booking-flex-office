@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\UserAController;
 use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Admin\ReservationAController;
 use App\Http\Controllers\ReservationPlaceController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +36,17 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/mesreservations', [ReservationPlaceController::class, 'mareservation'])
+        ->name('mareservation');
+
     Route::get('/reservation', [ReservationPlaceController::class, 'selectplace'])
         ->name('reservation');
+
+    Route::post('/reservationplace', [ReservationPlaceController::class, 'reserverplace'])
+        ->name('reserverplace');
+
 });
+
 
 
 Route::middleware(['auth', 'roles:admin'])->group(function () {

@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idplace
  * @property int $numplace
- * @property int $localisation
+ * @property int|null $numetage
  * 
  * @property Collection|Favoriplace[] $favoriplaces
  * @property Collection|Reservation[] $reservations
@@ -29,12 +29,12 @@ class Place extends Model
 
 	protected $casts = [
 		'numplace' => 'int',
-		'localisation' => 'int'
+		'numetage' => 'int'
 	];
 
 	protected $fillable = [
 		'numplace',
-		'localisation'
+		'numetage'
 	];
 
 	public function favoriplaces()
