@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('place', function (Blueprint $table) {
+        Schema::create('password_resets', function (Blueprint $table) {
             $table->comment('');
-            $table->integer('idplace', true);
-            $table->integer('numplace');
-            $table->integer('localisation');
+            $table->string('email', 255)->nullable();
+            $table->string('token', 255)->nullable();
+            $table->timestamp('created_at')->nullable();
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('place');
+        Schema::dropIfExists('password_resets');
     }
 };
