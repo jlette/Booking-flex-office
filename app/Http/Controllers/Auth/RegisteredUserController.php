@@ -35,7 +35,12 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'username' => 'required|string|max:255',
             'fonction' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:'.User::class,
+            'email' => ['required', 'string', 'email', 'max:255', function ($attribute, $value, $fail) {
+                $domain = explode('@', $value)[1];
+                if ($domain != 'rte-france.com') {
+                    $fail('L\'adresse mail que vous avez saisie n\'est pas autorisée à s\'enregistrer.');
+                }
+            }],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
