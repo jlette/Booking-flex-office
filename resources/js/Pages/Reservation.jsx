@@ -5,8 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Place from "@/components/Place";
 import ReservationLayout from "@/Layouts/ReservationLayout";
-import { Inertia } from '@inertiajs/inertia';
-
+import { Inertia } from "@inertiajs/inertia";
 
 export default function Reservation(props) {
     // permet d'accéder aux propriétés envoyées à la page du côté
@@ -19,8 +18,10 @@ export default function Reservation(props) {
     const [date, setDate] = useState(new Date());
     const [etagerecup, setEtagerecup] = useState("1");
     const [horairerecup, setHoraireRecup] = useState("");
-    const [placerecup, setPlaceRecup] = useState("false");
+    const [placerecup, setPlaceRecup] = useState("");
+
     // const [stateplace, setStateNumber] = useState("false");
+    const [colorrecup, setColorecup] = useState("");
     const handleDateSelect = (date) => {
         setDate(date);
     };
@@ -41,23 +42,23 @@ export default function Reservation(props) {
     };
 
     const [data, setData] = useState({
-        date: '',
-        matin: '',
-        apresMidi: '',
-        idplace: '',
-      });
-    
-      const handleSubmit = (e) => {
+        date: "",
+        matin: "",
+        apresMidi: "",
+        idplace: "",
+    });
+
+    const handleSubmit = (e) => {
         e.preventDefault();
-        Inertia.post('/reservationplace', data);
-      };
-    
-      const handleChange = (e) => {
+        Inertia.post("/reservationplace", data);
+    };
+
+    const handleChange = (e) => {
         setData({
-          ...data,
-          [e.target.name]: e.target.value,
+            ...data,
+            [e.target.name]: e.target.value,
         });
-      };
+    };
 
     return (
         <AuthenticatedLayout
@@ -78,7 +79,7 @@ export default function Reservation(props) {
                             <h3 className="text-lg font-medium text-gray-900">
                                 Réservation
                             </h3>
-                            <h2>La valeur de la place est {placerecup}</h2>
+                            <h2>L'id de la place est {placerecup}</h2>
                         </div>
                         <form onSubmit={handleSubmit}>
                             <div className="flex flex-col py-4 px-6 bg-gray-50">
@@ -133,14 +134,6 @@ export default function Reservation(props) {
                                     <option value="2">Étage 2</option>
                                     <option value="3">Étage 3</option>
                                 </select>
-                                {/* <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5">
-                                    Bureau
-                                </div>
-                                <select className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent">
-                                    <option value="bureau1">Bureau 1</option>
-                                    <option value="bureau2">Bureau 2</option>
-                                    <option value="bureau3">Bureau 3</option>
-                                </select> */}
                                 <button className="w-full text-center py-2 mt-4 bg-black text-white rounded-md hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75">
                                     Réserver
                                 </button>
@@ -170,13 +163,16 @@ export default function Reservation(props) {
                                     {places.map((place, index) => (
                                         <div key={index}>
                                             {etagerecup == place.numetage ? (
-                                                <Place
-                                                    modifyparentstatevalue={
-                                                        setPlaceRecup
-                                                    }
-                                                    places={place.numplace}
-                                                    onChange={handleChange}
-                                                />
+                                                <>
+                                                    <Place
+                                                        modifyparentstatevalue={
+                                                            setPlaceRecup
+                                                        }
+                                                        places={place.numplace}
+                                                        onChange={handleChange}
+                                                        placeid={place.idplace}
+                                                    />
+                                                </>
                                             ) : (
                                                 ""
                                             )}
