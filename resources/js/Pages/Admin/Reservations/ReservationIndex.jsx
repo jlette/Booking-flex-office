@@ -6,7 +6,7 @@ import TableHeadCell from '@/components/TableHeadCell';
 import TableDataCell from '@/components/TableDataCell';
 import React from 'react';
 
-export default function ReservationA(props) {
+export default function ReservationIndex(props) {
 
     const {reservations } = usePage().props;
 

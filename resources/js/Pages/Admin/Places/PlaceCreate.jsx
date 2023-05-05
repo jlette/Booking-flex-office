@@ -93,7 +93,7 @@ export default function PlaceCreate(props) {
                                         onChange={onHandleChange}
                                         
                                     />
-                                    {/* <Select options={fonction} onChange={onFonctionChange}/> */}
+                                    {/* <Select options={etage} onChange={onEtageChange}/> */}
 
                                     <InputError message={errors.numetage} className="mt-2" />
                                 </div>
