@@ -1,5 +1,5 @@
 import AdminLayout from '@/Layouts/AdminLayout';
-import { Head, usePage } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import Table from '@/components/Table';
 import TableRow from '@/components/TableRow';
 import TableHeadCell from '@/components/TableHeadCell';
@@ -21,7 +21,7 @@ export default function ReservationA(props) {
 
             <div className="py-4">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    {/* <Link href={route('useradmin.create')} class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Ajouter des places</Link> */}
+                    <Link href={route('placeadmin.create')} class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Ajouter des places</Link>
             
                     <div className="mt-6">
                     <Table captionText="Liste des réservations" header={<TableRow>

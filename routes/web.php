@@ -4,6 +4,7 @@ use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Admin\PlaceController;
 use App\Http\Controllers\Admin\UserAController;
 use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Admin\ReservationAController;
@@ -46,6 +47,9 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     
     // Gerer les reservations
     Route::resource('/reservationadmin', ReservationAController::class);
+
+    // Gerer les places
+    Route::resource('/placeadmin', PlaceController::class);
 
 
     // Profile Admin
