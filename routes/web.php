@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\UserAController;
 use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Admin\ReservationAController;
+use App\Http\Controllers\ReservationPlaceController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,9 +34,20 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/reservation', function () {
-    return Inertia::render('Reservation');
-})->middleware(['auth', 'verified'])->name('reservation');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/mesreservations', [ReservationPlaceController::class, 'mesreservations'])
+        ->name('mesreservations');
+
+    Route::get('/reservation', [ReservationPlaceController::class, 'selectplace'])
+        ->name('reservation');
+
+    Route::post('/reservationplace', [ReservationPlaceController::class, 'reserverplace'])
+        ->name('reserverplace');
+
+});
+
+
 
 Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::get('/admin', function() {
