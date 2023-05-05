@@ -63,11 +63,11 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
 
     // Profile Admin
     Route::get('/profile/admin', [ProfileAdminController::class, 'edit'])
-        ->name('admin.profile.edit');
+        ->name('adminprofile.edit');
     Route::patch('/profile/admin', [ProfileAdminController::class, 'update'])
-        ->name('admin.profile.update');
+        ->name('adminprofile.update');
     Route::delete('/profile/admin', [ProfileAdminController::class, 'destroy'])
-        ->name('admin.profile.destroy');
+        ->name('adminprofile.destroy');
 });
 
 Route::middleware('auth')->group(function () {

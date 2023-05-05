@@ -17,7 +17,7 @@ export default function UpdateProfileInformationFormAdmin({ mustVerifyEmail, sta
     const submit = (e) => {
         e.preventDefault();
 
-        patch(route('admin.profile.update'));
+        patch(route('adminprofile.update'));
     };
 
     return (

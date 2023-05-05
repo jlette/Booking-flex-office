@@ -29,7 +29,7 @@ export default function DeleteUserFormAdmin({ className }) {
     const deleteUser = (e) => {
         e.preventDefault();
 
-        destroy(route('admin.profile.destroy'), {
+        destroy(route('adminprofile.destroy'), {
             preserveScroll: true,
             onSuccess: () => closeModal(),
             onError: () => passwordInput.current.focus(),
