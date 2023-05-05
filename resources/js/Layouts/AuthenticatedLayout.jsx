@@ -61,7 +61,7 @@ export default function Authenticated({ auth, header, children }) {
                                     <Dropdown.Content>
                                         <Dropdown.Link href={route('profile.edit')}>Profile</Dropdown.Link>
                                         {auth.user && (
-                                            <Dropdown.Link href={route('mareservation')}>Mes réservations</Dropdown.Link>
+                                            <Dropdown.Link href={route('mesreservations')}>Mes réservations</Dropdown.Link>
                                         )}
                                         <Dropdown.Link href={route('logout')} method="post" as="button">
                                             Log Out

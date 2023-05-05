@@ -12,12 +12,14 @@ use Illuminate\Support\Facades\Auth;
 class ReservationPlaceController extends Controller
 {
     
-    public function mareservation(){
+    public function mesreservations(){
 
         $reservations = Reservation::where('id_user', Auth::id())->get();
+        $places = Place::all();
 
         return Inertia::render('MesReservations', [
-            'reservations' => $reservations
+            'reservations' => $reservations,
+            'places' => $places,
         ]);
     }
 
@@ -55,7 +57,7 @@ class ReservationPlaceController extends Controller
         $reservation->id_place = $request->input('id_place');
         $reservation->save();
     
-        return redirect()->route('mareservation');
+        return redirect()->route('mesreservations');
     }
 
 }

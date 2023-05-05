@@ -36,8 +36,8 @@ Route::get('/dashboard', function () {
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/mesreservations', [ReservationPlaceController::class, 'mareservation'])
-        ->name('mareservation');
+    Route::get('/mesreservations', [ReservationPlaceController::class, 'mesreservations'])
+        ->name('mesreservations');
 
     Route::get('/reservation', [ReservationPlaceController::class, 'selectplace'])
         ->name('reservation');

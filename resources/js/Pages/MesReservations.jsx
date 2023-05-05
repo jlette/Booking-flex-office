@@ -2,7 +2,8 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage } from '@inertiajs/react';
 
 export default function MesReservations(props) {
-    const { auth, reservations } = usePage().props;
+    const {places, reservations } = usePage().props;
+
 
     return (
         <AuthenticatedLayout
@@ -16,6 +17,7 @@ export default function MesReservations(props) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-2">
+                    {reservations.length > 0 ? (
                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                             <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                                 Mes réservations
@@ -26,54 +28,56 @@ export default function MesReservations(props) {
                                         Reservation Id
                                     </th>
                                     <th scope="col" class="px-6 py-3">
-                                        Matin
-                                    </th>
-                                    <th scope="col" class="px-6 py-3">
-                                        Après-midi
+                                        Créneaux horaire
                                     </th>
                                     <th scope="col" class="px-6 py-3">
                                         Date
                                     </th>
+                                    
                                     <th scope="col" class="px-6 py-3">
-                                        Id User
+                                        Place choisi
                                     </th>
+
                                     <th scope="col" class="px-6 py-3">
-                                        Id Place
+                                    À l'étage
                                     </th>
                                     
                                 </tr>
                             </thead>
-                            {reservations.length > 0 ? (
-    <tbody>
-        {reservations.map((reservation) => (
-            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={reservation.key}>
-                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                    {reservation.idreservation}
-                </th>
-                <td class="px-6 py-4">
-                    {reservation.matin}
-                </td>
-                <td class="px-6 py-4">
-                    {reservation.apresMidi}
-                </td>
-                <td class="px-6 py-4">
-                    {reservation.date}
-                </td>
-                <td class="px-6 py-4">
-                    {reservation.id_user}
-                </td>
-                <td class="px-6 py-4">
-                    {reservation.id_place}
-                </td>
-            </tr>
-        ))}
-    </tbody>
-) : (
-    <p className='p-3 bg-gray-800'>Aucune réservation trouvée.</p>
-)}
-
-                                    
+                            
+                            <tbody>
+                                {reservations.map((reservation) => {
+                                    // si tu trouve une place qui a l'id de la place de la reservation, tu me retourne la place
+                                    const place = places.find((place) => place.idplace === reservation.id_place);
+                                    const numeroPlace = place ? place.numplace : 'Inconnu';
+                                    const numeroEtage = place ? place.numetage : 'Inconnu';
+                                    return (
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700" key={reservation.key}>
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {reservation.idreservation}
+                                        </th>
+                                        <td class="px-6 py-4">
+                                        {reservation.matin && reservation.apresmidi ? "Journée" : reservation.matin ? "Matin" : "Après-midi"}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                        {new Date(reservation.date).toLocaleString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                        </td>
+                                        
+                                        <td class="px-6 py-4">
+                                            {numeroPlace}
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            {numeroEtage}
+                                        </td>
+                                    </tr>
+)}                               )}
+                            </tbody>
                         </table>
+                        ) : (
+                            <div>
+                                <p className='p-5 bg-gray-900 text-white'>Vous n'avez aucune réservation.</p>                                
+                            </div>
+                          )}
                     </div>
                 </div>
             </div>
