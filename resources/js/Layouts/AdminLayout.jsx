@@ -39,6 +39,9 @@ export default function AdminLayout({ auth, header, children}){
                                 <NavLink href={route('reservationadmin.index')} active={route().current('reservationadmin.index')}>
                                     Gerer les réservations 
                                 </NavLink>
+                                <NavLink href={route('placeadmin.index')} active={route().current('placeadmin.index')}>
+                                    Gérer les places
+                                </NavLink>
                             </div>
                         </div>
 
@@ -107,8 +110,17 @@ export default function AdminLayout({ auth, header, children}){
 
                 <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                     <div className="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink href={route('admin.dashboard')} active={route().current('dashboard')}>
+                        <ResponsiveNavLink href={route('admin.dashboard')} active={route().current('admin.dashboard')}>
                             Dashboard
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('useradmin.index')} active={route().current('useradmin.index')}>
+                            Gérer les utilisateurs
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('reservationadmin.index')} active={route().current('reservationadmin.index')}>
+                            Gérer les réservations
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink href={route('placeadmin.index')} active={route().current('placeadmin.index')}>
+                            Gérer les places
                         </ResponsiveNavLink>
                     </div>
 
