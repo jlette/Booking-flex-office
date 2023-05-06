@@ -42,15 +42,14 @@ export default function UserIndex(props) {
                                 <TableDataCell>{user.fonction}</TableDataCell>
                                 <TableDataCell>
                                     <Link 
+                                        href={route('useradmin.show', user.iduser)} 
+                                        class="text-red-400 hover:text-red-600">
+                                        Voir
+                                    </Link>
+                                    <Link 
                                         href={route('useradmin.edit', user.iduser)} 
                                         class="text-green-400 hover:text-green-600">
                                         Editer
-                                    </Link>
-                                    <Link 
-                                        method='DELETE' as='button'
-                                        href={route('useradmin.destroy', user.iduser)} 
-                                        class="text-red-400 hover:text-red-600">
-                                        Supprimer
                                     </Link>
                                 </TableDataCell>
                         </TableRow>

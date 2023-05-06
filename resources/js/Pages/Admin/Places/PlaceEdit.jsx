@@ -2,30 +2,27 @@ import AdminLayout from '@/Layouts/AdminLayout';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import React, { useEffect, useState } from "react";
 
-
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 
 
-export default function UserEdit(props) {
+export default function PlaceEdit(props) {
 
-    const { users } = usePage().props;
+    const { places } = usePage().props;
 
     const { data, setData, put, processing, errors } = useForm({
-        name: users.name,
-        username: users.username,
-        email: users.email,
+        numplace: places.numplace,
+        numetage: places.numetage,
 
     });
-
-    console.log(users.name);
+    console.log(places.numetage);
 
         
     const submit = (e) => {
         e.preventDefault();
-        put(route('useradmin.update', users.iduser));
+        put(route('placeadmin.update', places.idplace));
     };
     
 
@@ -35,64 +32,48 @@ export default function UserEdit(props) {
             errors={props.errors}
             header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Gérer les utilisateurs</h2>}
         >
-            <Head title="Update user" />
+            <Head title="Update place" />
 
             <div className="py-4">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className='flex justify-between'>
-                        <Link href={route('useradmin.index')} class="px-3 py-2 text-white font-semibold bg-indigo-500 hover:bg-indigo-700 rounded">Retour vers user</Link>
+                        <Link href={route('placeadmin.index')} class="px-3 py-2 text-white font-semibold bg-indigo-500 hover:bg-indigo-700 rounded">Retour vers user</Link>
                     </div>
                    
                     <div className="mt-6 max-w-6xl mx-auto bg-slate-100 shadow-lg rounded-lg p-6">
-                    <h1 class="text-2xl font-semibold text-indigo-700">Mettre à jour l'utilisateur</h1>
+                    <h1 class="text-2xl font-semibold text-indigo-700">Mettre à jour la place</h1>
 
                     <form onSubmit={submit}>
                         <div className='mt-5'>
-                            <InputLabel htmlFor="name" value="Nom" />
+                            <InputLabel htmlFor="numplace" value="Numéro place" />
                             <TextInput
-                                id="name"
+                                id="numplace"
                                 type="text"
-                                name="name"
-                                value={data.name}
+                                name="numplace"
+                                value={data.numplace}
                                 className="mt-1 block w-full"
-                                autoComplete="name"
+                                autoComplete="numplace"
                                 isFocused={true}
                                 onChange={(e) =>
-                                    setData("name", e.target.value)
+                                    setData("numplace", e.target.value)
                                 }
                             />
-                            <InputError message={errors.name} className="mt-2" />
+                            <InputError message={errors.numplace} className="mt-2" />
                         </div>
                         <div className='mt-5'>
-                            <InputLabel htmlFor="username" value="Prénom" />
+                            <InputLabel htmlFor="numetage" value="Numéro étage" />
                             <TextInput
-                                id="name"
+                                id="numetage"
                                 type="text"
-                                name="username"
-                                value={data.username}
+                                name="numetage"
+                                value={data.numetage}
                                 className="mt-1 block w-full"
-                                autoComplete="username"
+                                autoComplete="numetage"
                                 onChange={(e) =>
-                                    setData("username", e.target.value)
+                                    setData("numetage", e.target.value)
                                 }
                             />
-                            <InputError message={errors.username} className="mt-2" />
-                        </div>
-
-                        <div className='mt-5'>
-                            <InputLabel htmlFor="email" value="Email" />
-                            <TextInput
-                                id="email"
-                                type="text"
-                                name="email"
-                                value={data.email}
-                                className="mt-1 block w-full"
-                                autoComplete="email"
-                                onChange={(e) =>
-                                    setData("email", e.target.value)
-                                }
-                            />
-                            <InputError message={errors.email} className="mt-2" />
+                            <InputError message={errors.numetage} className="mt-2" />
                         </div>
 
                         <div className="flex items-center mt-4">
