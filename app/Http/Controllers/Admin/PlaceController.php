@@ -6,6 +6,8 @@ use App\Models\Place;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Validator;
+
 
 class PlaceController extends Controller
 {
@@ -73,10 +75,15 @@ class PlaceController extends Controller
      * @param  \App\Models\Place  $place
      * @return \Illuminate\Http\Response
      */
-    public function edit(Place $place)
+    public function edit($id)
     {
-        //
+        $place = Place::findOrFail($id);
+
+        return Inertia::render('Admin/Places/PlaceEdit', [
+            'places' => $place,
+        ]);
     }
+    
 
     /**
      * Update the specified resource in storage.
@@ -85,9 +92,17 @@ class PlaceController extends Controller
      * @param  \App\Models\Place  $place
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Place $place)
+    public function update($id, Request $request)
     {
-        //
+        Validator::make($request->all(), [
+            'numplace' => 'required',
+            'numetage' => 'nullable',
+        ])->validate();
+        
+    
+        Place::find($id)->update($request->all());
+
+        return to_route('placeadmin.index');
     }
 
     /**
@@ -96,9 +111,10 @@ class PlaceController extends Controller
      * @param  \App\Models\Place  $place
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Place $place)
-    {
-        //
+      public function destroy($id){
+
+        Place::find($id)->delete();        
+        return redirect()->route('placeadmin.index');
     }
 }
 

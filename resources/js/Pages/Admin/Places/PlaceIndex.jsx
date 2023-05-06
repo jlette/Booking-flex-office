@@ -5,6 +5,9 @@ import TableRow from '@/components/TableRow';
 import TableHeadCell from '@/components/TableHeadCell';
 import TableDataCell from '@/components/TableDataCell';
 import React from 'react';
+import { Inertia } from "@inertiajs/inertia";
+
+
 
 export default function PlaceIndex(props) {
     
@@ -30,11 +33,30 @@ export default function PlaceIndex(props) {
                     <Table captionText="Liste des places" header={<TableRow>
                             <TableHeadCell>Numéro place</TableHeadCell>
                             <TableHeadCell>Numéro étage</TableHeadCell>
+                            <TableHeadCell>Actions</TableHeadCell>
                         </TableRow>}>
-                        {places.map((user) => (
-                        <TableRow key={user.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <TableHeadCell>{user.numplace}</TableHeadCell>
-                                <TableDataCell>{user.numetage}</TableDataCell>
+                        {places.map((place) => (
+                        <TableRow key={place.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <TableHeadCell>{place.numplace}</TableHeadCell>
+                                <TableDataCell>{place.numetage}</TableDataCell>
+                                <TableDataCell>
+                                    <Link 
+                                        href={route('placeadmin.edit', place.idplace)} 
+                                        class="text-green-400 hover:text-green-600">
+                                        Editer
+                                    </Link>
+                                    <Link 
+                                        className="text-red-400 hover:text-red-600"
+                                        onClick={() => {
+                                            if (confirm("Voulez-vous vraiment supprimer cette place ?")) {
+                                                Inertia.delete(route('placeadmin.destroy', place.idplace))
+                                            }
+                                        }}
+                                    >
+                                        Supprimer
+                                    </Link>
+
+                                </TableDataCell>
                         </TableRow>
                         ))}
                     </Table>

@@ -6,6 +6,7 @@ use App\Models\User;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
@@ -76,7 +77,22 @@ class UserAController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = User::findOrFail($id);
+        // $reservation = $user->reservations()->get();
+
+        $reservation = DB::table('reservation')
+            ->select('*')
+            ->join('users', 'users.iduser', '=', 'reservation.id_user')
+            ->join('place', 'place.idplace', '=', 'reservation.id_place')
+            ->where('reservation.id_user', '=', $id)
+            ->get();
+
+
+
+        return Inertia::render('Admin/Users/UserShow', [
+            'users' => $user,
+            'reservations' => $reservation,
+        ]);
     }
 
     /**
@@ -121,9 +137,9 @@ class UserAController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        User::find($id)->delete();        
-        return redirect()->route('useradmin.index');
-    }
+    // public function destroy($id)
+    // {
+    //     User::find($id)->delete();        
+    //     return redirect()->route('useradmin.index');
+    // }
 }
