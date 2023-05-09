@@ -215,6 +215,7 @@ export default function Reservation(props) {
                                                         placeid={place.idplace}
                                                         numplace={place.numplace}
                                                         onPlaceSelect={handlePlaceSelect}
+                                                        isReserved={place.isReserved}
                                                     />
                                                 </>
                                             ) : (

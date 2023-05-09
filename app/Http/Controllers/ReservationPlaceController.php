@@ -56,6 +56,9 @@ class ReservationPlaceController extends Controller
         $reservation->apresmidi = $request->input('apresmidi') ? true : false; // Vérifier si la case "apresMidi" est cochée
         $reservation->id_place = $request->input('id_place');
         $reservation->save();
+
+        // Mettre à jour le isReserved de la place correspondante dans la table "places"
+        Place::where('idplace', $request->input('id_place'))->update(['isReserved' => true]);
     
         return redirect()->route('mesreservations');
     }
