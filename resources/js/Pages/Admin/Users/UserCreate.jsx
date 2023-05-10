@@ -26,11 +26,22 @@ export default function UserCreate(props) {
     }, []);
 
     const fonction = [
-        { label: "Développeur(se)", value: "developpeur" },
+        { label: "Architecte", value: "architecte" },
+        { label: "Artiste", value: "artiste" },
+        { label: "Avocat(e)", value: "avocat" },
         { label: "Chef de projet", value: "chef de projet" },
         { label: "Comptable", value: "comptable" },
-        
-    ];
+        { label: "Consultant(e)", value: "consultant" },
+        { label: "Développeur(se)", value: "developpeur" },
+        { label: "Entrepreneur(e)", value: "entrepreneur" },
+        { label: "Ingénieur(e)", value: "ingenieur" },
+        { label: "Journaliste", value: "journaliste" },
+        { label: "Médecin", value: "medecin" },
+        { label: "Professeur(e)", value: "professeur" },
+        { label: "Psychologue", value: "psychologue" },
+        { label: "Autres", value: "autres" }
+      ];
+      
     
     const onFonctionChange = (selectedOption) => {
         setData('fonction', selectedOption.label);
