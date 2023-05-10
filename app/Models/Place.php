@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -14,7 +15,11 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idplace
  * @property int $numplace
- * @property int $localisation
+ * @property Carbon $date_place
+ * @property int $horaire_matin
+ * @property int $horaire_apresmidi
+ * @property int|null $numetage
+ * @property int|null $isReserved
  * 
  * @property Collection|Favoriplace[] $favoriplaces
  * @property Collection|Reservation[] $reservations
@@ -29,12 +34,24 @@ class Place extends Model
 
 	protected $casts = [
 		'numplace' => 'int',
-		'localisation' => 'int'
+		'horaire_matin' => 'int',
+		'horaire_apresmidi' => 'int',
+		'numetage' => 'int',
+		'isReserved' => 'int'
 	];
+
+	protected $dates = [
+		'date'
+	];
+
 
 	protected $fillable = [
 		'numplace',
-		'localisation'
+		'date_place',
+		'horaire_matin',
+		'horaire_apresmidi',
+		'numetage',
+		'isReserved'
 	];
 
 	public function favoriplaces()
