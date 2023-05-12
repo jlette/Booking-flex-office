@@ -12,7 +12,8 @@ export default function Place(props) {
     //console.log(props);
 
     const [selectedOption, setSelectedOption] = useState("");
-    const [reserver, setReserver] = useState("");
+    // const [reserver, setReserver] = useState("");
+    const reserver = isReserved ? "grey" : "";
 
 
 
@@ -24,8 +25,12 @@ export default function Place(props) {
     };
 
     const handleSelectPlace = () => {
-        onPlaceSelect(placeid);
-        console.log(`Vous avez selectionner la place ${numplace} avec son ID ${placeid}`);
+        if(isReserved)
+            alert("Cette place est déjà réservée.");
+        else{
+            onPlaceSelect(placeid);
+            console.log(`Vous avez selectionner la place ${numplace} avec son ID ${placeid} et cette place ${isReserved ? "est réservée" : "est libre"}`);
+        }
       };
 
     return (
