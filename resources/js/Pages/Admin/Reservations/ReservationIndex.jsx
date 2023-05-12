@@ -8,7 +8,7 @@ import React from 'react';
 
 export default function ReservationIndex(props) {
 
-    const {reservations } = usePage().props;
+    const { reservationsUser } = usePage().props;
 
 
     return (
@@ -33,20 +33,20 @@ export default function ReservationIndex(props) {
                             <TableHeadCell>Numero de la place</TableHeadCell>
                             <TableHeadCell>Numéro de l'étage </TableHeadCell>
                         </TableRow>}>
-                        {reservations.map((reservation) => (
+                        {reservationsUser.map((reservationUser) => (
                             
-                        <TableRow key={reservation.idreservation} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <TableHeadCell>{reservation.idreservation}</TableHeadCell>
-                                <TableDataCell>{reservation.matin && reservation.apresmidi 
-                                ? "Journée" : reservation.matin ? "Matin" : "Après-midi"}
+                        <TableRow key={reservationUser.idreservation} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <TableHeadCell>{reservationUser.idreservation}</TableHeadCell>
+                                <TableDataCell>{reservationUser.matin && reservationUser.apresmidi 
+                                ? "Journée" : reservationUser.matin ? "Matin" : "Après-midi"}
                                 </TableDataCell>
-                                <TableDataCell>{new Date(reservation.date).toLocaleString('fr-FR', 
+                                <TableDataCell>{new Date(reservationUser.date).toLocaleString('fr-FR', 
                                 { day: 'numeric', month: 'long', year: 'numeric' })}
                                 </TableDataCell>
                                 {/* <TableDataCell>{reservation.id_user}</TableDataCell> */}
-                                <TableDataCell>{reservation.username}</TableDataCell>
-                                <TableDataCell>{reservation.numplace}</TableDataCell>
-                                <TableDataCell>{reservation.numetage}</TableDataCell>
+                                <TableDataCell>{reservationUser.username}</TableDataCell>
+                                <TableDataCell>{reservationUser.numplace}</TableDataCell>
+                                <TableDataCell>{reservationUser.numetage}</TableDataCell>
                         </TableRow>
                         ))}
                     </Table>
