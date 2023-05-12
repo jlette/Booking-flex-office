@@ -12,9 +12,7 @@ export default function Place(props) {
     //console.log(props);
 
     const [selectedOption, setSelectedOption] = useState("");
-    // const [reserver, setReserver] = useState("");
-    const reserver = isReserved ? "grey" : "";
-
+    const [reserver, setReserver] = useState("");
 
 
     const handleSelectionChange = (event) => {
@@ -25,13 +23,9 @@ export default function Place(props) {
     };
 
     const handleSelectPlace = () => {
-        if(isReserved)
-            alert("Cette place est déjà réservée.");
-        else{
             onPlaceSelect(placeid);
-            console.log(`Vous avez selectionner la place ${numplace} avec son ID ${placeid} et cette place ${isReserved ? "est réservée" : "est libre"}`);
-        }
-      };
+            console.log(`Vous avez selectionner la place ${numplace} avec son ID ${placeid} et cette place ${colorPlace}`);
+        };
 
     return (
         <>
@@ -52,7 +46,7 @@ export default function Place(props) {
                     <div
                         key={placeid}
                         data-tooltip-id="my-tooltip"
-                        data-tooltip-content={`Place ${numplace} ${colorPlace}`}
+                        data-tooltip-content={`Place ${numplace}`}
                     >
                         <ReactTooltip type="success" id="my-tooltip" />
                         <MdEventSeat color={colorPlace} size={"2em"} />

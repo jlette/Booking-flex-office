@@ -21,7 +21,7 @@ class ReservationAController extends Controller
             ->get();
         
         return Inertia::render('Admin/Reservations/ReservationIndex', [
-            'reservations' => $reservationsUser,
+            'reservationsUser' => $reservationsUser,
         ]);
     
     }
