@@ -6,13 +6,15 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 
 export default function Place(props) {
     
-    const { numplace, placeid, onPlaceSelect } = props;
+    const { numplace, placeid, onPlaceSelect, colorPlace } = props;
 
     // const { places } = props;
     //console.log(props);
 
     const [selectedOption, setSelectedOption] = useState("");
     const [reserver, setReserver] = useState("");
+
+
 
     const handleSelectionChange = (event) => {
         const value = event.target.value;
@@ -45,10 +47,10 @@ export default function Place(props) {
                     <div
                         key={placeid}
                         data-tooltip-id="my-tooltip"
-                        data-tooltip-content={`Place ${numplace}`}
+                        data-tooltip-content={`Place ${numplace} ${colorPlace}`}
                     >
                         <ReactTooltip type="success" id="my-tooltip" />
-                        <MdEventSeat color={reserver} size={"2em"} />
+                        <MdEventSeat color={colorPlace} size={"2em"} />
                     </div>
                 </label>
             </div>

@@ -27,9 +27,15 @@ class ReservationPlaceController extends Controller
         $places = DB::table('place')
                 ->select('*') 
                 ->get();  
+            
+        $reservations = DB::table('reservation')
+                ->select('*')
+                ->join('place', 'place.idplace', '=', 'reservation.id_place')
+                ->get();
 
         return Inertia::render('Reservation', [
             'places' => $places,
+            'reservations' => $reservations,
         ]);
     }
 

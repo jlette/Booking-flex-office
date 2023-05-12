@@ -13,7 +13,7 @@ export default function Reservation(props) {
     // contient les informations sur les places récupérées
     // depuis la base de données grâce au contrôleur Laravel
 
-    const { places } = usePage().props;
+    const { places, reservations } = usePage().props;
     // console.log(places);
     // places.map(place => console.log(place.numplace));
 
@@ -215,6 +215,11 @@ export default function Reservation(props) {
                                                         placeid={place.idplace}
                                                         numplace={place.numplace}
                                                         onPlaceSelect={handlePlaceSelect}
+                                                        colorPlace={reservations.map(
+                                                            (reservation) =>
+                                                                reservation.id_place ===
+                                                                place.idplace ? "grey" : ""
+                                                        )}
                                                     />
                                                 </>
                                             ) : (
