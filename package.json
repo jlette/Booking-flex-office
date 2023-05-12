@@ -26,6 +26,9 @@
     "dependencies": {
         "@inertiajs/inertia": "^0.11.1",
         "@inertiajs/inertia-react": "^0.8.1",
+        "@szhsin/react-accordion": "^1.2.1",
+        "react-bootstrap": "^2.7.4",
+        "react-bootstrap-accordion": "^1.0.0",
         "react-datepicker": "^4.11.0",
         "react-select": "^5.7.2"
     }
