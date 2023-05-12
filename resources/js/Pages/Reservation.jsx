@@ -31,7 +31,6 @@ export default function Reservation(props) {
         id_place: selectedPlaceId,
     });
 
-
     // permet de gérer le changement de l'horaire
     const horaireChange = (event) => {
         const choice = event.target.value;
@@ -46,46 +45,43 @@ export default function Reservation(props) {
         setData((prevState) => ({
             ...prevState,
             matin: true,
-            apresmidi: true
+            apresmidi: true,
         }));
-    }
-
+    };
 
     // permet de gérer le changement de l'étage
-    const etageChange = (event) => {{
+    const etageChange = (event) => {
+        {
             const choice = event.target.value;
             setEtagerecup(choice);
         }
     };
-    
+
     // permet de gérer la sélection d'une place
     const handlePlaceSelect = (idPlace) => {
         setSelectedPlaceId(idPlace);
         setData((prevState) => ({
-          ...prevState,
-          id_place: idPlace,
+            ...prevState,
+            id_place: idPlace,
         }));
-      };
-      
+    };
 
-    // méthode prevState pour maintenir les anciennes valeurs de données 
+    // méthode prevState pour maintenir les anciennes valeurs de données
     // inchangées et mettre à jour seulement la valeur qui a été modifiée.
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         setData((prevState) => ({
             ...prevState,
-            [name]: type === 'checkbox' ? checked : value,
+            [name]: type === "checkbox" ? checked : value,
             id_place: selectedPlaceId,
         }));
-        };
-    
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         Inertia.post("/reservationplace", data);
         console.log(data);
     };
-
 
     return (
         <AuthenticatedLayout
@@ -115,10 +111,10 @@ export default function Reservation(props) {
                                 </div>
                                 <div className="flex flex-colbg-gray-50">
                                     <input
-                                        type="date" 
-                                        name="date" 
-                                        value={data.date} 
-                                        onChange={handleChange} 
+                                        type="date"
+                                        name="date"
+                                        value={data.date}
+                                        onChange={handleChange}
                                         className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
                                         required
                                     />
@@ -130,37 +126,57 @@ export default function Reservation(props) {
                                 <ul class="items-center w-full text-sm font-medium text-red-900 bg-white border border-gray-200 rounded-lg sm:flex">
                                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
                                         <div class="flex items-center pl-3">
-                                            <input 
-                                            id="matin" 
-                                            name="matin"
-                                            type="checkbox" 
-                                            checked={data.matin}
-                                            onChange={handleChange} 
-                                            onClick={horaireChange}
-                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "/>
-                                            <label for="matin" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Matin</label>
+                                            <input
+                                                id="matin"
+                                                name="matin"
+                                                type="checkbox"
+                                                checked={data.matin}
+                                                onChange={handleChange}
+                                                onClick={horaireChange}
+                                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                                            />
+                                            <label
+                                                for="matin"
+                                                class="w-full py-3 ml-2 text-sm font-medium text-gray-900"
+                                            >
+                                                Matin
+                                            </label>
                                         </div>
                                     </li>
                                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
                                         <div class="flex items-center pl-3">
-                                            <input id="apresmidi"
-                                            name="apresmidi" 
-                                            type="checkbox" 
-                                            checked={data.apresmidi}
-                                            onChange={handleChange}
-                                            onClick={horaireChange}
-                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "/>
-                                            <label for="apresmidi" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Après-midi</label>
+                                            <input
+                                                id="apresmidi"
+                                                name="apresmidi"
+                                                type="checkbox"
+                                                checked={data.apresmidi}
+                                                onChange={handleChange}
+                                                onClick={horaireChange}
+                                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                                            />
+                                            <label
+                                                for="apresmidi"
+                                                class="w-full py-3 ml-2 text-sm font-medium text-gray-900"
+                                            >
+                                                Après-midi
+                                            </label>
                                         </div>
                                     </li>
                                     <li class="w-full dark:border-gray-900">
                                         <div class="flex items-center pl-3">
-                                            <input id="journee" 
-                                            type="checkbox" 
-                                            value="journee" 
-                                            onClick={handleJourneeClick}
-                                            className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"/>
-                                            <label for="journee" class="w-full py-3 ml-2 text-sm font-medium text-gray-900">Journée</label>
+                                            <input
+                                                id="journee"
+                                                type="checkbox"
+                                                value="journee"
+                                                onClick={handleJourneeClick}
+                                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                                            />
+                                            <label
+                                                for="journee"
+                                                class="w-full py-3 ml-2 text-sm font-medium text-gray-900"
+                                            >
+                                                Journée
+                                            </label>
                                         </div>
                                     </li>
                                 </ul>
@@ -186,7 +202,9 @@ export default function Reservation(props) {
                 </div>
                 <div className="w-full md:w-2/3 px-4 mb-4">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">Choisissez une place</div>
+                        <div className="p-6 text-gray-900">
+                            Choisissez une place
+                        </div>
                     </div>
                     <div className="py-4 px-6 w-50 bg-gray-50">
                         {horairerecup == "" ? (
@@ -208,18 +226,26 @@ export default function Reservation(props) {
                                             {etagerecup == place.numetage ? (
                                                 <>
                                                     <Place
-                                                        key={place.idplace} 
+                                                        key={place.idplace}
                                                         modifyparentstatevalue={
                                                             setPlaceRecup
                                                         }
                                                         placeid={place.idplace}
-                                                        numplace={place.numplace}
-                                                        onPlaceSelect={handlePlaceSelect}
-                                                        colorPlace={reservations.map(
-                                                            (reservation) =>
-                                                                reservation.id_place ===
-                                                                place.idplace ? "grey" : ""
-                                                        )}
+                                                        numplace={
+                                                            place.numplace
+                                                        }
+                                                        onPlaceSelect={
+                                                            handlePlaceSelect
+                                                        }
+                                                        colorPlace={
+                                                            reservations.some(
+                                                                (reservation) =>
+                                                                    reservation.id_place ===
+                                                                    place.idplace
+                                                            )
+                                                                ? "grey"
+                                                                : ""
+                                                        }
                                                     />
                                                 </>
                                             ) : (
