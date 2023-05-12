@@ -121,6 +121,7 @@ export default function PlaceCreate(props) {
                                     />
                                     <InputError message={errors.numplace} className="mt-2" />
                                 </div>
+                                
                                 <div class="mt-3 w-full md:w-1/2 px-3">
                                     <label
                                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
@@ -128,17 +129,7 @@ export default function PlaceCreate(props) {
                                     >
                                         Numéro d'étage
                                     </label>
-                                    <input
-                                        class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="numetage"
-                                        type="numetage"
-                                        name="numetage"
-                                        value={data.numetage}
-                                        autoComplete="numetage"
-                                        onChange={onHandleChange}
-                                        
-                                    />
-                                    {/* <Select options={etage} onChange={onEtageChange}/> */}
+                                    <Select options={etage} onChange={onEtageChange}/>
 
                                     <InputError message={errors.numetage} className="mt-2" />
                                 </div>
