@@ -5,6 +5,8 @@ import TableRow from '@/components/TableRow';
 import TableHeadCell from '@/components/TableHeadCell';
 import TableDataCell from '@/components/TableDataCell';
 import React from 'react';
+import { Inertia } from "@inertiajs/inertia";
+
 
 export default function ReservationIndex(props) {
 
@@ -30,6 +32,7 @@ export default function ReservationIndex(props) {
                             <TableHeadCell>Date</TableHeadCell>
                             {/* <TableHeadCell>id Utilisateur</TableHeadCell> */}
                             <TableHeadCell>Utilisateur</TableHeadCell>
+                            <TableHeadCell>Suppression</TableHeadCell>
                             <TableHeadCell>Numero de la place</TableHeadCell>
                             <TableHeadCell>Numéro de l'étage </TableHeadCell>
                         </TableRow>}>
@@ -45,6 +48,18 @@ export default function ReservationIndex(props) {
                                 </TableDataCell>
                                 {/* <TableDataCell>{reservation.id_user}</TableDataCell> */}
                                 <TableDataCell>{reservationUser.username}</TableDataCell>
+                                <TableDataCell>
+                                <Link 
+                                        className="text-red-400 hover:text-red-600"
+                                        onClick={() => {
+                                            if (confirm("Voulez-vous vraiment supprimer cette place ?")) {
+                                                Inertia.delete(route('reservationadmin.destroy', reservationUser.idreservation))
+                                            }
+                                        }}
+                                    >
+                                        Supprimer
+                                    </Link>
+                                </TableDataCell>
                                 <TableDataCell>{reservationUser.numplace}</TableDataCell>
                                 <TableDataCell>{reservationUser.numetage}</TableDataCell>
                         </TableRow>
