@@ -31,14 +31,25 @@ export default function PlaceIndex(props) {
             
                     <div className="mt-6">
                     <Table captionText="Liste des places" header={<TableRow>
+                            <TableHeadCell>#</TableHeadCell>
+                            <TableHeadCell>Date de la place</TableHeadCell>
                             <TableHeadCell>Numéro place</TableHeadCell>
+                            <TableHeadCell>Horaire</TableHeadCell>
                             <TableHeadCell>Numéro étage</TableHeadCell>
+                            <TableHeadCell>Statut de la Place</TableHeadCell>
                             <TableHeadCell>Actions</TableHeadCell>
                         </TableRow>}>
                         {places.map((place) => (
                         <TableRow key={place.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <TableHeadCell>{place.numplace}</TableHeadCell>
+                                <TableHeadCell>{place.idplace}</TableHeadCell>
+                        <TableDataCell>{new Date(place.date_place).toLocaleString('fr-FR', 
+                                { day: 'numeric', month: 'long', year: 'numeric' })}
+                                </TableDataCell>                                <TableHeadCell>{place.numplace}</TableHeadCell>
+                                <TableDataCell>{place.horaire_matin && place.horaire_apresmidi 
+                                ? "Journée" :place.horaire_matin ? "Matin" : "Après-midi"}
+                                </TableDataCell>
                                 <TableDataCell>{place.numetage}</TableDataCell>
+                                <TableDataCell>{place.isReserved ? "Reservé" : "Disponible"}</TableDataCell>
                                 <TableDataCell>
                                     <Link 
                                         href={route('placeadmin.edit', place.idplace)} 

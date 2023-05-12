@@ -44,13 +44,20 @@ class PlaceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'numplace' => 'required|numeric|min:1|max:100|unique:'.Place::class,
+            'date_place' => 'required|date',
+            // unique:table,column,(except),idColumn
+            'numplace' => 'required|numeric|min:1|max:100|unique:place,numplace,NULL,idplace,date_place,'.$request->input('date_place').',horaire_matin,'.$request->input('horaire_matin').',horaire_apresmidi,'.$request->input('horaire_matin').',numetage,'.$request->input('numetage').',horaire_apresmidi,'.($request->input('horaire_matin') && $request->input('horaire_apresmidi') ? '1' : '1'),
+            'horaire_matin' => 'required|boolean',
+            'horaire_apresmidi' => 'required|boolean',
             'numetage' => 'required|numeric|min:1|max:10',
 
         ]);
         
             $place = new Place;
+            $place->date_place = $request->input('date_place');
             $place->numplace = $request->input('numplace');
+            $place->horaire_matin = $request->input('horaire_matin');
+            $place->horaire_apresmidi = $request->input('horaire_apresmidi');
             $place->numetage = $request->input('numetage');
             $place->save();
 
@@ -96,7 +103,11 @@ class PlaceController extends Controller
     {
         Validator::make($request->all(), [
             'numplace' => 'required',
-            'numetage' => 'nullable',
+            'date_place' => 'required',
+            'horaire_matin' => 'required',
+            'horaire_apresmidi' => 'required',
+            'numetage' => 'required',
+            'horaire' => 'required',
         ])->validate();
         
     
