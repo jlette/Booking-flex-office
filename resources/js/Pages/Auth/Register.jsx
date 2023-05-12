@@ -9,11 +9,21 @@ import Select from 'react-select';
 
 export default function Register() {
     const fonction = [
-        { label: "Développeur web", value: "dev" },
+        { label: "Architecte logiciel", value: "architecte logiciel" },
+        { label: "Artiste", value: "artiste" },
+        { label: "Avocat(e)", value: "avocat" },
+        { label: "Chef de projet", value: "chef de projet" },
         { label: "Comptable", value: "comptable" },
-        { label: "Chef de projet", value: "projet" },
-
-    ]
+        { label: "Développeur(se)", value: "developpeur" },
+        { label: "Designer graphique", value: "designer graphique" },
+        { label: "Enseignant(e)", value: "enseignant" },
+        { label: "Ingénieur(e) en génie civil", value: "ingenieur genie civil" },
+        { label: "Ingénieur(e) en informatique", value: "ingenieur informatique" },
+        { label: "Infirmier(ère)", value: "infirmier" },
+        { label: "Médecin", value: "medecin" },
+        { label: "Photographe", value: "photographe" },
+        { label: "Autre(s)", value: "autres" },
+      ];
 
     // data: qui représente l'état actuel des champs du formulaire.
     // setData: fonction pour mettre à jour l'état des champs du formulaire.
