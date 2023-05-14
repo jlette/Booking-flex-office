@@ -23,7 +23,7 @@ export default function Register() {
         { label: "Médecin", value: "medecin" },
         { label: "Photographe", value: "photographe" },
         { label: "Autre(s)", value: "autres" },
-      ];
+    ];
 
     // data: qui représente l'état actuel des champs du formulaire.
     // setData: fonction pour mettre à jour l'état des champs du formulaire.
@@ -73,39 +73,39 @@ export default function Register() {
     return (
 
         <form onSubmit={submit}>
-     <div className="grid grid-cols-2 gap-4">
-    <div className="col-span-1">
-        <InputLabel htmlFor="name" value="Nom" />
+            <div className="grid grid-cols-2 gap-4 mt-2">
+                <div className="col-span-1">
+                    <InputLabel htmlFor="name" value="Nom" />
 
-        <TextInput
-            id="name"
-            name="name"
-            value={data.name}
-            className="mt-1 block w-full"
-            autoComplete="name"
-            isFocused={true}
-            onChange={handleOnChange}
-            required
-        />
+                    <TextInput
+                        id="name"
+                        name="name"
+                        value={data.name}
+                        className="mt-1 block w-full"
+                        autoComplete="name"
+                        isFocused={true}
+                        onChange={handleOnChange}
+                        required
+                    />
 
-        <InputError message={errors.name} className="mt-2" />
-    </div>
+                    <InputError message={errors.name} className="mt-2" />
+                </div>
 
-    <div className="col-span-1">
-        <InputLabel htmlFor="username" value="Prénom" />
+                <div className="col-span-1">
+                    <InputLabel htmlFor="username" value="Prénom" />
 
-        <TextInput
-            id="username"
-            name="username"
-            value={data.username}
-            className="mt-1 block w-full"
-            autoComplete="username1"
-            onChange={handleOnChange}
-            required
-        />
-        <InputError message={errors.username} className="mt-2" />
-    </div>
-</div>
+                    <TextInput
+                        id="username"
+                        name="username"
+                        value={data.username}
+                        className="mt-1 block w-full"
+                        autoComplete="username1"
+                        onChange={handleOnChange}
+                        required
+                    />
+                    <InputError message={errors.username} className="mt-2" />
+                </div>
+            </div>
 
 
             <div className="mt-4">

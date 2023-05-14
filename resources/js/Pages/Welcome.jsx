@@ -12,28 +12,25 @@ export default function Welcome(props) {
 
 
 
-                <GuestLayout>
-
-                    <Accordion >
-                        <AccordionItem header="Connexion" >
-                            <Login />
-                        </AccordionItem>
-
-                        <AccordionItem header="Inscription">
-                            <Register />
-                        </AccordionItem>
-
-
-                    </Accordion>
+            <GuestLayout>
+                <Accordion >
+                    <AccordionItem header="Connexion" className="w-full font-weight-bold sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                        <Login />
+                    </AccordionItem>
+                    <AccordionItem header="Inscription" className="w-full sm:max-w-md mt-4 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                        <Register />
+                    </AccordionItem>
+                </Accordion>
 
 
-                </GuestLayout>
+
+            </GuestLayout>
 
 
 
 
 
-        
+
 
         </>
 

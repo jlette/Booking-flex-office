@@ -36,7 +36,7 @@ export default function Login({ status, canResetPassword }) {
     return (
 
         <form onSubmit={submit}>
-            <div>
+            <div className="mt-2">
                 <InputLabel htmlFor="email" value="Email" />
 
                 <TextInput
