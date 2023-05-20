@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Models\Place;
 use App\Models\Reservation;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -33,9 +34,21 @@ class ReservationPlaceController extends Controller
                 ->join('place', 'place.idplace', '=', 'reservation.id_place')
                 ->get();
 
+        $searchUser = DB::table('users')
+                ->select('*')
+                ->where('iduser', '<>', Auth::id())
+                ->where(function ($query) {
+                    $query->where('roles', '<>', 'admin')
+                        ->orWhereNull('roles');
+                })
+                ->get();
+
+
         return Inertia::render('Reservation', [
             'places' => $places,
             'reservations' => $reservations,
+            'searchUser' => $searchUser,
+
         ]);
     }
 
@@ -64,6 +77,19 @@ class ReservationPlaceController extends Controller
         $reservation->save();
     
         return redirect()->route('mesreservations');
+    }
+
+    public function showReservationCollegue($id){
+        $resultatSearch = DB::table('reservation')
+                ->select('*')
+                ->join('users', 'users.iduser', '=', 'reservation.id_user')
+                ->join('place', 'place.idplace', '=', 'reservation.id_place')
+                ->where('id_user', '=', $id)
+                ->get();
+
+        return Inertia::render('ReservationCollegue', [
+            'resultatSearch' => $resultatSearch,
+        ]);
     }
 
 }

@@ -46,6 +46,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/reservationplace', [ReservationPlaceController::class, 'reserverplace'])
         ->name('reserverplace');
 
+    Route::get('/reservationcollegue/{id}', [ReservationPlaceController::class, 'showReservationCollegue'])
+        ->name('reservationClient');
 });
 
 
