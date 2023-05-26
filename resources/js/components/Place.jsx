@@ -6,14 +6,14 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 
 export default function Place(props) {
     
-    const { numplace, placeid, onPlaceSelect, isReserved } = props;
+    const { numplace, placeid, onPlaceSelect, colorPlace } = props;
 
     // const { places } = props;
     //console.log(props);
 
     const [selectedOption, setSelectedOption] = useState("");
-    // const [reserver, setReserver] = useState("");
-    const reserver = isReserved ? "grey" : "";
+    const [reserver, setReserver] = useState("");
+
 
     const handleSelectionChange = (event) => {
         const value = event.target.value;
@@ -23,13 +23,13 @@ export default function Place(props) {
     };
 
     const handleSelectPlace = () => {
-        if(isReserved)
-            alert("Cette place est déjà réservée.");
-        else{
+        if (colorPlace == 'grey') {
+            alert("La place est déjà occupée")
+        } else{
             onPlaceSelect(placeid);
-            console.log(`Vous avez selectionner la place ${numplace} avec son ID ${placeid} et cette place ${isReserved ? "est réservée" : "est libre"}`);
+            console.log(`Vous avez selectionner la place ${numplace} avec son ID ${placeid} et cette place ${colorPlace}`);
         }
-      };
+    };
 
     return (
         <>
@@ -45,7 +45,7 @@ export default function Place(props) {
                 />
                 <label
                     for={placeid}
-                    class=" cursor-pointer peer-checked:border-green-600 peer-checked:text-green-600 hover:text-indigo-600 hover:bg-indigo-100 dark:text-indigo-400 dark:bg-indigo-800 dark:hover:bg-gray-indigo"
+                    class="cursor-pointer peer-checked:border-green-600 peer-checked:text-green-600 hover:text-indigo-500"
                 >
                     <div
                         key={placeid}
@@ -53,7 +53,7 @@ export default function Place(props) {
                         data-tooltip-content={`Place ${numplace}`}
                     >
                         <ReactTooltip type="success" id="my-tooltip" />
-                        <MdEventSeat color={reserver} size={"2em"} />
+                        <MdEventSeat color={colorPlace} size={"2em"} />
                     </div>
                 </label>
             </div>

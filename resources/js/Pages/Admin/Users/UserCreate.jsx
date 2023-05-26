@@ -25,20 +25,20 @@ export default function UserCreate(props) {
     }, []);
 
     const fonction = [
-        { label: "Architecte", value: "architecte" },
+        { label: "Architecte logiciel", value: "architecte logiciel" },
         { label: "Artiste", value: "artiste" },
         { label: "Avocat(e)", value: "avocat" },
         { label: "Chef de projet", value: "chef de projet" },
         { label: "Comptable", value: "comptable" },
-        { label: "Consultant(e)", value: "consultant" },
         { label: "Développeur(se)", value: "developpeur" },
-        { label: "Entrepreneur(e)", value: "entrepreneur" },
-        { label: "Ingénieur(e)", value: "ingenieur" },
-        { label: "Journaliste", value: "journaliste" },
+        { label: "Designer graphique", value: "designer graphique" },
+        { label: "Enseignant(e)", value: "enseignant" },
+        { label: "Ingénieur(e) en génie civil", value: "ingenieur genie civil" },
+        { label: "Ingénieur(e) en informatique", value: "ingenieur informatique" },
+        { label: "Infirmier(ère)", value: "infirmier" },
         { label: "Médecin", value: "medecin" },
-        { label: "Professeur(e)", value: "professeur" },
-        { label: "Psychologue", value: "psychologue" },
-        { label: "Autres", value: "autres" }
+        { label: "Photographe", value: "photographe" },
+        { label: "Autre(s)", value: "autres" },
       ];
       
     

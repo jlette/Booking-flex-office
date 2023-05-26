@@ -66,7 +66,7 @@ export default function UserEdit(props) {
                         <div className='mt-5'>
                             <InputLabel htmlFor="username" value="Prénom" />
                             <TextInput
-                                id="username"
+                                id="name"
                                 type="text"
                                 name="username"
                                 value={data.username}
