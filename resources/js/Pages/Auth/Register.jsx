@@ -25,11 +25,6 @@ export default function Register() {
         { label: "Autre(s)", value: "autres" },
     ];
 
-<<<<<<< HEAD
-=======
-    ]
-
->>>>>>> 296000b2fe9975e0f0cad2a30555030f9a6dad80
     // data: qui représente l'état actuel des champs du formulaire.
     // setData: fonction pour mettre à jour l'état des champs du formulaire.
     // post: fonction pour envoyer une requête HTTP POST pour soumettre les données du formulaire.
@@ -78,15 +73,9 @@ export default function Register() {
     return (
 
         <form onSubmit={submit}>
-<<<<<<< HEAD
             <div className="grid grid-cols-2 gap-4 mt-2">
                 <div className="col-span-1">
                     <InputLabel htmlFor="name" value="Nom" />
-=======
-     <div className="grid grid-cols-2 gap-4">
-    <div className="col-span-1">
-        <InputLabel htmlFor="name" value="Nom" />
->>>>>>> 296000b2fe9975e0f0cad2a30555030f9a6dad80
 
         <TextInput
             id="name"
@@ -102,7 +91,6 @@ export default function Register() {
         <InputError message={errors.name} className="mt-2" />
     </div>
 
-<<<<<<< HEAD
                 <div className="col-span-1">
                     <InputLabel htmlFor="username" value="Prénom" />
 
@@ -118,23 +106,6 @@ export default function Register() {
                     <InputError message={errors.username} className="mt-2" />
                 </div>
             </div>
-=======
-    <div className="col-span-1">
-        <InputLabel htmlFor="username" value="Prénom" />
-
-        <TextInput
-            id="username"
-            name="username"
-            value={data.username}
-            className="mt-1 block w-full"
-            autoComplete="username1"
-            onChange={handleOnChange}
-            required
-        />
-        <InputError message={errors.username} className="mt-2" />
-    </div>
-</div>
->>>>>>> 296000b2fe9975e0f0cad2a30555030f9a6dad80
 
 
             <div className="mt-4">
