@@ -17,7 +17,7 @@ export default function Authenticated({ auth, header, children }) {
                             <div className="shrink-0 flex items-center">
                                 <Link href={route('dashboard')} active={route().current('dashboard')}>
                                     <div>
-                                        <img src={'img/BFO-logo.png'} className="block h-9 w-auto fill-current text-gray-800"></img>
+                                        <img src={'../img/BFO-logo.png'} className="block h-9 w-auto fill-current text-gray-800"></img>
                                     </div>
                                 </Link>
                             </div>

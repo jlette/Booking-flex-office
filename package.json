@@ -30,6 +30,8 @@
         "react-bootstrap": "^2.7.4",
         "react-bootstrap-accordion": "^1.0.0",
         "react-datepicker": "^4.11.0",
-        "react-select": "^5.7.2"
+        "react-icons": "^4.8.0",
+        "react-select": "^5.7.2",
+        "react-tooltip": "^5.13.0"
     }
 }

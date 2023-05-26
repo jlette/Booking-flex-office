@@ -6,6 +6,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import Place from "@/components/Place";
 import ReservationLayout from "@/Layouts/ReservationLayout";
 import { Inertia } from "@inertiajs/inertia";
+import SearchBar from "@/components/SearchBar";
+import { FaHeart } from 'react-icons/fa';
+import { Link } from "@inertiajs/inertia-react";
+
 
 export default function Reservation(props) {
     // permet d'accéder aux propriétés envoyées à la page du côté
@@ -13,7 +17,8 @@ export default function Reservation(props) {
     // contient les informations sur les places récupérées
     // depuis la base de données grâce au contrôleur Laravel
 
-    const { places, reservations } = usePage().props;
+    const { places, reservations, searchUser } = usePage().props;
+    console.log(searchUser);
     // console.log(places);
     // places.map(place => console.log(place.numplace));
 
@@ -21,6 +26,10 @@ export default function Reservation(props) {
     const [etagerecup, setEtagerecup] = useState("1");
     const [placerecup, setPlaceRecup] = useState("");
     const [selectedPlaceId, setSelectedPlaceId] = useState(null);
+
+    const [search, setSearch] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
+
 
     // permet de définir les données du formulaire
     // et de les initialiser avec des valeurs par défaut
@@ -83,6 +92,15 @@ export default function Reservation(props) {
         console.log(data);
     };
 
+    const onChangeSearch = (value) => {
+        setSearch(value);
+        const results = searchUser.filter((user) => {
+            return user.username.toLowerCase().includes(value.toLowerCase());
+        });
+        setSearchResults(results);
+      };
+      
+
     return (
         <AuthenticatedLayout
             auth={props.auth}
@@ -94,6 +112,37 @@ export default function Reservation(props) {
             }
         >
             <Head title="Reservation" />
+
+            <div className="max-w-5xl mx-auto flex flex-col rounded-lg shadow-lg overflow-hidden pt-3">
+                <div className="bg-white px-6 py-3 border-b">
+                    <h3 className="text-lg font-medium text-gray-900">
+                        <SearchBar onChangeSearch={onChangeSearch} />
+                    </h3>
+                </div>
+                {search &&(
+                    <div className="bg-white rounded-lg shadow-lg overflow-hidden mt-2">
+                        <ul className="divide-y divide-gray-200">
+                            {searchResults.map((user) => (
+                                <li key={user.id}>
+                                <Link href={route('reservationClient', user.iduser)}
+                                        className="flex items-center px-4 py-4 hover:bg-gray-700"
+                                    >
+                                        <div className="flex flex-col">
+                                            <p className="text-sm font-medium text-gray-900">
+                                                {user.username}
+                                            </p>
+                                        </div>
+                                        <div className="ml-auto">
+                                            <FaHeart className="text-red-500" />
+                                        </div>
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+        </div>
+
 
             <div className="pt-5 flex flex-wrap">
                 <div className="w-full md:w-1/3 px-4 mb-4">
@@ -199,7 +248,10 @@ export default function Reservation(props) {
                             </div>
                         </form>
                     </div>
-                </div>
+                </div>      
+                
+                          
+
                 <div className="w-full md:w-2/3 px-4 mb-4">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 text-gray-900">
