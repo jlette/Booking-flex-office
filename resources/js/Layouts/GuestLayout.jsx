@@ -6,9 +6,9 @@ export default function Guest({ children }) {
         <div className="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
 
             <div>
-                <img src={'img/BFO-logo.png'} className="block h-40 w-auto fill-current text-gray-800"></img>
+                <img src={'img/logo-text.png'} className="block h-24 w-auto fill-current text-gray-800"></img>
             </div>
-            <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div className="w-full sm:max-w-md">
 
                 {children}
             </div>

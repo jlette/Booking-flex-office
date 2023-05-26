@@ -9,18 +9,28 @@ import Select from 'react-select';
 
 export default function Register() {
     const fonction = [
-        { label: "Développeur web", value: "dev" },
+        { label: "Architecte logiciel", value: "architecte logiciel" },
+        { label: "Artiste", value: "artiste" },
+        { label: "Avocat(e)", value: "avocat" },
+        { label: "Chef de projet", value: "chef de projet" },
         { label: "Comptable", value: "comptable" },
-        { label: "Chef de projet", value: "projet" },
+        { label: "Développeur(se)", value: "developpeur" },
+        { label: "Designer graphique", value: "designer graphique" },
+        { label: "Enseignant(e)", value: "enseignant" },
+        { label: "Ingénieur(e) en génie civil", value: "ingenieur genie civil" },
+        { label: "Ingénieur(e) en informatique", value: "ingenieur informatique" },
+        { label: "Infirmier(ère)", value: "infirmier" },
+        { label: "Médecin", value: "medecin" },
+        { label: "Photographe", value: "photographe" },
+        { label: "Autre(s)", value: "autres" },
+    ];
 
-    ]
-
-// data: qui représente l'état actuel des champs du formulaire.
-// setData: fonction pour mettre à jour l'état des champs du formulaire.
-// post: fonction pour envoyer une requête HTTP POST pour soumettre les données du formulaire.
-// processing: variable booléenne qui est true lorsque la soumission du formulaire est en cours.
-// errors: contient les erreurs de validation des champs du formulaire.
-// reset: fonction pour réinitialiser les valeurs des champs du formulaire à leurs valeurs initiales.
+    // data: qui représente l'état actuel des champs du formulaire.
+    // setData: fonction pour mettre à jour l'état des champs du formulaire.
+    // post: fonction pour envoyer une requête HTTP POST pour soumettre les données du formulaire.
+    // processing: variable booléenne qui est true lorsque la soumission du formulaire est en cours.
+    // errors: contient les erreurs de validation des champs du formulaire.
+    // reset: fonction pour réinitialiser les valeurs des champs du formulaire à leurs valeurs initiales.
 
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
@@ -61,28 +71,27 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Register" />
 
-            <form onSubmit={submit}>
-                <div>
+        <form onSubmit={submit}>
+            <div className="grid grid-cols-2 gap-4 mt-2">
+                <div className="col-span-1">
                     <InputLabel htmlFor="name" value="Nom" />
 
-                    <TextInput
-                        id="name"
-                        name="name"
-                        value={data.name}
-                        className="mt-1 block w-full"
-                        autoComplete="name"
-                        isFocused={true}
-                        onChange={handleOnChange}
-                        required
-                    />
+        <TextInput
+            id="name"
+            name="name"
+            value={data.name}
+            className="mt-1 block w-full"
+            autoComplete="name"
+            isFocused={true}
+            onChange={handleOnChange}
+            required
+        />
 
-                    <InputError message={errors.name} className="mt-2" />
-                </div>
+        <InputError message={errors.name} className="mt-2" />
+    </div>
 
-                <div className="mt-4">
+                <div className="col-span-1">
                     <InputLabel htmlFor="username" value="Prénom" />
 
                     <TextInput
@@ -96,77 +105,74 @@ export default function Register() {
                     />
                     <InputError message={errors.username} className="mt-2" />
                 </div>
+            </div>
 
-                <div className="mt-4">
-                    <InputLabel htmFor="fonction" value="Fonction" />
-                    <Select options={fonction} onChange={onFonctionChange}/>
-                    <InputError message={errors.fonction} className="mt-2" />
-                </div>
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="email" value="Email" />
+            <div className="mt-4">
+                <InputLabel htmFor="fonction" value="Fonction" />
+                <Select options={fonction} onChange={onFonctionChange} />
+                <InputError message={errors.fonction} className="mt-2" />
+            </div>
 
-                    <TextInput
-                        id="email"
-                        type="email"
-                        name="email"
-                        value={data.email}
-                        className="mt-1 block w-full"
-                        autoComplete="username"
-                        onChange={handleOnChange}
-                        required
-                    />
+            <div className="mt-4">
+                <InputLabel htmlFor="email" value="Email" />
 
-                    <InputError message={errors.email} className="mt-2" />
-                </div>
+                <TextInput
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={data.email}
+                    className="mt-1 block w-full"
+                    autoComplete="username"
+                    onChange={handleOnChange}
+                    required
+                />
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password" value="Mot de passe" />
+                <InputError message={errors.email} className="mt-2" />
+            </div>
 
-                    <TextInput
-                        id="password"
-                        type="password"
-                        name="password"
-                        value={data.password}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={handleOnChange}
-                        required
-                    />
+            <div className="mt-4">
+                <InputLabel htmlFor="password" value="Mot de passe" />
 
-                    <InputError message={errors.password} className="mt-2" />
-                </div>
+                <TextInput
+                    id="password"
+                    type="password"
+                    name="password"
+                    value={data.password}
+                    className="mt-1 block w-full"
+                    autoComplete="new-password"
+                    onChange={handleOnChange}
+                    required
+                />
 
-                <div className="mt-4">
-                    <InputLabel htmlFor="password_confirmation" value="Confirmez le mot de passe" />
+                <InputError message={errors.password} className="mt-2" />
+            </div>
 
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        name="password_confirmation"
-                        value={data.password_confirmation}
-                        className="mt-1 block w-full"
-                        autoComplete="new-password"
-                        onChange={handleOnChange}
-                        required
-                    />
+            <div className="mt-4">
+                <InputLabel htmlFor="password_confirmation" value="Confirmez le mot de passe" />
 
-                    <InputError message={errors.password_confirmation} className="mt-2" />
-                </div>
+                <TextInput
+                    id="password_confirmation"
+                    type="password"
+                    name="password_confirmation"
+                    value={data.password_confirmation}
+                    className="mt-1 block w-full"
+                    autoComplete="new-password"
+                    onChange={handleOnChange}
+                    required
+                />
 
-                <div className="flex items-center justify-end mt-4">
-                    <Link
-                        href={route('login')}
-                        className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                    >
-                        Déjà enregistré?
-                    </Link>
+                <InputError message={errors.password_confirmation} className="mt-2" />
+            </div>
 
-                    <PrimaryButton className="ml-4" disabled={processing}>
-                        S'inscrire
-                    </PrimaryButton>
-                </div>
-            </form>
-        </GuestLayout>
+            <div className="flex items-center justify-end mt-4">
+
+
+                <PrimaryButton className="ml-4" disabled={processing}>
+                    S'inscrire
+                </PrimaryButton>
+            </div>
+        </form>
+
     );
 }
