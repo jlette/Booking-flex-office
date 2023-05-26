@@ -1,6 +1,5 @@
 import AdminLayout from "@/Layouts/AdminLayout";
 import InputError from "@/Components/InputError";
-import TextInput from "@/Components/TextInput";
 import PrimaryButton from '@/Components/PrimaryButton';
 import { useEffect } from 'react';
 import { Head, useForm } from "@inertiajs/react";

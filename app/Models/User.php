@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $username
  * @property string $fonction
  * @property string $roles
+ * @property int|null $roleid
  * @property string $email
  * @property Carbon|null $email_verified_at
  * @property string $password
@@ -59,11 +60,17 @@ class User extends Authenticatable implements MustVerifyEmail
 		'username',
 		'fonction',
 		'roles',
+		'roleid',
 		'email',
 		'email_verified_at',
 		'password',
 		'remember_token'
 	];
+
+	public function role()
+	{
+		return $this->belongsTo(Role::class, 'roleid');
+	}
 
 	public function favoriplaces()
 	{
@@ -110,9 +117,9 @@ class User extends Authenticatable implements MustVerifyEmail
         $this->remember_token = $value;
     }
 
-    public function hasRole($role)
+    public function hasrole($role)
 	{
-		return $this->roles === $role;
+		return $this->role->name === $role;
 	}
 }
 

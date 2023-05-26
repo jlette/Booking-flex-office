@@ -14,7 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property int $idreservation
  * @property bool $matin
- * @property bool $apresMidi
+ * @property bool $apresmidi
  * @property Carbon $date
  * @property int $id_user
  * @property int $id_place
@@ -32,18 +32,15 @@ class Reservation extends Model
 
 	protected $casts = [
 		'matin' => 'bool',
-		'apresMidi' => 'bool',
+		'apresmidi' => 'bool',
+		'date' => 'datetime',
 		'id_user' => 'int',
 		'id_place' => 'int'
 	];
 
-	protected $dates = [
-		'date'
-	];
-
 	protected $fillable = [
 		'matin',
-		'apresMidi',
+		'apresmidi',
 		'date',
 		'id_user',
 		'id_place'
