@@ -15,12 +15,12 @@
                     <div>
                         <div class="-mx-6 px-6 py-4">
                             <a href="#" title="home">
-                            <img src={'../img/logo-text.png'} className="block h-9 w-auto fill-current text-gray-800"></img>
+                            <img src={'/img/logo-text.png'} className="block h-9 w-auto fill-current text-gray-800"></img>
                             </a>
                         </div>
 
                         <div class="mt-8 text-center">
-                            <img src={'../img/BFO-logo.png'} alt="" class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"/>
+                            <img src={'/img/BFO-logo.png'} alt="" class="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"/>
                             <h5 class="hidden mt-4 text-xl font-semibold text-gray-600 lg:block"> Je suis l'{auth.user.username}</h5>
                             <span class="hidden text-gray-400 lg:block">Admin</span>
                         </div>
