@@ -12,8 +12,8 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * Class PasswordReset
  * 
- * @property string $email
- * @property string $token
+ * @property string|null $email
+ * @property string|null $token
  * @property Carbon|null $created_at
  *
  * @package App\Models
