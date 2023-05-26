@@ -12,7 +12,6 @@ export default function Welcome(props) {
 
 
 
-<<<<<<< HEAD
             <GuestLayout>
                 <Accordion >
                     <AccordionItem header="Connexion" className="w-full font-weight-bold sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
@@ -27,33 +26,11 @@ export default function Welcome(props) {
 
             </GuestLayout>
 
-=======
-                <GuestLayout>
-
-                    <Accordion >
-                        <AccordionItem header="Connexion" >
-                            <Login />
-                        </AccordionItem>
-
-                        <AccordionItem header="Inscription">
-                            <Register />
-                        </AccordionItem>
-
-
-                    </Accordion>
-
-
-                </GuestLayout>
->>>>>>> 296000b2fe9975e0f0cad2a30555030f9a6dad80
 
 
 
 
 
-<<<<<<< HEAD
-=======
-        
->>>>>>> 296000b2fe9975e0f0cad2a30555030f9a6dad80
 
         </>
 
