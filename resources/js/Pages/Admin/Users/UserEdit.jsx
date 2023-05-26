@@ -95,11 +95,20 @@ export default function UserEdit(props) {
                             <InputError message={errors.email} className="mt-2" />
                         </div>
 
-                        <div className="flex items-center mt-4">
-                            
-                            <PrimaryButton disabled={processing}>
-                                Update
-                            </PrimaryButton>
+                        <div className="flex items-center justify-end mt-4">
+                            <Link
+                                href={route("useradmin.index")}
+                                className="underline text-sm text-gray-600 hover:text-gray-900"
+                            >
+                                Retour
+                            </Link>
+                            <button 
+                                type="submit"
+                                className="ml-4 bg-indigo-700 text-white py-2 px-4 rounded hover:bg-indigo-500"
+                                disabled={processing}
+                            >
+                                Modifier
+                            </button>
                         </div>
                     </form>
                     </div>

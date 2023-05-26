@@ -20,7 +20,8 @@ class RestrictAdminAccessMiddleware
     public function handle(Request $request, Closure $next)
     {
         // Si l'utilisateur actuellement connecté a le rôle d'administrateur
-        if (Auth::user()->role->role_name === 'admin') {
+        $user = Auth::user();
+        if ($user && $user->role && $user->role->role_name === 'admin') {
             abort(404);
         }
         return $next($request);

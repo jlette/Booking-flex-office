@@ -6,6 +6,7 @@ use App\Models\Role;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class RoleController extends Controller
 {
@@ -71,7 +72,11 @@ class RoleController extends Controller
      */
     public function edit($id)
     {
-        //
+        $roles = Role::findOrFail($id);
+
+        return Inertia::render('Admin/Roles/RoleEdit', [
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -83,7 +88,13 @@ class RoleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Validator::make($request->all(), [
+            'role_name' => 'required|unique:'.Role::class,
+        ])->validate();
+
+        Role::find($id)->update($request->all());
+
+        return redirect()->route('roles.index')->with('success', 'Role updated successfully');
     }
 
     /**
@@ -94,6 +105,7 @@ class RoleController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Role::find($id)->delete();
+        return redirect()->route('roles.index')->with('success', 'Role deleted successfully');
     }
 }

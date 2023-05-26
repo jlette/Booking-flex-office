@@ -36,9 +36,6 @@ export default function PlaceEdit(props) {
 
             <div className="py-4">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className='flex justify-between'>
-                        <Link href={route('placeadmin.index')} class="px-3 py-2 text-white font-semibold bg-indigo-500 hover:bg-indigo-700 rounded">Retour vers user</Link>
-                    </div>
                    
                     <div className="mt-6 max-w-6xl mx-auto bg-slate-100 shadow-lg rounded-lg p-6">
                     <h1 class="text-2xl font-semibold text-indigo-700">Mettre à jour la place</h1>
@@ -76,12 +73,21 @@ export default function PlaceEdit(props) {
                             <InputError message={errors.numetage} className="mt-2" />
                         </div>
 
-                        <div className="flex items-center mt-4">
-                            
-                            <PrimaryButton disabled={processing}>
-                                Update
-                            </PrimaryButton>
-                        </div>
+                        <div className="flex items-center justify-end mt-4">
+                    <Link
+                        href={route("placeadmin.index")}
+                        className="underline text-sm text-gray-600 hover:text-gray-900"
+                    >
+                        Retour
+                    </Link>
+                    <button 
+                        type="submit"
+                        className="ml-4 bg-indigo-700 text-white py-2 px-4 rounded hover:bg-indigo-500"
+                        disabled={processing}
+                    >
+                        Modifier
+                    </button>
+                </div>
                     </form>
                     </div>
                 </div>

@@ -1,17 +1,17 @@
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import { Inertia } from '@inertiajs/inertia';
-import InputLabel from '@/Components/InputLabel';
+import { Link } from '@inertiajs/inertia-react';
+
 import PrimaryButton from '@/Components/PrimaryButton';
-import { useEffect, useState } from 'react';
-import Select from "react-select";
+import InputLabel from '@/Components/InputLabel';
 import TextInput from "@/Components/TextInput";
 import InputError from '@/components/InputError';
 import Table from '@/components/Table';
 import TableRow from '@/components/TableRow';
 import TableHeadCell from '@/components/TableHeadCell';
 import TableDataCell from '@/components/TableDataCell';
-import { Link } from '@inertiajs/inertia-react';
+
 
 export default function RoleIndex(props) {
 
@@ -79,21 +79,26 @@ export default function RoleIndex(props) {
                             <TableHeadCell>Edition</TableHeadCell>
                             <TableHeadCell>Suprression</TableHeadCell>
                         </TableRow>}>
-                        {roles.map((user) => (
-                        <TableRow key={user.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <TableHeadCell>{user.role_id}</TableHeadCell>
-                                <TableDataCell>{user.role_name}</TableDataCell>
+                        {roles.map((role) => (
+                        <TableRow key={role.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                <TableHeadCell>{role.role_id}</TableHeadCell>
+                                <TableDataCell>{role.role_name}</TableDataCell>
                                 <TableDataCell>
                                     <Link 
-                                        // href={route('useradmin.edit', user.iduser)} 
+                                        href={route('roles.edit', role.role_id)} 
                                         class="text-green-400 hover:text-green-600">
                                         Editer
                                     </Link>
                                 </TableDataCell>
                                 <TableDataCell>
-                                <Link 
-                                        // href={route('useradmin.edit', user.iduser)} 
-                                        class="text-red-400 hover:text-red-600">
+                                    <Link 
+                                        className="text-red-400 hover:text-red-600"
+                                        onClick={() => {
+                                            if (confirm("Voulez-vous vraiment supprimer cette place ?")) {
+                                                Inertia.delete(route('roles.destroy', role.role_id))
+                                            }
+                                        }}
+                                    >
                                         Supprimer
                                     </Link>
                                 </TableDataCell>
