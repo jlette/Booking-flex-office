@@ -132,9 +132,9 @@ export default function Reservation(props) {
                                                 {user.username}
                                             </p>
                                         </div>
-                                        <div className="ml-auto">
+                                        {/* <div className="ml-auto">
                                             <FaHeart className="text-red-500" />
-                                        </div>
+                                        </div> */}
                                     </Link>
                                 </li>
                             ))}
@@ -151,7 +151,6 @@ export default function Reservation(props) {
                             <h3 className="text-lg font-medium text-gray-900">
                                 Réservation
                             </h3>
-                            <h2>L'id de la place est {placerecup}</h2>
                         </div>
                         <form onSubmit={handleSubmit}>
                             <div className="flex flex-col py-4 px-6 bg-gray-50">
