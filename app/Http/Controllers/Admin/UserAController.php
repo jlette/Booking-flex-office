@@ -20,7 +20,14 @@ class UserAController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $users = User::all();
+       
+        $users = DB::table('users')
+                ->select('*')
+                ->where(function ($query) {
+                    $query->where('roleid', '<>', '1')
+                        ->orWhereNull('roleid');
+                })
+                ->get();
 
         return Inertia::render('Admin/Users/UserIndex',[
             'users' => $users,

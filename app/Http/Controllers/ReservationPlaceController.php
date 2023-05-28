@@ -38,8 +38,8 @@ class ReservationPlaceController extends Controller
                 ->select('*')
                 ->where('iduser', '<>', Auth::id())
                 ->where(function ($query) {
-                    $query->where('roles', '<>', 'admin')
-                        ->orWhereNull('roles');
+                    $query->where('roleid', '<>', '1')
+                        ->orWhereNull('roleid');
                 })
                 ->get();
 
