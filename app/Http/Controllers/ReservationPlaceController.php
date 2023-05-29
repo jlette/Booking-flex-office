@@ -74,6 +74,7 @@ class ReservationPlaceController extends Controller
         $reservation->matin = $request->input('matin') ? true : false; // Vérifier si la case "matin" est cochée
         $reservation->apresmidi = $request->input('apresmidi') ? true : false; // Vérifier si la case "apresMidi" est cochée
         $reservation->id_place = $request->input('id_place');
+        $reservation->created_at = now();
         $reservation->save();
     
         return redirect()->route('mesreservations');

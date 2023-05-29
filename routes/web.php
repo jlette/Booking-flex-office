@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardAdminController;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
@@ -53,9 +54,8 @@ Route::middleware(['auth', 'verified', 'restrictAdminAccess'])->group(function (
 
 
 Route::middleware(['auth', 'roles:admin'])->group(function () {
-    Route::get('/admin', function() {
-        return Inertia::render('Admin/DashboardA');
-    })->name('admin.dashboard');
+    Route::get('/admin', [DashboardAdminController::class, 'index'])
+        ->name('admin.dashboard');
 
     // Gerer la partie user
     Route::resource('/useradmin', UserAController::class);
