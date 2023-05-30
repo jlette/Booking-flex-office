@@ -94,7 +94,7 @@ class RoleController extends Controller
 
         Role::find($id)->update($request->all());
 
-        return redirect()->route('roles.index')->with('success', 'Role updated successfully');
+        return redirect()->route('roles.index');
     }
 
     /**
@@ -106,6 +106,6 @@ class RoleController extends Controller
     public function destroy($id)
     {
         Role::find($id)->delete();
-        return redirect()->route('roles.index')->with('success', 'Role deleted successfully');
+        return redirect()->route('roles.index');
     }
 }
