@@ -27,11 +27,7 @@ class DashboardAdminController extends Controller
             DB::raw('ROUND((COUNT(*) / (SELECT COUNT(*) FROM users)) * 100, 1) AS pourcentage_utilisateurs_inscrits_semaine')
             )
         ->where('created_at', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 1 WEEK)'))
-        ->get();
-        
-        $statPlace = DB::table('place')
-                ->select(DB::raw('count(*) as place_count'))
-                ->get();    
+        ->get();  
 
         $statReservationLastMonth = DB::table('reservation')
                 ->select(
@@ -49,13 +45,37 @@ class DashboardAdminController extends Controller
                 ->where('date', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 1 WEEK)'))
                 ->get();
 
+        $statListUserLast = DB::table('users')
+                ->select('*')
+                ->where('created_at', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 1 MONTH)')
+                )
+                ->where(function ($query) {
+                    $query->where('roleid', '<>', '1')
+                        ->orWhereNull('roleid');
+                })
+                ->get();
+
+        $statListReservationLast = DB::table('reservation')
+            ->select('*')
+            ->join('users', 'iduser', '=', 'reservation.id_user')
+            ->join('place', 'idplace', '=', 'reservation.id_place')
+            ->where('cree_le', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 1 MONTH)')
+            )
+            ->get();
+
+        $statPlaceLast = DB::table('place')
+            ->select('*')
+            ->where('created_at', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 1 MONTH)'))
+            ->get();  
 
         return Inertia::render('Admin/DashboardA', [
             'statUserLastMonth' => $statUserLastMonth,
             'statUserLastWeek' => $statUserLastWeek,
             'statReservationLastMonth' => $statReservationLastMonth,
             'statReservationLastWeek' => $statReservationLastWeek,
-            'statPlace' => $statPlace,
+            'statListUserLast' => $statListUserLast,
+            'statListReservationLast' => $statListReservationLast,
+            'statPlaceLast' => $statPlaceLast,
         ]);
     }
 }

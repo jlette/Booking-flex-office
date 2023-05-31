@@ -2,7 +2,8 @@
     import { Link } from '@inertiajs/react';
     import SidebarLink from '@/Components/SidebarLink';
     import { MdSupervisedUserCircle } from 'react-icons/md';
-    import { MdEventSeat } from 'react-icons/md';
+    import { MdAirlineSeatReclineExtra } from 'react-icons/md';
+    import {MdOutlineEditCalendar} from 'react-icons/md';
     import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 
     export default function AdminLayout({ auth, header, children }) {
@@ -11,7 +12,7 @@
 
 
         return (
-            <div className="w-full h-full">
+            <div className={`w-full h-full ${isDarkMode ? 'dark:bg-slate-800' : ''}`}>
                 <aside class="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
                     <div>
                         <div class="-mx-6 px-6 py-4">
@@ -42,28 +43,26 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
                                 </svg>
-                                    <span class="-mr-1 font-medium">User</span>
+                                    <span class="-mr-1 font-medium">Utilisateurs</span>
                                 </SidebarLink>
                             </li>
                             <li>
                                 <SidebarLink href={route('reservationadmin.index')} active={route().current('reservationadmin.index')}>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12a7.5 7.5 0 0015 0m-15 0a7.5 7.5 0 1115 0m-15 0H3m16.5 0H21m-1.5 0H12m-8.457 3.077l1.41-.513m14.095-5.13l1.41-.513M5.106 17.785l1.15-.964m11.49-9.642l1.149-.964M7.501 19.795l.75-1.3m7.5-12.99l.75-1.3m-6.063 16.658l.26-1.477m2.605-14.772l.26-1.477m0 17.726l-.26-1.477M10.698 4.614l-.26-1.477M16.5 19.794l-.75-1.299M7.5 4.205L12 12m6.894 5.785l-1.149-.964M6.256 7.178l-1.15-.964m15.352 8.864l-1.41-.513M4.954 9.435l-1.41-.514M12.002 12l-3.75 6.495" />
-                                </svg>
-                                    <span class="-mr-1 font-medium">Réservation</span>
+                                <MdOutlineEditCalendar className="w-6 h-6" />
+                                    <span class="-mr-1 font-medium">Réservations</span>
                                 </SidebarLink>
                             </li>
                             <li>
                                 <SidebarLink href={route('placeadmin.index')} active={route().current('placeadmin.index')}>
-                                    <MdEventSeat className="w-6 h-6" />
-                                    <span class="-mr-1 font-medium">Place</span>
+                                    <MdAirlineSeatReclineExtra className="w-6 h-6" />
+                                    <span class="-mr-1 font-medium">Places</span>
                                 </SidebarLink>
                             </li>
 
                             <li>
                                 <SidebarLink href={route('roles.index')} active={route().current('roles.index')}>
                                     <MdSupervisedUserCircle className="w-6 h-6" />
-                                    <span class="-mr-1 font-medium">Role</span>
+                                    <span class="-mr-1 font-medium">Roles</span>
                                 </SidebarLink>
                             </li>
                             
@@ -137,14 +136,14 @@
                                 </svg>
                             </button>
                             <button class="w-10 h-10 rounded-xl border bg-gray-100 focus:bg-gray-100 active:bg-gray-200"
-  onClick={() => setIsDarkMode((prevMode) => !prevMode)}        >                    
-  {isDarkMode ? (
-                            <svg className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            onClick={() => setIsDarkMode((prevMode) => !prevMode)}        >                    
+                            {isDarkMode ? (
+                            <svg className="w-9 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
                             </svg>
                             ):(
                             <svg
-                                className="w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" eLinejoin="round">
+                                className="w-9 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" eLinejoin="round">
                                 <circle cx="12" cy="12" r="5" /> <line x1="12" y1="1" x2="12" y2="3" /> <line x1="12" y1="21" x2="12" y2="23" /> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" /> <line x1="1" y1="12" x2="3" y2="12" /> <line x1="21" y1="12" x2="23" y2="12" /> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
                             </svg>
                             )}
