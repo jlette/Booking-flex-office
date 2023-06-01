@@ -23,15 +23,15 @@ export default function UpdateProfileInformationFormAdmin({ mustVerifyEmail, sta
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Informations sur le profil</h2>
+                <h2 className="text-lg font-medium text-gray-900 dark:text-white">Informations sur le profil</h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-gray-600 dark:text-white">
                 Mettez à jour les informations de profil et l'adresse e-mail de votre compte.</p>
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel for="name" value="Name" />
+                    <InputLabel for="name" value="Name" className='dark:text-white'/>
 
                     <TextInput
                         id="name"
@@ -47,7 +47,7 @@ export default function UpdateProfileInformationFormAdmin({ mustVerifyEmail, sta
                 </div>
 
                 <div>
-                    <InputLabel for="username" value="Prénom" />
+                    <InputLabel for="username" value="Prénom" className='dark:text-white'/>
 
                     <TextInput
                         id="username"
@@ -62,7 +62,7 @@ export default function UpdateProfileInformationFormAdmin({ mustVerifyEmail, sta
                 </div>
 
                 <div>
-                    <InputLabel for="email" value="Email" />
+                    <InputLabel for="email" value="Email" className='dark:text-white' />
 
                     <TextInput
                         id="email"
