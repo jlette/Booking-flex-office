@@ -22,9 +22,7 @@ export default function ReservationIndex(props) {
             <Head title="AdminR" />
 
             <div className="py-4">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <Link href={route('placeadmin.create')} class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Ajouter des places</Link>
-            
+                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">            
                     <div className="mt-6">
                     <Table captionText="Liste des réservations" header={<TableRow>
                             <TableHeadCell>Reservation id</TableHeadCell>
@@ -38,7 +36,7 @@ export default function ReservationIndex(props) {
                         </TableRow>}>
                         {reservationsUser.map((reservationUser) => (
                             
-                        <TableRow key={reservationUser.idreservation} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <TableRow key={reservationUser.idreservation} className="bg-slate-200 border-b border-indigo-200 dark:bg-gray-900 dark:border-gray-700">
                                 <TableHeadCell>{reservationUser.idreservation}</TableHeadCell>
                                 <TableDataCell>{reservationUser.matin && reservationUser.apresmidi 
                                 ? "Journée" : reservationUser.matin ? "Matin" : "Après-midi"}
