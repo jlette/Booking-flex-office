@@ -16,13 +16,13 @@ export default function UserIndex(props) {
         <AdminLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Gerer les utilisateurs</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Gérer les utilisateurs</h2>}
         >
             <Head title="UserIndex" />
 
             <div className="py-4">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <Link href={route('useradmin.create')} class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">Ajouter un nouveau utilisateur</Link>
+                    <Link href={route('useradmin.create')} class="px-3 py-2 text-white font-semibold bg-sky-600 hover:bg-sky-700 rounded">Ajouter un nouveau utilisateur</Link>
             
                     <div className="mt-6">
                     <Table captionText="Liste des utilisateurs" header={<TableRow>
@@ -34,7 +34,7 @@ export default function UserIndex(props) {
                             <TableHeadCell>Actions</TableHeadCell>
                         </TableRow>}>
                         {users.map((user) => (
-                        <TableRow key={user.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <TableRow key={user.id} className="bg-slate-200 border-b border-indigo-200 dark:bg-gray-900 dark:border-gray-700">
                                 <TableHeadCell>{user.iduser}</TableHeadCell>
                                 <TableDataCell>{user.name}</TableDataCell>
                                 <TableDataCell>{user.username}</TableDataCell>

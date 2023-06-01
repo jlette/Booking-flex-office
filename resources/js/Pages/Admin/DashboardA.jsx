@@ -58,7 +58,7 @@ export default function DashboardA(props) {
                     <div class="flex flex-wrap">
                         <div class="w-full lg:w-3/12 xl:w-3/12 px-4">
                         {statUserLastWeek.map((userWeek) => (
-                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded-lg mb-6 xl:mb-0 shadow-lg">
+                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded-lg mb-6 xl:mb-0 shadow-lg dark:bg-slate-900">
                                 <div class="flex-auto p-4">
                                     <div class="flex flex-wrap">
                                     <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
@@ -100,7 +100,7 @@ export default function DashboardA(props) {
                         </div>
                         <div class="w-full lg:w-3/12 xl:w-3/12 px-4">    
                             {statUserLastMonth.map((userMonth) => (
-                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded-lg mb-6 xl:mb-0 shadow-lg">
+                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded-lg mb-6 xl:mb-0 shadow-lg dark:bg-slate-900">
                                 <div class="flex-auto p-4">
                                     <div class="flex flex-wrap">
                                     <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
@@ -142,7 +142,7 @@ export default function DashboardA(props) {
                             ))}
                         </div>  
                         <div class="w-full lg:w-3/12 xl:w-3/12 px-4">
-                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded-lg mb-6 xl:mb-0 shadow-lg">
+                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded-lg mb-6 xl:mb-0 shadow-lg dark:bg-slate-900">
                                 {statReservationLastWeek.map((reservationWeek) => (
                                 <div class="flex-auto p-4">
                                     <div class="flex flex-wrap">
@@ -184,7 +184,7 @@ export default function DashboardA(props) {
                             </div>
                         </div>                                    
                         <div class="w-full lg:w-3/12 xl:w-3/12 px-4">
-                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded-lg mb-6 xl:mb-0 shadow-lg">
+                            <div class="relative flex flex-col min-w-0 break-words bg-white rounded-lg mb-6 xl:mb-0 shadow-lg dark:bg-slate-900">
                                 {statReservationLastMonth.map((reservationMonth) => (
                                 <div class="flex-auto p-4">
                                     <div class="flex flex-wrap">
@@ -229,9 +229,9 @@ export default function DashboardA(props) {
                     </div>
                     <div class="grid grid-cols-1 lg:grid-cols-2 p-4 gap-4">
 
-                        <div class="w-full min-w-0 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
+                        <div class="w-full min-w-0 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-slate-900 dark: border border-none">
                             <div class="flex items-center justify-between mb-4">
-                                <h5 class="text-xl font-bold leading-none text-gray-900">Derniers Clients</h5>
+                                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Derniers Clients</h5>
                                 <Link href={route('useradmin.index')} class="text-sm font-medium text-blue-600 hover:underline">
                                     Voir tout
                                 </Link>
@@ -245,14 +245,14 @@ export default function DashboardA(props) {
                                                     <img class="w-8 h-8 rounded-full" src={'/img/avatar.svg'} alt="Neil image"/>
                                                 </div>
                                                 <div class="flex-1 min-w-0">
-                                                    <p class="text-sm font-medium text-gray-900 truncate">
+                                                    <p class="text-sm font-medium truncate">
                                                         {userLast.name}
                                                     </p>
                                                     <p class="text-sm text-gray-500 truncate">
                                                         {userLast.email}
                                                     </p>
                                                 </div>
-                                                <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                                                <div class="inline-flex items-center text-base font-semibold ">
                                                     {userLast.fonction}
                                                 </div>
                                             </div>
@@ -261,9 +261,9 @@ export default function DashboardA(props) {
                                     </ul>
                             </div>
                         </div>
-                        <div class="w-full min-w-0 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
+                        <div class="w-full min-w-0 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-slate-900 dark: border border-none">
                             <div class="flex items-center justify-between mb-4">
-                                <h5 class="text-xl font-bold leading-none text-gray-900">Dernière Réservation</h5>
+                                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Dernière Réservation</h5>
                                 <Link href={route('reservationadmin.index')} class="text-sm font-medium text-blue-600 hover:underline">
                                     Voir tout
                                 </Link>
@@ -277,7 +277,7 @@ export default function DashboardA(props) {
                                                 <BsCalendar2Event className="w-6 h-6" />
                                                 </div>
                                                 <div class="flex-1 min-w-0">
-                                                    <p class="text-sm font-medium text-gray-900 truncate">
+                                                    <p class="text-sm font-medium truncate">
                                                         {reservationLast.name}
                                                     </p>
                                                     <p class="text-sm text-gray-500 truncate">
@@ -287,7 +287,7 @@ export default function DashboardA(props) {
                                                         {`Place ${reservationLast.numplace}`} 
                                                     </p>
                                                 </div>
-                                                <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                                                <div class="inline-flex items-center text-base font-semibold">
                                                     {reservationLast.matin && reservationLast.apresmidi ? "Journée" : reservationLast.matin ? "Matin" : "Apres-midi"} 
                                                 </div>
                                             </div>
@@ -309,7 +309,7 @@ export default function DashboardA(props) {
                             {pageNumbers.map((number) => (
                                 <li key={number}>
                                 <button
-                                    className={`px-3 py-2 leading-tight text-gray-500 border border-gray-300 dark:bg-gray-800 ${
+                                    className={`px-3 py-2 leading-tight text-gray-500 border border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
                                     number === PageCourante 
                                     ? 'bg-gray-300 text-gray-900 dark:bg-green-700 dark:text-white'
                                     : 'hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white'
@@ -333,9 +333,9 @@ export default function DashboardA(props) {
                     </div>
 
                     <div class="w-full min-w-0 p-4">
-                        <div className='border border-gray-200 rounded-lg shadow sm:p-8 bg-white'>
+                        <div className='border border-gray-200 rounded-lg shadow sm:p-8 bg-white dark:bg-slate-900 dark: border border-none'>
                             <div class="flex items-center justify-between mb-4">
-                                <h5 class="text-xl font-bold leading-none text-gray-900">Dernières places ajoutées</h5>
+                                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Dernières places ajoutées</h5>
                                 <Link href={route('placeadmin.index')} class="text-sm font-medium text-blue-600 hover:underline">
                                     Voir tout
                                 </Link>

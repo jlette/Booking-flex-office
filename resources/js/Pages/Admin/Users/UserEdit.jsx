@@ -38,23 +38,19 @@ export default function UserEdit(props) {
             <Head title="Update user" />
 
             <div className="py-4">
-                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className='flex justify-between'>
-                        <Link href={route('useradmin.index')} class="px-3 py-2 text-white font-semibold bg-indigo-500 hover:bg-indigo-700 rounded">Retour vers user</Link>
-                    </div>
-                   
-                    <div className="mt-6 max-w-6xl mx-auto bg-slate-100 shadow-lg rounded-lg p-6">
-                    <h1 class="text-2xl font-semibold text-indigo-700">Mettre à jour l'utilisateur</h1>
+                <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">                   
+                    <div className="mt-6 max-w-6xl mx-auto bg-slate-100 shadow-lg rounded-lg p-6 dark:bg-slate-900">
+                    <h1 class="text-2xl font-semibold text-gray-800 dark:text-white">Mettre à jour l'utilisateur</h1>
 
                     <form onSubmit={submit}>
                         <div className='mt-5'>
-                            <InputLabel htmlFor="name" value="Nom" />
+                            <InputLabel htmlFor="name" value="Nom" className='dark:text-white'/>
                             <TextInput
                                 id="name"
                                 type="text"
                                 name="name"
                                 value={data.name}
-                                className="mt-1 block w-full"
+                                className="mt-1 block w-full dark:text-gray-900"
                                 autoComplete="name"
                                 isFocused={true}
                                 onChange={(e) =>
@@ -64,13 +60,13 @@ export default function UserEdit(props) {
                             <InputError message={errors.name} className="mt-2" />
                         </div>
                         <div className='mt-5'>
-                            <InputLabel htmlFor="username" value="Prénom" />
+                            <InputLabel htmlFor="username" value="Prénom" className='dark:text-white'/>
                             <TextInput
                                 id="name"
                                 type="text"
                                 name="username"
                                 value={data.username}
-                                className="mt-1 block w-full"
+                                className="mt-1 block w-full dark:text-gray-900"
                                 autoComplete="username"
                                 onChange={(e) =>
                                     setData("username", e.target.value)
@@ -80,13 +76,13 @@ export default function UserEdit(props) {
                         </div>
 
                         <div className='mt-5'>
-                            <InputLabel htmlFor="email" value="Email" />
+                            <InputLabel htmlFor="email" value="Email" className='dark:text-white'/>
                             <TextInput
                                 id="email"
                                 type="text"
                                 name="email"
                                 value={data.email}
-                                className="mt-1 block w-full"
+                                className="mt-1 block w-full dark:text-gray-900"
                                 autoComplete="email"
                                 onChange={(e) =>
                                     setData("email", e.target.value)
@@ -98,13 +94,13 @@ export default function UserEdit(props) {
                         <div className="flex items-center justify-end mt-4">
                             <Link
                                 href={route("useradmin.index")}
-                                className="underline text-sm text-gray-600 hover:text-gray-900"
+                                className="underline text-sm text-gray-600 hover:text-gray-900 dark:hover:text-white dark:text-white"
                             >
                                 Retour
                             </Link>
                             <button 
                                 type="submit"
-                                className="ml-4 bg-indigo-700 text-white py-2 px-4 rounded hover:bg-indigo-500"
+                                className="ml-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
                                 disabled={processing}
                             >
                                 Modifier
