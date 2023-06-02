@@ -2,7 +2,7 @@ import AdminLayout from "@/Layouts/AdminLayout";
 import InputError from "@/Components/InputError";
 import PrimaryButton from '@/Components/PrimaryButton';
 import { useEffect } from 'react';
-import { Head, useForm } from "@inertiajs/react";
+import { Head, useForm, Link } from "@inertiajs/react";
 import Select from "react-select";
 
 export default function UserCreate(props) {
@@ -71,13 +71,16 @@ export default function UserCreate(props) {
 
             <div className="py-6">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="mt-6 max-w-6xl mx-auto bg-slate-200 shadow-lg rounded-lg p-6">
+                    
+                    <div className="mt-6 max-w-6xl mx-auto bg-slate-200 shadow-lg rounded-lg p-6 dark:bg-slate-900">
+                    <h1 class="text-2xl font-semibold text-gray-800 dark:text-white">Ajouter un utilisateur</h1>
 
-                        <form onSubmit={submit} class="w-full"> 
+
+                        <form onSubmit={submit} class="mt-5 w-full"> 
                             <div class="flex flex-wrap -mx-3 mb-6">
                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white"
                                         for="name"
                                     >
                                         Nom
@@ -97,7 +100,7 @@ export default function UserCreate(props) {
                                 </div>
                                 <div class="w-full md:w-1/2 px-3">
                                     <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold dark:text-white mb-2"
                                         for="username"
                                     >
                                         Prénom
@@ -117,7 +120,7 @@ export default function UserCreate(props) {
                             <div class="flex flex-wrap -mx-3 mb-6">
                                 <div class="w-full px-3">
                                     <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold dark:text-white mb-2"
                                         for="email"
                                     >
                                         Email
@@ -137,7 +140,7 @@ export default function UserCreate(props) {
                             <div class="flex flex-wrap -mx-3 mb-6">
                                 <div class="w-full px-3">
                                     <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold dark:text-white mb-2"
                                         for="fonction"
                                     >
                                         Fonction
@@ -150,7 +153,7 @@ export default function UserCreate(props) {
                             <div class="flex flex-wrap -mx-3 mb-6">
                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold dark:text-white mb-2"
                                         for="password"
                                     >
                                         Mot de passe
@@ -171,7 +174,7 @@ export default function UserCreate(props) {
 
                                 <div class="w-full md:w-1/2 px-3">
                                     <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold dark:text-white mb-2"
                                         for="password_confirmation"
                                     >
                                         Confirmez mot de passe
@@ -189,9 +192,21 @@ export default function UserCreate(props) {
                                     <InputError message={errors.password_confirmation} className="mt-2" />
                                 </div>
                             </div>
-                            <PrimaryButton processing={processing}>
-                            Enregistrer
-                            </PrimaryButton>
+                            <div className="flex items-center justify-end mt-4">
+                            <Link
+                                href={route("useradmin.index")}
+                                className="underline text-sm text-gray-600 hover:text-gray-900 dark:hover:text-white dark:text-white"
+                            >
+                                Retour
+                            </Link>
+                            <button 
+                                type="submit"
+                                className="ml-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                                disabled={processing}
+                            >
+                                Enregistrer
+                            </button>
+                        </div>
                         </form>
                     </div>
                 </div>

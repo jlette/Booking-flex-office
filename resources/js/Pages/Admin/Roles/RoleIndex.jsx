@@ -43,18 +43,18 @@ export default function RoleIndex(props) {
 
             <div className="py-12">
 
-                <div className="mt-6 max-w-6xl mx-auto bg-slate-100 shadow-lg rounded-lg p-6">
-                    <h2 class="text-2xl font-semibold text-indigo-700">Création d'un rôle</h2>
+                <div className="mt-6 max-w-6xl mx-auto bg-slate-200 shadow-lg rounded-lg p-6 dark:bg-slate-900">
+                    <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">Création d'un rôle</h2>
                         
                     <form onSubmit={submit}>
                         <div className='mt-5'>
-                            <InputLabel htmlFor="role_name" value="Nom" />
+                            <InputLabel htmlFor="role_name" value="Nom" className='dark:text-white'/>
                             <TextInput
                                 id="role_name"
                                 type="text"
                                 name="role_name"
                                 value={data.role_name}
-                                className="mt-1 block w-full"
+                                className="mt-1 block w-full dark:text-gray-900"
                                 autoComplete="role_name"
                                 onChange={onHandleChange}
                                 isFocused={true}
@@ -80,7 +80,7 @@ export default function RoleIndex(props) {
                             <TableHeadCell>Suprression</TableHeadCell>
                         </TableRow>}>
                         {roles.map((role) => (
-                        <TableRow key={role.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <TableRow key={role.id} className="bg-slate-200 border-b border-indigo-200 dark:bg-gray-900 dark:border-gray-700">
                                 <TableHeadCell>{role.role_id}</TableHeadCell>
                                 <TableDataCell>{role.role_name}</TableDataCell>
                                 <TableDataCell>

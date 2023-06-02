@@ -39,16 +39,16 @@ export default function UpdatePasswordFormAdmin({ className }) {
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Mettre à jour le mot de passe</h2>
+                <h2 className="text-lg font-medium text-gray-900 dark:text-white">Mettre à jour le mot de passe</h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-gray-600 dark:text-white">
                 Assurez-vous que votre compte utilise un mot de passe long et aléatoire pour rester en sécurité.
                 </p>
             </header>
 
-            <form onSubmit={updatePassword} className="mt-6 space-y-6">
+            <form onSubmit={updatePassword} className="mt-6 space-y-6 ">
                 <div>
-                    <InputLabel for="current_password" value="Mot de passe actuel" />
+                    <InputLabel for="current_password" value="Mot de passe actuel" className='dark:text-white'/>
 
                     <TextInput
                         id="current_password"
@@ -56,7 +56,7 @@ export default function UpdatePasswordFormAdmin({ className }) {
                         value={data.current_password}
                         onChange={(e) => setData('current_password', e.target.value)}
                         type="password"
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full dark:text-gray-900"
                         autoComplete="current-password"
                     />
 
@@ -64,7 +64,7 @@ export default function UpdatePasswordFormAdmin({ className }) {
                 </div>
 
                 <div>
-                    <InputLabel for="password" value="Nouveau mot de passe" />
+                    <InputLabel for="password" value="Nouveau mot de passe" className='dark:text-white'/>
 
                     <TextInput
                         id="password"
@@ -72,7 +72,7 @@ export default function UpdatePasswordFormAdmin({ className }) {
                         value={data.password}
                         onChange={(e) => setData('password', e.target.value)}
                         type="password"
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full dark:text-gray-900"
                         autoComplete="new-password"
                     />
 
@@ -80,14 +80,14 @@ export default function UpdatePasswordFormAdmin({ className }) {
                 </div>
 
                 <div>
-                    <InputLabel for="password_confirmation" value="Confirmez le mot de passe" />
+                    <InputLabel for="password_confirmation" value="Confirmez le mot de passe" className='dark:text-white'/>
 
                     <TextInput
                         id="password_confirmation"
                         value={data.password_confirmation}
                         onChange={(e) => setData('password_confirmation', e.target.value)}
                         type="password"
-                        className="mt-1 block w-full"
+                        className="mt-1 block w-full dark:text-gray-900"
                         autoComplete="new-password"
                     />
 

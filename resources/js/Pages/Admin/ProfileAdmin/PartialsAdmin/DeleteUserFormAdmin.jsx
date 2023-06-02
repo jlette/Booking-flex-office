@@ -46,9 +46,9 @@ export default function DeleteUserFormAdmin({ className }) {
     return (
         <section className={`space-y-6 ${className}`}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Supprimer le compte</h2>
+                <h2 className="text-lg font-medium text-gray-900 dark:text-white">Supprimer le compte</h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-gray-600 dark:text-white">
                 Une fois votre compte supprimé, toutes ses ressources et données seront définitivement supprimées. 
                 Avant de supprimer votre compte, veuillez télécharger les données ou informations que vous souhaitez conserver.
                 </p>
@@ -57,12 +57,12 @@ export default function DeleteUserFormAdmin({ className }) {
             <DangerButton onClick={confirmUserDeletion}>Supprimer le compte</DangerButton>
 
             <Modal show={confirmingUserDeletion} onClose={closeModal}>
-                <form onSubmit={deleteUser} className="p-6">
-                    <h2 className="text-lg font-medium text-gray-900">
+                <form onSubmit={deleteUser} className="p-6 dark:bg-gray-900">
+                    <h2 className="text-lg font-medium text-gray-900 dark:text-white">
                         Êtes-vous sûr de vouloir supprimer votre compte ?
                     </h2>
 
-                    <p className="mt-1 text-sm text-gray-600">
+                    <p className="mt-1 text-sm text-gray-600 dark:text-slate-500">
                     Une fois votre compte supprimé, toutes ses ressources et données seront définitivement supprimées. 
                     Veuillez saisir votre mot de passe pour confirmer que vous souhaitez supprimer définitivement votre compte.
                     </p>

@@ -12,18 +12,18 @@ export default function ReservationLayout({ children }) {
 
             <h4 className="mt-3 flex justify-center">
                 <div className="flex row mr-3">
-                    <MdEventSeat color={"green"} size={"1.5em"} />
-                    <p className="">Ma place</p>
+                    <MdEventSeat className="text-blue-700" size={"1.5em"} />
+                    <p className="ml-1">Ma place</p>
                 </div>
 
                 <div className="flex row  mr-3">
-                    <MdEventSeat size={"1.5em"} />
-                    <p className="">Places libre</p>
+                    <MdEventSeat className="text-green-600" size={"1.5em"} />
+                    <p className="ml-1">Places libre</p>
                 </div>
 
                 <div className="flex row  mr-3">
-                    <MdEventSeat color={"grey"} size={"1.5em"} />
-                    <p>Places occupé</p>
+                    <MdEventSeat color={"red"} size={"1.5em"} />
+                    <p className="ml-1">Places occupé</p>
                 </div>
             </h4>
         </div>

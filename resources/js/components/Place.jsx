@@ -23,7 +23,7 @@ export default function Place(props) {
     };
 
     const handleSelectPlace = () => {
-        if (colorPlace == 'grey') {
+        if (colorPlace == 'red') {
             alert("La place est déjà occupée")
         } else{
             onPlaceSelect(placeid);
@@ -45,7 +45,7 @@ export default function Place(props) {
                 />
                 <label
                     for={placeid}
-                    class="cursor-pointer peer-checked:border-green-600 peer-checked:text-green-600 hover:text-indigo-500"
+                    class="cursor-pointer peer-checked:border-green-600 text-green-600 peer-checked:text-blue-700 hover:text-indigo-600"
                 >
                     <div
                         key={placeid}
