@@ -81,7 +81,7 @@ export default function DashboardA(props) {
                                     >
                                     {userWeek.pourcentage_utilisateurs_inscrits_semaine}%
                                     </span>
-                                        <span class="whitespace-nowrap">Depuis la semaine dernière</span>
+                                        <span class="whitespace-nowrap">Depuis le début de la semaine</span>
                                     </p>
                                     
                                     <div className="relative w-full mt-2">
@@ -105,6 +105,7 @@ export default function DashboardA(props) {
                                     <div class="flex flex-wrap">
                                     <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
                                         <h5 class="text-blueGray-400 uppercase font-bold text-xs">Nouveaux utilisateurs</h5>
+                                        <p>depuis le début du mois</p>
                                         <span class="font-bold text-xl"> {userMonth.nombre_utilisateurs_inscrits_mois}</span>
                                     </div>
                                     <div class="relative w-auto pl-4 flex-initial">
@@ -123,7 +124,7 @@ export default function DashboardA(props) {
                                     >
                                     {userMonth.pourcentage_utilisateurs_inscrits_mois}%
                                     </span>
-                                        <span class="whitespace-nowrap">Depuis le mois dernier</span>
+                                        <span class="whitespace-nowrap">du total des utilisateurs</span>
                                     </p>
                                     <div class="relative w-full mt-2">
                                         <div class="overflow-hidden h-2 text-xs flex rounded bg-red-200">
