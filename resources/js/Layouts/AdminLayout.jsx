@@ -5,7 +5,7 @@
     import { MdAirlineSeatReclineExtra } from 'react-icons/md';
     import {MdOutlineEditCalendar} from 'react-icons/md';
     import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { useEffect } from 'react';
+    import { useEffect } from 'react';
 
     export default function AdminLayout({ auth, header, children }) {
         const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
