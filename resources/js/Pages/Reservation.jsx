@@ -100,13 +100,12 @@ export default function Reservation(props) {
         setSearchResults(results);
       };
       
-
     return (
         <AuthenticatedLayout
             auth={props.auth}
             errors={props.errors}
             header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight dark:text-white">
                     Réservation
                 </h2>
             }
@@ -114,11 +113,9 @@ export default function Reservation(props) {
             <Head title="Reservation" />
 
             <div className="max-w-5xl mx-auto flex flex-col rounded-lg shadow-lg overflow-hidden pt-3">
-                <div className="bg-white px-6 py-3 border-b">
-                    <h3 className="text-lg font-medium text-gray-900">
-                        <SearchBar onChangeSearch={onChangeSearch} />
+                    <h3 className="text-lg font-medium text-gray-900 dark:text-white">
+                        <SearchBar onChangeSearch={onChangeSearch} focus/>
                     </h3>
-                </div>
                 {search &&(
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden mt-2">
                         <ul className="divide-y divide-gray-200">
@@ -145,16 +142,16 @@ export default function Reservation(props) {
 
 
             <div className="pt-5 flex flex-wrap">
-                <div className="w-full md:w-1/3 px-4 mb-4">
-                    <div className="flex flex-col rounded-lg shadow-lg overflow-hidden">
-                        <div className="bg-white px-6 py-3 border-b">
-                            <h3 className="text-lg font-medium text-gray-900">
+                <div className="w-full md:w-1/3 px-4 mb-4 ">
+                    <div className="flex flex-col rounded-lg shadow-lg overflow-hidden ">
+                        <div className="bg-white px-6 py-3 border-b dark:bg-gray-900 dark:border-b dark:border-slate-500">
+                            <h3 className="text-lg font-medium text-gray-900 dark:text-white">
                                 Réservation
                             </h3>
                         </div>
                         <form onSubmit={handleSubmit}>
-                            <div className="flex flex-col py-4 px-6 bg-gray-50">
-                                <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5">
+                            <div className="flex flex-col py-4 px-6 bg-gray-50 dark:bg-slate-900">
+                                <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5 dark:text-white">
                                     Date
                                 </div>
                                 <div className="flex flex-colbg-gray-50">
@@ -163,16 +160,16 @@ export default function Reservation(props) {
                                         name="date"
                                         value={data.date}
                                         onChange={handleChange}
-                                        className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                                        className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent dark:bg-slate-800 dark:text-white"
                                         required
                                     />
                                 </div>
 
-                                <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5">
+                                <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5 dark:text-white">
                                     Horaires
                                 </div>
-                                <ul class="items-center w-full text-sm font-medium text-red-900 bg-white border border-gray-200 rounded-lg sm:flex">
-                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r ">
+                                <ul class="items-center w-full text-sm font-medium text-red-900 bg-white border border-gray-200 rounded-lg sm:flex dark:bg-slate-800">
+                                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r">
                                         <div class="flex items-center pl-3">
                                             <input
                                                 id="matin"
@@ -181,11 +178,11 @@ export default function Reservation(props) {
                                                 checked={data.matin}
                                                 onChange={handleChange}
                                                 onClick={horaireChange}
-                                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
+                                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
                                             />
                                             <label
                                                 for="matin"
-                                                class="w-full py-3 ml-2 text-sm font-medium text-gray-900"
+                                                class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-white"
                                             >
                                                 Matin
                                             </label>
@@ -204,7 +201,7 @@ export default function Reservation(props) {
                                             />
                                             <label
                                                 for="apresmidi"
-                                                class="w-full py-3 ml-2 text-sm font-medium text-gray-900"
+                                                class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-white"
                                             >
                                                 Après-midi
                                             </label>
@@ -221,7 +218,7 @@ export default function Reservation(props) {
                                             />
                                             <label
                                                 for="journee"
-                                                class="w-full py-3 ml-2 text-sm font-medium text-gray-900"
+                                                class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-white"
                                             >
                                                 Journée
                                             </label>
@@ -229,11 +226,11 @@ export default function Reservation(props) {
                                     </li>
                                 </ul>
 
-                                <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5">
+                                <div className="mb-2 text-sm font-medium text-gray-500 uppercase tracking-wide pt-5 dark:text-white">
                                     Étage
                                 </div>
                                 <select
-                                    className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                                    className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent dark:bg-slate-800 dark:text-white"
                                     id="monselect"
                                     onChange={etageChange}
                                 >
@@ -253,11 +250,11 @@ export default function Reservation(props) {
 
                 <div className="w-full md:w-2/3 px-4 mb-4">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900">
+                        <div className="p-6 text-gray-900 dark:bg-gray-900 dark:text-white">
                             Choisissez une place
                         </div>
                     </div>
-                    <div className="py-4 px-6 w-50 bg-gray-50">
+                    <div className="py-4 px-6 w-50 bg-gray-50 dark:bg-gray-900 dark:text-white">
                         {horairerecup == "" ? (
                             <div className="w-50 h-50 bg-success ">
                                 <div
@@ -294,7 +291,7 @@ export default function Reservation(props) {
                                                                     reservation.id_place ===
                                                                     place.idplace
                                                             )
-                                                                ? "grey"
+                                                                ? "red"
                                                                 : ""
                                                         }
                                                     />

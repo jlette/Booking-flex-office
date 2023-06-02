@@ -51,8 +51,8 @@ export default function PlaceCreate(props) {
 
             <div className="py-6">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div className="mt-6 max-w-6xl mx-auto bg-slate-200 shadow-lg rounded-lg p-6">
-                <h2 class="text-2xl font-semibold text-indigo-700">Création d'une place</h2>
+                <div className="mt-6 max-w-6xl mx-auto bg-slate-200 shadow-lg rounded-lg p-6 dark:bg-slate-900">
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">Création d'une place</h2>
 
 
                     <form onSubmit={submit} class="w-full"> 
@@ -60,13 +60,13 @@ export default function PlaceCreate(props) {
                         <div class="flex flex-wrap -mx-3 mb-2 mt-5">
                                 <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                     <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white"
                                         for="numplace"
                                     >
                                         Numéro de place
                                     </label>
                                     <input
-                                        className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight ring-2 ring-indigo-600 ring-offset-4"
+                                        class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         id="numplace"
                                         name="numplace"
                                         type="numplace"
@@ -79,7 +79,7 @@ export default function PlaceCreate(props) {
 
                                 <div class="w-full md:w-1/2 px-3">
                                     <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white"
                                         for="numetage"
                                     >
                                         Numéro d'étage

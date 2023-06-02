@@ -30,34 +30,34 @@ export default function UserShow(props) {
             <div className="py-4">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className='flex justify-between'>
-                        <Link href={route('useradmin.index')} class="px-3 py-2 text-white font-semibold bg-indigo-500 hover:bg-indigo-700 rounded">Retour vers user</Link>
+                        <Link href={route('useradmin.index')} class="px-3 py-2 text-white font-semibold bg-sky-600 hover:bg-sky-700 rounded">Retour vers user</Link>
                     </div>
                    
-                    <div className="mt-6 max-w-6xl mx-auto bg-slate-100 shadow-lg rounded-lg p-6">
-                        <h1 class="text-2xl font-semibold text-indigo-700">Fiche client de <span className='capitalize'>{data.username}</span></h1>
-                        <div class="bg-gray-300 p-6 rounded-lg shadow-md mt-4">
+                    <div className="mt-6 max-w-6xl mx-auto bg-slate-200 shadow-lg rounded-lg p-6 dark:bg-slate-900">
+                        <h1 class="text-2xl font-semibold text-gray-800 dark:text-white">Fiche client de <span className='capitalize'>{data.username}</span></h1>
+                        <div class="bg-gray-300 p-6 rounded-lg shadow-md mt-4 dark:bg-slate-800">
                             <div class="flex flex-col md:flex-row md:justify-between mb-4">
                                 <div class="flex-1">
-                                    <p class="text-gray-600">Nom :</p>
+                                    <p class="text-gray-600 dark:text-stone-400">Nom :</p>
                                     <p class="font-semibold">{data.name}</p>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-gray-600">Prénom :</p>
+                                    <p class="text-gray-600 dark:text-stone-400">Prénom :</p>
                                     <p class="font-semibold">{data.username}</p>
                                 </div>
                             </div>
                             <div class="flex flex-col md:flex-row md:justify-between mb-4">
                                 <div class="flex-1">
-                                    <p class="text-gray-600">Email :</p>
+                                    <p class="text-gray-600 dark:text-stone-400">Email :</p>
                                     <p class="font-semibold">{data.email}</p>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="text-gray-600">Fonction :</p>
+                                    <p class="text-gray-600 dark:text-stone-400">Fonction :</p>
                                     <p class="font-semibold">{data.fonction}</p>
                                 </div>
                             </div>
                             <div class="mb-4">
-                                <h3 class="text-lg font-semibold mb-2">Réservations:</h3>
+                                <h3 class="text-lg font-semibold dark:text-stone-400 mb-2">Réservations:</h3>
                                 {reservations.length > 0 ? (
                                     <div class="flex flex-wrap">
                                     <div class="w-1/2 pr-4">
