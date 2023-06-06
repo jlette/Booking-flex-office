@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Place;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Inertia\Inertia;
+use App\Models\Place;
+use App\Models\Reservation;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
-
 
 class PlaceController extends Controller
 {
@@ -18,10 +20,13 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        $place = Place::all();
-
+        $placeCounts = Place::select('numetage', DB::raw('count(*) as place_count'), DB::raw('GROUP_CONCAT(idplace) as place_ids'))
+            ->groupBy('numetage')
+            ->get();
+        
         return Inertia::render('Admin/Places/PlaceIndex', [
-            'places' => $place,
+            //'places' => $place,
+            'placeCounts' => $placeCounts,
         ]);
     }
 
@@ -44,18 +49,19 @@ class PlaceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'numplace' => 'required|numeric|min:1|max:100|unique:'.Place::class,
-            'numetage' => 'required|numeric|min:1|max:10',
-
+            'nbplace' => 'required|numeric|min:1|max:100',
+            'numetage' => 'required|numeric|min:1|max:10|unique:place,numetage',
         ]);
         
+        for ($i=1; $i<=$request->input('nbplace'); $i++) {
             $place = new Place;
-            $place->numplace = $request->input('numplace');
+            $place->numplace = $i;
             $place->numetage = $request->input('numetage');
+            $place->created_at = now();
             $place->save();
+        }
 
-
-        return redirect()->route('placeadmin.index');
+        return redirect()->route('etageadmin.index');
     }
 
     /**
@@ -75,14 +81,23 @@ class PlaceController extends Controller
      * @param  \App\Models\Place  $place
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        $place = Place::findOrFail($id);
 
-        return Inertia::render('Admin/Places/PlaceEdit', [
-            'places' => $place,
-        ]);
-    }
+    public function edit($numetage)
+{
+    $placeIds = Place::where('numetage', $numetage)->pluck('idplace');
+    $reservations = Reservation::whereIn('id_place', $placeIds)->get();
+    $placeReservedIds = Reservation::whereIn('id_place', $placeIds)->pluck('id_place');
+    
+    return Inertia::render('Admin/Places/EtageEdit', [
+        'numetage' => $numetage,
+        'placeIds' => $placeIds,
+        'placeCount' => $placeIds->count(),
+        'placeReservedIds' => $placeReservedIds,
+        'reservations' => $reservations,
+        //'places' => $place,
+    ]);
+}
+
     
 
     /**
@@ -92,18 +107,53 @@ class PlaceController extends Controller
      * @param  \App\Models\Place  $place
      * @return \Illuminate\Http\Response
      */
-    public function update($id, Request $request)
-    {
-        Validator::make($request->all(), [
-            'numplace' => 'required',
-            'numetage' => 'nullable',
-        ])->validate();
-        
-    
-        Place::find($id)->update($request->all());
+    public function update($numetage, Request $request){
+        $request->validate([
+            'nbplace' => 'required|numeric|min:0|max:100',
+            'placesToRemove' => 'array',
+            'placesToAdd' => 'numeric',
+        ]);
 
-        return to_route('placeadmin.index');
+        Log::info('Received request:', $request->all());
+
+
+    
+        // process placesToRemove from the request data
+        $placesToRemove = $request->get('placesToRemove');
+        if (!empty($placesToRemove)) {
+            foreach($placesToRemove as $placeId) {  
+                $place = Place::find($placeId);
+                if ($place) {
+                    Place::destroy($placesToRemove);
+                }
+            }
+        }
+    
+        // process placesToAdd from the request data
+        $placesToAdd = $request->get('placesToAdd');
+        //Log::info('Received placesToAdd:', $placesToAdd);
+        if ($placesToAdd > 0) {
+            // Here you should create new places. How to do this would depend on your Place model.
+            // If your place model has a numplace property that needs to be unique within a numetage, you need to calculate the next available numplace.
+            $currentPlaceCount = Place::where('numetage', $numetage)->count();
+            for ($i = $currentPlaceCount + 1; $i <= $currentPlaceCount + $placesToAdd; $i++) {
+                $place = new Place;
+                $place->numplace = $i;
+                $place->numetage = $request->input('numetage');
+                $place->created_at = now();
+                $place->save();
+            }   
+        }
+    
+        // Here update your place count as per your business logic
+    
+        return redirect()->route('etageadmin.index');
     }
+    
+    
+    
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -111,11 +161,13 @@ class PlaceController extends Controller
      * @param  \App\Models\Place  $place
      * @return \Illuminate\Http\Response
      */
-      public function destroy($id){
+    public function destroy($id){
 
         Place::find($id)->delete();        
-        return redirect()->route('placeadmin.index');
+        //return redirect()->route('etageadmin.index');
     }
+
+
 }
 
 

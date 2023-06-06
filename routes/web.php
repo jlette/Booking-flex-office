@@ -64,7 +64,7 @@ Route::middleware(['auth', 'roles:admin'])->group(function () {
     Route::resource('/reservationadmin', ReservationAController::class);
 
     // Gerer les places
-    Route::resource('/placeadmin', PlaceController::class);
+    Route::resource('/etageadmin', PlaceController::class);
 
     // Gerer les rôles
     Route::resource('/roles', RoleController::class);

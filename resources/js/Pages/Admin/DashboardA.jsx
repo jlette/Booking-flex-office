@@ -26,30 +26,49 @@ export default function DashboardA(props) {
     const [PageCourante, setPageCourante] = useState(1); // page courante
     const reservationParPage = 4; // nombre de reservation par page
 
+    const [pageCouranteUser, setPageCouranteUser] = useState(1); // page courante pour les utilisateurs
+    const userParPage = 4; // nombre d'utilisateur par page
 
     // Courante reservations
     const indexOfLastReservation = PageCourante * reservationParPage; // index de la derniere reservation
+    const indexOfLastUser = pageCouranteUser * userParPage; // index de la derniere user
+
     const indexOfFirstReservation = indexOfLastReservation - reservationParPage; // index de la premiere reservation
+    const indexOfFirstUser = indexOfLastUser - userParPage; // index de la premiere user
+
     const couranteReservation = statListReservationLast.slice(indexOfFirstReservation, indexOfLastReservation);   // reservation courante
+    const couranteUser = statListUserLast.slice(indexOfFirstUser, indexOfLastUser);   // user courante
 
     // Total pages
     const totalReservation = statListReservationLast.length; // nombre total de reservation
-    const totalPageReservation = Math.ceil(totalReservation / reservationParPage); // nombre total de page
+    const totalUser = statListUserLast.length; // nombre total d'user
+
+    const totalPageReservation = Math.ceil(totalReservation / reservationParPage); // nombre total de page reservation
+    const totalPageUser = Math.ceil(totalUser / userParPage); // nombre total de page user
+
+    console.log(totalReservation);
+    console.log(totalUser);
 
     // Change page
     const paginate = pageNumber => setPageCourante(pageNumber); // changer de page
+    const paginateUser = pageNumber => setPageCouranteUser(pageNumber); // changer de page
     
     // genere les numeros de page
     const pageNumbers = [];
     for (let i = 1; i <= totalPageReservation; i++) {
         pageNumbers.push(i);
     }
+    
+    // genere les numeros de page
+    const pageNumbersUser = [];
+    for (let i = 1; i <= totalPageUser; i++) {
+        pageNumbersUser.push(i);
+    }
 
     return (
         <AdminLayout
             auth={props.auth}
             errors={props.errors}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Dashboard Admin</h2>}
         >
             <Head title="AdminD" />
 
@@ -239,7 +258,7 @@ export default function DashboardA(props) {
                             </div>
                             <div class="flow-root">
                                     <ul role="list" class="divide-y divide-gray-200">
-                                        {statListUserLast.map((userLast) => (
+                                        {couranteUser.map((userLast) => (
                                         <li class="py-3 sm:py-4">
                                             <div class="flex items-center space-x-4">
                                                 <div class="flex-shrink-0">
@@ -261,6 +280,42 @@ export default function DashboardA(props) {
                                         ))}
                                     </ul>
                             </div>
+                            {totalPageUser > 0 ? (
+                                <nav aria-label="Page navigation example">
+                                <ul class="flex justify-center mt-2 -space-x-px">
+                                    <li>
+                                    <button 
+                                    disabled={pageCouranteUser === 1}
+                                    onClick={() => paginateUser(pageCouranteUser - 1)}
+                                    className="px-3 py-2 ml-0 leading-tight text-white-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                    Précédent
+                                    </button>
+                                    </li>
+                                    {pageNumbersUser.map((numberUser) => (
+                                        <li key={numberUser}>
+                                        <button
+                                            className={`px-3 py-2 leading-tight text-gray-500 border border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+                                                numberUser === pageCouranteUser 
+                                            ? 'bg-gray-300 text-gray-900 dark:bg-green-700 dark:text-white'
+                                            : 'hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white'
+                                        }`}
+                                            onClick={() => paginateUser(numberUser)}
+                                        >
+                                            {numberUser}
+                                        </button>
+                                        </li>
+                                    ))}
+                                    <li>
+                                    <button
+                                    disabled={pageCouranteUser === totalPageUser}
+                                    onClick={() => paginateUser(pageCouranteUser + 1)}
+                                    className="px-3 py-2 leading-tight text-white-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Suivant</button>
+                                    </li>
+                                </ul>
+                                </nav>
+                            ) : (
+                                <p className='text-center mt-2 text-red-500 font-semibold'>Aucune réservation !</p>
+                            )} 
                         </div>
                         <div class="w-full min-w-0 p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-slate-900 dark: border border-none">
                             <div class="flex items-center justify-between mb-4">
@@ -296,40 +351,44 @@ export default function DashboardA(props) {
                                         ))}
                                     </ul>
                             </div>
-                            {/* Pagination */}
-                        <nav aria-label="Page navigation example">
-                        <ul class="flex justify-center mt-2 -space-x-px">
-                            <li>
-                            <button 
-                            disabled={PageCourante === 1}
-                            onClick={() => paginate(PageCourante - 1)}
-                            className="px-3 py-2 ml-0 leading-tight text-white-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                            Précédent
-                            </button>
-                            </li>
-                            {pageNumbers.map((number) => (
-                                <li key={number}>
-                                <button
-                                    className={`px-3 py-2 leading-tight text-gray-500 border border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
-                                    number === PageCourante 
-                                    ? 'bg-gray-300 text-gray-900 dark:bg-green-700 dark:text-white'
-                                    : 'hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white'
-                                }`}
-                                    onClick={() => paginate(number)}
-                                >
-                                    {number}
-                                </button>
-                                </li>
-                            ))}
-                            <li>
-                            <button
-                            disabled={PageCourante === totalPageReservation}
-                            onClick={() => paginate(PageCourante + 1)}
-                            className="px-3 py-2 leading-tight text-white-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Suivant</button>
-                            </li>
-                        </ul>
-                        </nav>
 
+                            {/* Pagination */}
+                            {totalReservation > 0 ? (
+                                <nav aria-label="Page navigation example">
+                                <ul class="flex justify-center mt-2 -space-x-px">
+                                    <li>
+                                    <button 
+                                    disabled={PageCourante === 1}
+                                    onClick={() => paginate(PageCourante - 1)}
+                                    className="px-3 py-2 ml-0 leading-tight text-white-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                    Précédent
+                                    </button>
+                                    </li>
+                                    {pageNumbers.map((number) => (
+                                        <li key={number}>
+                                        <button
+                                            className={`px-3 py-2 leading-tight text-gray-500 border border-gray-300 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+                                            number === PageCourante 
+                                            ? 'bg-gray-300 text-gray-900 dark:bg-green-700 dark:text-white'
+                                            : 'hover:bg-gray-100 hover:text-gray-700 dark:hover:bg-gray-700 dark:hover:text-white'
+                                        }`}
+                                            onClick={() => paginate(number)}
+                                        >
+                                            {number}
+                                        </button>
+                                        </li>
+                                    ))}
+                                    <li>
+                                    <button
+                                    disabled={PageCourante === totalPageReservation}
+                                    onClick={() => paginate(PageCourante + 1)}
+                                    className="px-3 py-2 leading-tight text-white-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Suivant</button>
+                                    </li>
+                                </ul>
+                                </nav>
+                            ) : (
+                                <p className='text-center mt-2 text-red-500 font-semibold'>Aucune réservation !</p>
+                            )} 
                         </div>
                     </div>
 
@@ -337,7 +396,7 @@ export default function DashboardA(props) {
                         <div className='border border-gray-200 rounded-lg shadow sm:p-8 bg-white dark:bg-slate-900 dark: border border-none'>
                             <div class="flex items-center justify-between mb-4">
                                 <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Dernières places ajoutées</h5>
-                                <Link href={route('placeadmin.index')} class="text-sm font-medium text-blue-600 hover:underline">
+                                <Link href={route('etageadmin.index')} class="text-sm font-medium text-blue-600 hover:underline">
                                     Voir tout
                                 </Link>
                             </div>

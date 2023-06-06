@@ -145,7 +145,7 @@ export default function UserCreate(props) {
                                     >
                                         Fonction
                                     </label>
-                                    <Select options={fonction} onChange={onFonctionChange}/>
+                                    <Select options={fonction} onChange={onFonctionChange} className="dark:text-gray-900"/>
                                     <InputError message={errors.fonction} className="mt-2" />
                                 </div>
                             </div>

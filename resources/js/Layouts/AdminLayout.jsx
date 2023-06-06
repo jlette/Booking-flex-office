@@ -66,9 +66,16 @@
                 <aside class="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%] dark:bg-slate-900 bg-gray-800">
                     <div>
                         <div class="-mx-6 px-6 py-4">
-                            <a href="#" title="home">
-                            <img src={'/img/logo-text.png'} className="block h-9 w-auto fill-current text-gray-800"></img>
-                            </a>
+                            {/* si theme dark mettre ce logo sinon l'autre */}
+                            {theme === 'dark' ? (
+                                <a href="#" title="home">
+                                    <img src={'/img/logo-textB.png'} className="block h-9 w-auto fill-current text-gray-800"></img>
+                                </a>
+                             ) : (
+                                <a href="#" title="home">
+                                    <img src={'/img/logo-text.png'} className="block h-9 w-auto fill-current text-gray-800"></img>
+                                </a> 
+                            )}
                         </div>
 
                         <div class="mt-8 text-center">
@@ -103,7 +110,7 @@
                                 </SidebarLink>
                             </li>
                             <li>
-                                <SidebarLink href={route('placeadmin.index')} active={route().current('placeadmin.index')}>
+                                <SidebarLink href={route('etageadmin.index')} active={route().current('etageadmin.index')}>
                                     <MdAirlineSeatReclineExtra className="w-6 h-6" />
                                     <span class="-mr-1 font-medium dark:text-white">Places</span>
                                 </SidebarLink>
@@ -203,7 +210,7 @@
                         <ResponsiveNavLink href={route('reservationadmin.index')} active={route().current('reservationadmin.index')}>
                             Réservation
                         </ResponsiveNavLink>
-                        <ResponsiveNavLink href={route('placeadmin.index')} active={route().current('placeadmin.index')}>
+                        <ResponsiveNavLink href={route('etageadmin.index')} active={route().current('etageadmin.index')}>
                             Place
                         </ResponsiveNavLink>
                     </div>

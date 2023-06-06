@@ -3,14 +3,15 @@ import InputError from "@/Components/InputError";
 import TextInput from "@/Components/TextInput";
 import PrimaryButton from '@/Components/PrimaryButton';
 import { useEffect } from 'react';
-import { Head, useForm } from "@inertiajs/react";
+import { Head, useForm, Link } from "@inertiajs/react";
 import Select from "react-select";
 import InputLabel from "@/components/InputLabel";
+
 
 export default function PlaceCreate(props) {
     
     const { data, setData, post, processing, errors, reset } = useForm({
-        numplace: '',
+        nbplace: '',
         numetage: '',
     });
 
@@ -33,7 +34,7 @@ export default function PlaceCreate(props) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('placeadmin.store'), data);
+        post(route('etageadmin.store'), data);
         console.log(data);
     };
 
@@ -41,43 +42,19 @@ export default function PlaceCreate(props) {
         <AdminLayout
             auth={props.auth}
             errors={props.errors}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                   Création d'une place
-                </h2>
-            }
         >
             <Head title="Création d'une place" />
 
             <div className="py-6">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div className="mt-6 max-w-6xl mx-auto bg-slate-200 shadow-lg rounded-lg p-6 dark:bg-slate-900">
-                <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">Création d'une place</h2>
+                <h2 class="text-2xl font-semibold text-gray-800 dark:text-white">Création d'une place par étage</h2>
 
 
                     <form onSubmit={submit} class="w-full"> 
 
                         <div class="flex flex-wrap -mx-3 mb-2 mt-5">
-                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                                    <label
-                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white"
-                                        for="numplace"
-                                    >
-                                        Numéro de place
-                                    </label>
-                                    <input
-                                        class="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="numplace"
-                                        name="numplace"
-                                        type="numplace"
-                                        value={data.numplace}
-                                        autoComplete="numplace"
-                                        onChange={onHandleChange}                                        
-                                    />
-                                    <InputError message={errors.numplace} className="mt-2" />
-                                </div>
-
-                                <div class="w-full md:w-1/2 px-3">
+                        <div class="w-full md:w-1/2 px-3">
                                     <label
                                         class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white"
                                         for="numetage"
@@ -98,11 +75,40 @@ export default function PlaceCreate(props) {
 
                                     <InputError message={errors.numetage} className="mt-2" />
                                 </div>
+                                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <label
+                                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2 dark:text-white"
+                                        for="nbplace"
+                                    >
+                                        Nombre de places
+                                    </label>
+                                    <input
+                                        className="appearance-none block w-full text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight"
+                                        id="nbplace"
+                                        name="nbplace"
+                                        //value={data.nbplace}
+                                        autoComplete="nbplace"
+                                        onChange={onHandleChange}                                        
+                                    />
+                                    <InputError message={errors.nbplace} className="mt-2" />
+                                </div>
                         </div>
 
-                        <PrimaryButton processing={processing} className="mt-4">
-                         Enregistrer
-                        </PrimaryButton>
+                        <div className="flex items-center justify-end mt-4">
+                            <Link
+                                href={route("etageadmin.index")}
+                                className="underline text-sm text-gray-600 hover:text-gray-900 dark:hover:text-white dark:text-white"
+                            >
+                                Retour
+                            </Link>
+                            <button 
+                                type="submit"
+                                className="ml-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                                disabled={processing}
+                            >
+                                Enregistrer
+                            </button>
+                        </div>
                     </form>
                 </div>
                 </div>
