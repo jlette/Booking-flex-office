@@ -25,5 +25,13 @@ class ReservationAController extends Controller
         ]);
     
     }
+
+    public function destroy($id){
+
+        $reservation = Reservation::findOrFail($id);
+        $reservation->delete();
+
+        return redirect()->route('reservationadmin.index');
+    }
     
 }
