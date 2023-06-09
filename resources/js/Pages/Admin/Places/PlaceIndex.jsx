@@ -41,17 +41,6 @@ export default function PlaceIndex(props) {
                                         class="text-green-400 hover:text-green-600">
                                         Editer
                                     </Link>
-                                    <Link 
-                                        className="text-red-400 hover:text-red-600"
-                                        onClick={() => {
-                                            if (confirm("Voulez-vous vraiment supprimer cet étage ?")) {
-                                                Inertia.delete(route('etageadmin.destroy', placeCount))
-                                            }
-                                        }}
-                                    >
-                                        Supprimer
-                                    </Link>
-
                                 </TableDataCell>
                             </TableRow>
                         ))}

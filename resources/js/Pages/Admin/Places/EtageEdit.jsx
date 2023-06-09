@@ -90,7 +90,7 @@ export default function EtageEdit(props) {
         e.preventDefault();
     
         if (data.nbplace < nbplace_reserved) {
-            alert(`Nombre de places déjà réservées : ${nbplace_reserved} Veuillez choisir un nombre de places supérieur à ce nombre.`);
+            alert(`Nombre de places déjà réservées : ${nbplace_reserved}\nVeuillez choisir un nombre de places supérieur à ce nombre.`);
             return;
         }
         

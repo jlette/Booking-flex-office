@@ -80,8 +80,9 @@ export default function DashboardA(props) {
                             <div class="relative flex flex-col min-w-0 break-words bg-white rounded-lg mb-6 xl:mb-0 shadow-lg dark:bg-slate-900">
                                 <div class="flex-auto p-4">
                                     <div class="flex flex-wrap">
-                                    <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                                    <div class="relative w-full max-w-full flex-grow flex-1">
                                         <h5 class="text-blueGray-400 uppercase font-bold text-xs">Nouveaux utilisateurs</h5>
+                                        <p className='text-sm'>En début de semaine</p>
                                         <span class="font-bold text-xl">{userWeek.nombre_utilisateurs_inscrits_semaine}</span>
                                     </div>
                                     <div class="relative w-auto pl-4 flex-initial">
@@ -100,7 +101,7 @@ export default function DashboardA(props) {
                                     >
                                     {userWeek.pourcentage_utilisateurs_inscrits_semaine}%
                                     </span>
-                                        <span class="whitespace-nowrap">Depuis le début de la semaine</span>
+                                    <span class="whitespace-nowrap">du total des utilisateurs</span>
                                     </p>
                                     
                                     <div className="relative w-full mt-2">
@@ -122,9 +123,9 @@ export default function DashboardA(props) {
                             <div class="relative flex flex-col min-w-0 break-words bg-white rounded-lg mb-6 xl:mb-0 shadow-lg dark:bg-slate-900">
                                 <div class="flex-auto p-4">
                                     <div class="flex flex-wrap">
-                                    <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                                    <div class="relative w-full max-w-full flex-grow flex-1">
                                         <h5 class="text-blueGray-400 uppercase font-bold text-xs">Nouveaux utilisateurs</h5>
-                                        <p>depuis le début du mois</p>
+                                        <p className='text-sm'>En début du mois</p>
                                         <span class="font-bold text-xl"> {userMonth.nombre_utilisateurs_inscrits_mois}</span>
                                     </div>
                                     <div class="relative w-auto pl-4 flex-initial">
@@ -166,8 +167,9 @@ export default function DashboardA(props) {
                                 {statReservationLastWeek.map((reservationWeek) => (
                                 <div class="flex-auto p-4">
                                     <div class="flex flex-wrap">
-                                    <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                                    <div class="relative w-full max-w-full flex-grow flex-1">
                                         <h5 class="text-blueGray-400 uppercase font-bold text-xs">Nouvelle Réservation</h5>
+                                        <p className='text-sm'>En début de semaine</p>
                                         <span class="font-bold text-xl"> {reservationWeek.nombre_reservation_semaine} </span>
                                     </div>
                                     <div class="relative w-auto pl-4 flex-initial">
@@ -186,7 +188,7 @@ export default function DashboardA(props) {
                                     >
                                     {reservationWeek.pourcentage_reservation_semaine}%
                                     </span>
-                                        <span class="whitespace-nowrap">Depuis la semaine dernière</span>
+                                        <span class="whitespace-nowrap">du total des réservations</span>
                                     </p>
                                     
                                     <div className="relative w-full mt-2">
@@ -208,8 +210,9 @@ export default function DashboardA(props) {
                                 {statReservationLastMonth.map((reservationMonth) => (
                                 <div class="flex-auto p-4">
                                     <div class="flex flex-wrap">
-                                    <div class="relative w-full pr-4 max-w-full flex-grow flex-1">
+                                    <div class="relative w-full max-w-full flex-grow flex-1">
                                         <h5 class="text-blueGray-400 uppercase font-bold text-xs">Nouvelle Réservation</h5>
+                                        <p class="text-sm">En début du mois</p>
                                         <span class="font-bold text-xl">{reservationMonth.nombre_reservation_mois}</span>
                                     </div>
                                     <div class="relative w-auto pl-4 flex-initial">
@@ -228,7 +231,7 @@ export default function DashboardA(props) {
                                     >
                                     {reservationMonth.pourcentage_reservation_mois}%
                                     </span>
-                                        <span class="whitespace-nowrap">Depuis le mois dernier</span>
+                                        <span class="whitespace-nowrap">du total des réservations</span>
                                     </p>
                                     <div className="relative w-full mt-2">
                                         <div className="overflow-hidden h-2 text-xs flex rounded bg-red-200">
@@ -270,6 +273,9 @@ export default function DashboardA(props) {
                                                     </p>
                                                     <p class="text-sm text-gray-500 truncate">
                                                         {userLast.email}
+                                                    </p>
+                                                    <p class="text-sm text-gray-500 truncate">
+                                                        {userLast.created_at}
                                                     </p>
                                                 </div>
                                                 <div class="inline-flex items-center text-base font-semibold ">
@@ -340,7 +346,7 @@ export default function DashboardA(props) {
                                                         {reservationLast.email}
                                                     </p>
                                                     <p class="text-sm text-gray-500 truncate">
-                                                        {`Place ${reservationLast.numplace}`} 
+                                                        {reservationLast.cree_le} 
                                                     </p>
                                                 </div>
                                                 <div class="inline-flex items-center text-base font-semibold">
