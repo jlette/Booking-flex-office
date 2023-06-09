@@ -393,13 +393,13 @@ export default function Reservation(props) {
                                                             reservations.some(
                                                                 (reservation) =>
                                                                     reservation.id_place ===
-                                                                    place.idplace && horaire == "h1" && reservation.h1 && daterecup == reservation.date ||  reservation.id_place ===
-                                                                    place.idplace && horaire == "h2" && reservation.h2 && daterecup == reservation.date ||  reservation.id_place ===
-                                                                    place.idplace && horaire == "h3" && reservation.h3 && daterecup == reservation.date ||  reservation.id_place ===
-                                                                    place.idplace && horaire == "h4" && reservation.h4 && daterecup == reservation.date ||  reservation.id_place ===
-                                                                    place.idplace && horaire == "matin" && reservation.matin  && daterecup == reservation.date||  reservation.id_place ===
-                                                                    place.idplace && horaire == "apresMidi" && reservation.apresMidi  && daterecup == reservation.date ||  reservation.id_place ===
-                                                                    place.idplace && horaire == "journee" && reservation.journee && daterecup == reservation.date
+                                                                    place.idplace && horaire == "h1" && etagerecup == reservation.numetage && reservation.h1 && daterecup == reservation.date ||  reservation.id_place ===
+                                                                    place.idplace && horaire == "h2" && etagerecup == reservation.numetage && reservation.h2 && daterecup == reservation.date ||  reservation.id_place ===
+                                                                    place.idplace && horaire == "h3" && etagerecup == reservation.numetage && reservation.h3 && daterecup == reservation.date ||  reservation.id_place ===
+                                                                    place.idplace && horaire == "h4" && etagerecup == reservation.numetage && reservation.h4 && daterecup == reservation.date ||  reservation.id_place ===
+                                                                    place.idplace && horaire == "matin" && etagerecup == reservation.numetage && reservation.matin  && daterecup == reservation.date||  reservation.id_place ===
+                                                                    place.idplace && horaire == "apresMidi" && etagerecup == reservation.numetage && reservation.apresMidi  && daterecup == reservation.date ||  reservation.id_place ===
+                                                                    place.idplace && horaire == "journee" && etagerecup == reservation.numetage && reservation.journee && daterecup == reservation.date
                                                             )
                                                                 ? "red"
                                                                 : ""
