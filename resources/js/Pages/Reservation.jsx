@@ -102,8 +102,7 @@ export default function Reservation(props) {
         const { name, value, type, checked } = e.target;
         setData((prevState) => ({
             ...prevState,
-            [name]: type === "radio" ? checked : value,
-            id_place: selectedPlaceId,
+            date: value,
         }));
     };
 
