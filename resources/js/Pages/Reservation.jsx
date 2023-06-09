@@ -27,7 +27,7 @@ export default function Reservation(props) {
     const [etagerecup, setEtagerecup] = useState("1");
     const [placerecup, setPlaceRecup] = useState("");
     const [selectedPlaceId, setSelectedPlaceId] = useState(null);
-
+    const [daterecup,setDaterecup] = useState(new Date().toISOString().substring(0, 10));
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
@@ -88,6 +88,17 @@ export default function Reservation(props) {
     // méthode prevState pour maintenir les anciennes valeurs de données
     // inchangées et mettre à jour seulement la valeur qui a été modifiée.
     const handleChange = (e) => {
+        
+        const { name, value, type, checked } = e.target;
+        setData((prevState) => ({
+            ...prevState,
+            [name]: type === "radio" ? checked : value,
+            id_place: selectedPlaceId,
+        }));
+    };
+    const handleChangedate = (e) => {
+        setDaterecup(e.target.value);
+        console.log(e.target.value);
         const { name, value, type, checked } = e.target;
         setData((prevState) => ({
             ...prevState,
@@ -169,7 +180,7 @@ export default function Reservation(props) {
                                         type="date"
                                         name="date"
                                         value={data.date}
-                                        onChange={handleChange}
+                                        onChange={handleChangedate}
                                         className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent dark:bg-slate-800 dark:text-white"
                                         required
                                     />
@@ -383,7 +394,13 @@ export default function Reservation(props) {
                                                             reservations.some(
                                                                 (reservation) =>
                                                                     reservation.id_place ===
-                                                                    place.idplace
+                                                                    place.idplace && horaire == "h1" && reservation.h1 && daterecup == reservation.date ||  reservation.id_place ===
+                                                                    place.idplace && horaire == "h2" && reservation.h2 && daterecup == reservation.date ||  reservation.id_place ===
+                                                                    place.idplace && horaire == "h3" && reservation.h3 && daterecup == reservation.date ||  reservation.id_place ===
+                                                                    place.idplace && horaire == "h4" && reservation.h4 && daterecup == reservation.date ||  reservation.id_place ===
+                                                                    place.idplace && horaire == "matin" && reservation.matin  && daterecup == reservation.date||  reservation.id_place ===
+                                                                    place.idplace && horaire == "apresMidi" && reservation.apresMidi  && daterecup == reservation.date ||  reservation.id_place ===
+                                                                    place.idplace && horaire == "journee" && reservation.journee && daterecup == reservation.date
                                                             )
                                                                 ? "red"
                                                                 : ""
