@@ -34,7 +34,7 @@ class DashboardAdminController extends Controller
                 DB::raw('count(*) as nombre_reservation_mois'),
                 DB::raw('ROUND((COUNT(*) / (SELECT COUNT(*) FROM reservation)) * 100, 1) AS pourcentage_reservation_mois')
                 )
-                ->where('date', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 1 MONTH)'))
+                ->where('cree_le', '>=', DB::raw('DATE(CONCAT(YEAR(CURDATE()), "-", MONTH(CURDATE()), "-01"))'))
                 ->get();
 
         $statReservationLastWeek = DB::table('reservation')
@@ -42,7 +42,7 @@ class DashboardAdminController extends Controller
                 DB::raw('count(*) as nombre_reservation_semaine'),
                 DB::raw('ROUND((COUNT(*) / (SELECT COUNT(*) FROM reservation)) * 100, 1) AS pourcentage_reservation_semaine')
                 )
-                ->where('date', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 1 WEEK)'))
+                ->where('cree_le', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL DAYOFWEEK(CURDATE())-1 DAY)'))
                 ->get();
 
         $statListUserLast = DB::table('users')
@@ -53,6 +53,7 @@ class DashboardAdminController extends Controller
                     $query->where('roleid', '<>', '1')
                         ->orWhereNull('roleid');
                 })
+                ->orderBy('created_at', 'DESC')
                 ->get();
 
         $statListReservationLast = DB::table('reservation')
@@ -61,6 +62,7 @@ class DashboardAdminController extends Controller
             ->join('place', 'idplace', '=', 'reservation.id_place')
             ->where('cree_le', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 1 MONTH)')
             )
+            ->orderBy('cree_le', 'DESC') // Ajout de la colonne 'id' pour le tri
             ->get();
 
         $statPlaceLast = DB::table('place')

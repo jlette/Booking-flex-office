@@ -12,33 +12,44 @@ import { Inertia } from "@inertiajs/inertia";
 export default function PlaceIndex(props) {
     
     
-    const { places } = props;
+    const { places, placeCounts } = props;
+
 
     return (
         <AdminLayout
             auth={props.auth}
             errors={props.errors}
-            header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                   Gérer les places
-                </h2>
-            }
         >
             <Head title="Création d'une place" />
             <div className="py-4">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <Link href={route('placeadmin.create')} class="px-3 py-2 text-white font-semibold bg-sky-600 hover:bg-sky-700 rounded">Ajouter une nouvelle place</Link>
+                    <Link href={route('etageadmin.create')} class="px-3 py-2 text-white font-semibold bg-sky-600 hover:bg-sky-700 rounded">Ajouter une nouvelle place par étage</Link>
             
                     <div className="mt-6">
-                    <Table captionText="Liste des places" header={<TableRow>
-                            <TableHeadCell>Numéro place</TableHeadCell>
+                    <Table captionText="Liste des places par étage" header={<TableRow>
                             <TableHeadCell>Numéro étage</TableHeadCell>
+                            <TableHeadCell>Nombre de places</TableHeadCell>
                             <TableHeadCell>Actions</TableHeadCell>
                         </TableRow>}>
+                        {placeCounts.map((placeCount) => (
+                            <TableRow className="bg-slate-200 border-b border-indigo-200 dark:bg-gray-900 dark:border-gray-700">
+                                <TableDataCell>{placeCount.numetage}</TableDataCell>
+                                <TableDataCell>{placeCount.place_count}</TableDataCell>
+                                <TableDataCell>
+                                    <Link 
+                                        href={route('etageadmin.edit', placeCount.numetage)} 
+                                        class="text-green-400 hover:text-green-600">
+                                        Editer
+                                    </Link>
+                                </TableDataCell>
+                            </TableRow>
+                        ))}
+                    </Table>
+                    {/* 
                         {places.map((place) => (
-                        <TableRow key={place.id} className="bg-slate-200 border-b border-indigo-200 dark:bg-gray-900 dark:border-gray-700">
-                                <TableHeadCell>{place.numplace}</TableHeadCell>
+                        <TableRow key={place.id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                 <TableDataCell>{place.numetage}</TableDataCell>
+                                <TableDataCell>{place.nbplace}</TableDataCell>
                                 <TableDataCell>
                                     <Link 
                                         href={route('placeadmin.edit', place.idplace)} 
@@ -59,7 +70,7 @@ export default function PlaceIndex(props) {
                                 </TableDataCell>
                         </TableRow>
                         ))}
-                    </Table>
+                                    </Table> */}
                     </div>
                 </div>
             </div>
