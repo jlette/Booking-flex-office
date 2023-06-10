@@ -9,7 +9,7 @@ export default function ReservationCollegue(props) {
             auth={props.auth}
             errors={props.errors}
             header={
-                <h2 className="font-semibold text-xl text-gray-800 leading-tight">
+                <h2 className="font-semibold text-xl text-gray-800 leading-tight dark:text-white">
                     Resultat de la recherche:
                 </h2>
             }
@@ -45,12 +45,22 @@ export default function ReservationCollegue(props) {
                                                 <div class="flex items-center space-x-4">
                                                     <div class="flex-1 min-w-0">
                                                         <p class="text-sm font-medium text-gray-900 truncate dark:text-white">
-                                                            {reservation.matin &&
-                                                            reservation.apresmidi
-                                                                ? "Journée"
-                                                                : reservation.matin
-                                                                ? "Matin"
-                                                                : "Après-midi"}
+                                                            {reservation.h1 
+                                                            ? "08:00-10:00" 
+                                                            : reservation.h2 
+                                                            ? "10:00-12:00"
+                                                            : reservation.h3
+                                                            ? "13:00-15:00"
+                                                            : reservation.h4
+                                                            ? "15:00-17:00"
+                                                            : reservation.matin
+                                                            ? "Matin"
+                                                            : reservation.apresmidi
+                                                            ? "Après-midi"
+                                                            : reservation.journee
+                                                            ? "Journée" 
+                                                            : ""
+                                                            }
                                                         </p>
                                                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">
                                                             {new Date(

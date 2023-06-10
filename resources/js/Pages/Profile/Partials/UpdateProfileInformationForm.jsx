@@ -22,16 +22,16 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
     return (
         <section className={className}>
             <header>
-                <h2 className="text-lg font-medium text-gray-900">Informations sur le profil</h2>
+                <h2 className="text-lg font-medium text-gray-900 dark:text-white">Informations sur le profil</h2>
 
-                <p className="mt-1 text-sm text-gray-600">
+                <p className="mt-1 text-sm text-gray-600 dark:text-white">
                 Mettez à jour les informations de profil et l'adresse e-mail de votre compte.
                 </p>
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
                 <div>
-                    <InputLabel htmlFor="username1" value="Prénom" />
+                    <InputLabel htmlFor="username1" value="Prénom" className='dark:text-white'/>
 
                     <TextInput
                         id="username"
@@ -47,7 +47,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="email" value="Email" />
+                    <InputLabel htmlFor="email" value="Email" className='dark:text-white'/>
 
                     <TextInput
                         id="email"
@@ -64,20 +64,20 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
 
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
-                        <p className="text-sm mt-2 text-gray-800">
+                        <p className="text-sm mt-2 text-gray-800 dark:text-white">
                             Votre adresse e-mail n'est pas vérifiée.
                             <Link
                                 href={route('verification.send')}
                                 method="post"
                                 as="button"
-                                className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:text-white"
                             >
                                 Cliquez ici pour renvoyer l'e-mail de vérification.
                             </Link>
                         </p>
 
                         {status === 'verification-link-sent' && (
-                            <div className="mt-2 font-medium text-sm text-green-600">
+                            <div className="mt-2 font-medium text-sm text-green-600 dark:text-white">
                                 Un nouveau lien de vérification a été envoyé à votre adresse e-mail.
                             </div>
                         )}
@@ -93,7 +93,7 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                         leaveTo="opacity-0"
                         className="transition ease-in-out"
                     >
-                        <p className="text-sm text-gray-600">Enregistrée.</p>
+                        <p className="text-sm text-gray-600 dark:text-white">Enregistrée.</p>
                     </Transition>
                 </div>
             </form>

@@ -46,6 +46,9 @@ export default function Reservation(props) {
         id_place: selectedPlaceId,
     });
 
+    console.log(data);
+
+
     // permet de gérer le changement de l'horaire
     const horaireChange = (event) => {
         const choice = event.target.value;
@@ -59,7 +62,7 @@ export default function Reservation(props) {
             h3: choice === 'h3',
             h4: choice === 'h4',
             matin: choice === 'matin',
-            apresMidi: choice === 'apresMidi',
+            apresmidi: choice === 'apresmidi',
             journee: choice === 'journee',
           }));
     };
@@ -220,7 +223,7 @@ export default function Reservation(props) {
                                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 "
                                             />
                                             <label
-                                                for="apresmidi"
+                                                for="horaire"
                                                 class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-white"
                                             >
                                                 H2 (10:00 - 12:00)
@@ -398,7 +401,7 @@ export default function Reservation(props) {
                                                                     place.idplace && horaire == "h3" && etagerecup == reservation.numetage && reservation.h3 && daterecup == reservation.date ||  reservation.id_place ===
                                                                     place.idplace && horaire == "h4" && etagerecup == reservation.numetage && reservation.h4 && daterecup == reservation.date ||  reservation.id_place ===
                                                                     place.idplace && horaire == "matin" && etagerecup == reservation.numetage && reservation.matin  && daterecup == reservation.date||  reservation.id_place ===
-                                                                    place.idplace && horaire == "apresMidi" && etagerecup == reservation.numetage && reservation.apresMidi  && daterecup == reservation.date ||  reservation.id_place ===
+                                                                    place.idplace && horaire == "apresmidi" && etagerecup == reservation.numetage && reservation.apresmidi  && daterecup == reservation.date ||  reservation.id_place ===
                                                                     place.idplace && horaire == "journee" && etagerecup == reservation.numetage && reservation.journee && daterecup == reservation.date
                                                             )
                                                                 ? "red"

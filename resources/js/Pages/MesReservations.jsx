@@ -1,12 +1,12 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, usePage } from '@inertiajs/react';
+import { Head, usePage, Link } from '@inertiajs/react';
 import Table from '@/components/Table';
 import TableRow from '@/components/TableRow';
 import TableHeadCell from '@/components/TableHeadCell';
 import TableDataCell from '@/components/TableDataCell';
 export default function MesReservations(props) {
     const {places, reservations } = usePage().props;
-    console.log(reservations[0].h1);
+    
 
     return (
         <AuthenticatedLayout
@@ -35,8 +35,15 @@ export default function MesReservations(props) {
                                 return (
                             <TableRow key={reservation.idreservation} className="bg-slate-200 border-b border-indigo-200 dark:bg-gray-900 dark:border-gray-700">
                                 <TableHeadCell>{reservation.idreservation}</TableHeadCell>
-                                <TableDataCell> {reservation.h1
-                                    ? "08:00 - 10:00" : reservation.h2 ? "10:00 - 12:00" : reservation.h3 ? "13:00 - 14:00" : reservation.h4 ? "14:00 - 16:00" : reservation.journee ? "Journée" : reservation.matin ? "Matin" : reservation.apresMidi ? "apres midi" :"" }
+                                <TableDataCell> {
+                                reservation.h1 ? "08:00 - 10:00" 
+                                : reservation.h2 ? "10:00 - 12:00" 
+                                : reservation.h3 ? "13:00 - 15:00" 
+                                : reservation.h4 ? "15:00 - 17:00" 
+                                : reservation.journee ? "Journée" 
+                                : reservation.matin ? "Matin" 
+                                : reservation.apresmidi ? "Après-midi" 
+                                :"" }
                                 </TableDataCell>
                                 <TableDataCell>{new Date(reservation.date).toLocaleString('fr-FR',
                                     { day: 'numeric', month: 'long', year: 'numeric' })}

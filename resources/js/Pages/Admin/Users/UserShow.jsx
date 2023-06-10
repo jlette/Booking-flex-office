@@ -81,7 +81,14 @@ export default function UserShow(props) {
                                             .map((reservation) => (
                                             <li>
                                                 {new Date(reservation.date).toLocaleString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })} -
-                                                {reservation.matin && reservation.apresmidi ? " En Journée" : reservation.matin ? " Le Matin" : " En Après-midi"} - 
+                                                {reservation.h1 ? "08:00 - 10:00" 
+                                                    : reservation.h2 ? "10:00 - 12:00" 
+                                                    : reservation.h3 ? "13:00 - 15:00" 
+                                                    : reservation.h4 ? "15:00 - 17:00" 
+                                                    : reservation.journee ? "Journée" 
+                                                    : reservation.matin ? "Matin" 
+                                                    : reservation.apresmidi ? "Après-midi" 
+                                                    :""} - 
                                                 À la place {reservation.numplace} - À l'étage {reservation.numetage}
                                             </li>
                                             ))

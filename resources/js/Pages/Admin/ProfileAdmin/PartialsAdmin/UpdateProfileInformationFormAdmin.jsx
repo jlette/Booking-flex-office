@@ -85,14 +85,14 @@ export default function UpdateProfileInformationFormAdmin({ mustVerifyEmail, sta
                                 href={route('verification.send')}
                                 method="post"
                                 as="button"
-                                className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                className="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:text-white"
                             >
                                 Cliquez ici pour renvoyer l'e-mail de vérification.
                             </Link>
                         </p>
 
                         {status === 'verification-link-sent' && (
-                            <div className="mt-2 font-medium text-sm text-green-600">
+                            <div className="mt-2 font-medium text-sm text-green-600 dark:text-white">
                                 Un nouveau lien de vérification a été envoyé à votre adresse e-mail.
                             </div>
                         )}
@@ -108,7 +108,7 @@ export default function UpdateProfileInformationFormAdmin({ mustVerifyEmail, sta
                         leaveTo="opacity-0"
                         className="transition ease-in-out"
                     >
-                        <p className="text-sm text-gray-600">Enregistrée.</p>
+                        <p className="text-sm text-gray-600 dark:text-white">Enregistrée.</p>
                     </Transition>
                 </div>
             </form>

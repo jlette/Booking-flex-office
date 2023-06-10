@@ -103,7 +103,7 @@ export default function UpdatePasswordFormAdmin({ className }) {
                         leaveTo="opacity-0"
                         className="transition ease-in-out"
                     >
-                        <p className="text-sm text-gray-600">Enregistrée.</p>
+                        <p className="text-sm text-gray-600 dark:text-white">Enregistrée.</p>
                     </Transition>
                 </div>
             </form>

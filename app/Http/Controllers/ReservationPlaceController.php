@@ -61,7 +61,7 @@ class ReservationPlaceController extends Controller
             'h3' => 'required|boolean',
             'h4' => 'required|boolean',
             'matin' => 'required|boolean',
-            'apresMidi' => 'required|boolean',
+            'apresmidi' => 'required|boolean',
             'journee' => 'required|boolean',
             'id_place' => 'required|numeric',
         ]);
@@ -81,13 +81,26 @@ class ReservationPlaceController extends Controller
         $reservation->h3= $request->input('h3') ? true : false; // Vérifier si la case "matin" est cochée
         $reservation->h4 = $request->input('h4') ? true : false; // Vérifier si la case "apresMidi" est cochée
         $reservation->matin = $request->input('matin') ? true : false; // Vérifier si la case "apresMidi" est cochée
-        $reservation->apresMidi = $request->input('apresMidi') ? true : false; // Vérifier si la case "apresMidi" est cochée
+        $reservation->apresmidi = $request->input('apresmidi') ? true : false; // Vérifier si la case "apresMidi" est cochée
         $reservation->journee = $request->input('journee') ? true : false; // Vérifier si la case "apresMidi" est cochée
         $reservation->id_place = $request->input('id_place');
         $reservation->cree_le = now();
         $reservation->save();
     
         return redirect()->route('mesreservations');
+    }
+
+    public function showReservationCollegue($id){
+        $resultatSearch = DB::table('reservation')
+                ->select('*')
+                ->join('users', 'users.iduser', '=', 'reservation.id_user')
+                ->join('place', 'place.idplace', '=', 'reservation.id_place')
+                ->where('id_user', '=', $id)
+                ->get();
+
+        return Inertia::render('ReservationCollegue', [
+            'resultatSearch' => $resultatSearch,
+        ]);
     }
 
 }

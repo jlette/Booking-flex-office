@@ -8,7 +8,7 @@ export default function EditAdmin({ auth, mustVerifyEmail, status }) {
     return (
         <AdminLayout
             auth={auth}
-            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Profil</h2>}
+            header={<h2 className="font-semibold text-xl text-gray-800 leading-tight ">Profil</h2>}
         >
             <Head title="Profil" />
 

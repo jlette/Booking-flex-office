@@ -69,8 +69,8 @@ export default function Authenticated({ auth, header, children }) {
                         <div className="flex">
                             <div className="shrink-0 flex items-center">
                                 <Link
-                                    href={route("dashboard")}
-                                    active={route().current("dashboard")}
+                                    href={route("reservation")}
+                                    active={route().current("reservation")}
                                 >
                                     <div>
                                         <img
@@ -82,16 +82,16 @@ export default function Authenticated({ auth, header, children }) {
                             </div>
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink
-                                    href={route("dashboard")}
-                                    active={route().current("dashboard")}
-                                >
-                                    Dashboard
-                                </NavLink>
-                                <NavLink
                                     href={route("reservation")}
                                     active={route().current("reservation")}
                                 >
                                     Réservation
+                                </NavLink>
+                                <NavLink
+                                    href={route("mesreservations")}
+                                    active={route().current("mesreservations")}
+                                >
+                                    Mes réservations
                                 </NavLink>
                             </div>
                         </div>
@@ -147,14 +147,7 @@ export default function Authenticated({ auth, header, children }) {
                                             href={route("profile.edit")}
                                         >
                                             Profil
-                                        </Dropdown.Link>
-                                        {auth.user && (
-                                            <Dropdown.Link
-                                                href={route("mesreservations")}
-                                            >
-                                                Mes réservations
-                                            </Dropdown.Link>
-                                        )}
+                                        </Dropdown.Link>                                        
                                         <Dropdown.Link
                                             href={route("logout")}
                                             method="post"
@@ -218,16 +211,16 @@ export default function Authenticated({ auth, header, children }) {
                 >
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink
-                            href={route("dashboard")}
-                            active={route().current("dashboard")}
-                        >
-                            Dashboard
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink
                             href={route("reservation")}
                             active={route().current("reservation")}
                         >
                             Réservation
+                        </ResponsiveNavLink>
+                        <ResponsiveNavLink
+                            href={route("mesreservations")}
+                            active={route().current("mesreservations")}
+                        >
+                            Mes réservations
                         </ResponsiveNavLink>
                     </div>
 
@@ -244,9 +237,6 @@ export default function Authenticated({ auth, header, children }) {
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink href={route("profile.edit")}>
                                 Profil
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink href={route("mesreservations")}>
-                                Mes réservations
                             </ResponsiveNavLink>
                             <ResponsiveNavLink
                                 method="post"
