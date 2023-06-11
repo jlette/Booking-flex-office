@@ -6,6 +6,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,8 +16,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $idplace
  * @property int $numplace
  * @property int|null $numetage
+ * @property Carbon $created_at
  * 
- * @property Collection|Favoriplace[] $favoriplaces
  * @property Collection|Reservation[] $reservations
  *
  * @package App\Models
@@ -36,11 +37,6 @@ class Place extends Model
 		'numplace',
 		'numetage'
 	];
-
-	public function favoriplaces()
-	{
-		return $this->hasMany(Favoriplace::class, 'id_place');
-	}
 
 	public function reservations()
 	{

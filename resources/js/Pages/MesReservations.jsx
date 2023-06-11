@@ -27,6 +27,7 @@ export default function MesReservations(props) {
                                 <TableHeadCell>Date</TableHeadCell>
                                 <TableHeadCell>Place choisi</TableHeadCell>
                                 <TableHeadCell>À l'étage</TableHeadCell>
+                                <TableHeadCell>Suppression</TableHeadCell>
                             </TableRow>}>
                             {reservations.map((reservation) => {
                                 const place = places.find((place) => place.idplace === reservation.id_place);
@@ -50,6 +51,19 @@ export default function MesReservations(props) {
                                 </TableDataCell>
                                 <TableDataCell>{numeroPlace}</TableDataCell>
                                 <TableDataCell>{numeroEtage}</TableDataCell>
+                                <TableDataCell>
+                                <Link 
+                                    className="text-red-400 hover:text-red-600"
+                                    onClick={() => {
+                                        if (confirm("Voulez-vous vraiment supprimer cette réservation ?")) {
+                                            Inertia.delete(route('reservation.destroy', reservation.idreservation))
+                                        }
+                                    }}
+                                >
+                                    Supprimer
+                                </Link>
+                                </TableDataCell>
+                                
                             </TableRow>
                                 );
                                 })}
