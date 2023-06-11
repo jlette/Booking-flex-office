@@ -1,5 +1,5 @@
     import { useState } from 'react';
-    import { Link } from '@inertiajs/react';
+    import { Link, usePage } from '@inertiajs/react';
     import SidebarLink from '@/Components/SidebarLink';
     import { MdSupervisedUserCircle } from 'react-icons/md';
     import { MdAirlineSeatReclineExtra } from 'react-icons/md';
@@ -10,6 +10,8 @@
     export default function AdminLayout({ auth, header, children }) {
         const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
         // const [isDarkMode, setIsDarkMode] = useState(false);
+
+        const flash = usePage().props.flash;
 
         const [theme, setTheme] = useState(
             localStorage.getItem('theme') ? localStorage.getItem('theme') : 'system'
@@ -234,6 +236,9 @@
                 
                 
                 <div class="px-6 pt-6 2xl:container">
+                    {flash.message && (
+                        <div class="bg-emerald-400 p-3">{flash.message}</div>
+                    )}
                     <main>{children}</main>
                 </div>
             </div>

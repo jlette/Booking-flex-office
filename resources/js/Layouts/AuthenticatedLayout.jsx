@@ -3,12 +3,14 @@ import ApplicationLogo from "@/Components/ApplicationLogo";
 import Dropdown from "@/Components/Dropdown";
 import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import { useEffect } from "react";
 
 export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
+
+    const flash = usePage().props.flash;
 
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") ? localStorage.getItem("theme") : "system"
@@ -275,6 +277,10 @@ export default function Authenticated({ auth, header, children }) {
                     </div>
                 </div>
             </nav>
+
+            {flash.message && (
+                <div class="bg-emerald-400 p-3">{flash.message}</div>
+            )}
 
             {header && (
                 <header className="bg-white shadow dark:bg-gray-900">

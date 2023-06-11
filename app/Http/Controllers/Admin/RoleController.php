@@ -50,7 +50,7 @@ class RoleController extends Controller
             'role_name' => $request->role_name,
         ]);
 
-        return back();
+        return redirect()->route('roles.index')->with('message', 'Le rôle a bien été créé');    
     }
 
     /**
@@ -94,7 +94,8 @@ class RoleController extends Controller
 
         Role::find($id)->update($request->all());
 
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('message', 'Le rôle a bien été modifié');
+    
     }
 
     /**
@@ -106,6 +107,6 @@ class RoleController extends Controller
     public function destroy($id)
     {
         Role::find($id)->delete();
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('message', 'Le rôle a bien été supprimé');
     }
 }

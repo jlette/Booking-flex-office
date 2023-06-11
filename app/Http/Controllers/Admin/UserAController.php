@@ -140,8 +140,7 @@ class UserAController extends Controller
     
         User::find($id)->update($request->all());
 
-        return to_route('useradmin.index');
-    }
+        return redirect()->route('useradmin.index')->with('message', 'L\'utilisateur a bien été modifié.');    }
 
     /**
      * Remove the specified resource from storage.

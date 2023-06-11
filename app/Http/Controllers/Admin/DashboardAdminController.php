@@ -67,7 +67,9 @@ class DashboardAdminController extends Controller
 
         $statPlaceLast = DB::table('place')
             ->select('*')
-            ->where('created_at', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 1 MONTH)'))
+            ->where('created_at', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 1 MONTH)')
+            )
+            ->limit(5)
             ->get();  
 
         return Inertia::render('Admin/DashboardA', [

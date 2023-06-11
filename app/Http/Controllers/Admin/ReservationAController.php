@@ -31,7 +31,7 @@ class ReservationAController extends Controller
         $reservation = Reservation::findOrFail($id);
         $reservation->delete();
 
-        return redirect()->route('reservationadmin.index');
+        return redirect()->route('reservationadmin.index')->with('message', 'La réservation a bien été supprimée');    
     }
     
 }

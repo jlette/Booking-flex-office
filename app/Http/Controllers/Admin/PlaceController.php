@@ -61,7 +61,7 @@ class PlaceController extends Controller
             $place->save();
         }
 
-        return redirect()->route('etageadmin.index');
+        return redirect()->route('etageadmin.index')->with('message', 'Places créées avec succès.');
     }
 
     /**
@@ -145,27 +145,21 @@ class PlaceController extends Controller
             }   
         }
     
-        // Here update your place count as per your business logic
-    
-        return redirect()->route('etageadmin.index');
+        return redirect()->route('etageadmin.index')->with('message', 'Etage modifié avec succès !');    
     }
     
     
-    
-
-
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Place  $place
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id){
+    // public function destroy($id){
 
-        Place::find($id)->delete();        
-        //return redirect()->route('etageadmin.index');
-    }
+    //     Place::find($id)->delete();        
+    //     return redirect()->route('etageadmin.index');
+    // }
 
 
 }
