@@ -66,13 +66,6 @@ class ReservationPlaceController extends Controller
             'id_place' => 'required|numeric',
         ]);
 
-        // $existingReservation = Reservation::where('id_place', $request->input('id_place'))
-        //                                 ->where('date', $request->input('date'))
-        //                                 ->first();
-        // if ($existingReservation) {
-        //     return redirect()->back()->with('error', 'Cette place est déjà réservée pour cette date.');
-        // }
-
         $reservation = new Reservation;
         $reservation->id_user = Auth::id();
         $reservation->date = $request->input('date');
@@ -86,9 +79,12 @@ class ReservationPlaceController extends Controller
         $reservation->id_place = $request->input('id_place');
         $reservation->cree_le = now();
         $reservation->save();
+        
     
         return redirect()->route('mesreservations');
     }
+
+
 
     public function showReservationCollegue($id){
         $resultatSearch = DB::table('reservation')
