@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Inertia\Inertia;
 use App\Models\Place;
 use App\Models\Reservation;
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\ReservationConfirmationNotification;
 
 class ReservationPlaceController extends Controller
 {
@@ -69,21 +72,23 @@ class ReservationPlaceController extends Controller
         $reservation = new Reservation;
         $reservation->id_user = Auth::id();
         $reservation->date = $request->input('date');
-        $reservation->h1= $request->input('h1') ? true : false; // Vérifier si la case "matin" est cochée
-        $reservation->h2 = $request->input('h2') ? true : false; // Vérifier si la case "apresMidi" est cochée
-        $reservation->h3= $request->input('h3') ? true : false; // Vérifier si la case "matin" est cochée
-        $reservation->h4 = $request->input('h4') ? true : false; // Vérifier si la case "apresMidi" est cochée
-        $reservation->matin = $request->input('matin') ? true : false; // Vérifier si la case "apresMidi" est cochée
+        $reservation->h1= $request->input('h1') ? true : false; // Vérifier si la case "h1" est cochée
+        $reservation->h2 = $request->input('h2') ? true : false; // Vérifier si la case "h2" est cochée
+        $reservation->h3= $request->input('h3') ? true : false; // Vérifier si la case "h3" est cochée
+        $reservation->h4 = $request->input('h4') ? true : false; // Vérifier si la case "h4" est cochée
+        $reservation->matin = $request->input('matin') ? true : false; // Vérifier si la case "matin" est cochée
         $reservation->apresmidi = $request->input('apresmidi') ? true : false; // Vérifier si la case "apresMidi" est cochée
-        $reservation->journee = $request->input('journee') ? true : false; // Vérifier si la case "apresMidi" est cochée
+        $reservation->journee = $request->input('journee') ? true : false; // Vérifier si la case "journee" est cochée
         $reservation->id_place = $request->input('id_place');
         $reservation->cree_le = now();
         $reservation->save();
         
-    
+        $user = $request->user();
+        if ($reservation) {
+            $user->notify(new ReservationConfirmationNotification($reservation));
+        }        
         return redirect()->route('mesreservations');
     }
-
 
 
     public function showReservationCollegue($id){
@@ -97,6 +102,12 @@ class ReservationPlaceController extends Controller
         return Inertia::render('ReservationCollegue', [
             'resultatSearch' => $resultatSearch,
         ]);
+    }
+
+    public function destroy($id){
+        $reservation = Reservation::findOrFail($id);
+        $reservation->delete();
+        return redirect()->route('mesreservations');
     }
 
 }
