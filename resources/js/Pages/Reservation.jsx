@@ -28,6 +28,7 @@ export default function Reservation(props) {
     const [placerecup, setPlaceRecup] = useState("");
     const [selectedPlaceId, setSelectedPlaceId] = useState(null);
     const [daterecup,setDaterecup] = useState(new Date().toISOString().substring(0, 10));
+    const [selectedDate, setSelectedDate] = useState('');
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
@@ -35,7 +36,7 @@ export default function Reservation(props) {
     // permet de définir les données du formulaire
     // et de les initialiser avec des valeurs par défaut
     const [data, setData] = useState({
-        date: new Date().toISOString().substring(0, 10),
+        date: '',
         h1: false,
         h2: false,
         h3: false,
@@ -100,13 +101,27 @@ export default function Reservation(props) {
         }));
     };
     const handleChangedate = (e) => {
-        setDaterecup(e.target.value);
-        console.log(e.target.value);
-        const { name, value, type, checked } = e.target;
+    const selectedDate = new Date(e.target.value);
+    const dayOfWeek = selectedDate.getDay();
+    const { value,} = e.target;
+  if (dayOfWeek === 0 || dayOfWeek === 6) {
+    // Réinitialiser la valeur sélectionnée
+    alert("Veuillez sélectionner une date en semaine.");
+    
         setData((prevState) => ({
             ...prevState,
-            date: value,
+            date: '',
         }));
+    
+  } else {
+    setData((prevState) => ({
+        ...prevState,
+        date: value,
+    }));
+    setDaterecup(e.target.value);
+    console.log(e.target.value);
+  }
+        
     };
 
     const handleSubmit = (e) => {
@@ -185,6 +200,7 @@ export default function Reservation(props) {
                                         onChange={handleChangedate}
                                         className="w-full py-2 px-3 rounded-lg border border-gray-300 mb-4 shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent dark:bg-slate-800 dark:text-white"
                                         required
+                                        min={ new Date().toISOString().substring(0, 10)}
                                     />
                                 </div>
 
@@ -375,13 +391,37 @@ export default function Reservation(props) {
                             </div>
                         ) : (
                             <ReservationLayout>
-                                <div>
+                                <div className="flex flex-row flex-wrap ">
                                     {places.map((place, index) => (
                                         <div key={index}>
                                             {etagerecup == place.numetage ? (
                                                 <>
                                                     <Place
                                                         key={place.idplace}
+                                                        message={
+                                                            reservations.some(
+                                                                (reservation) => 
+                                                                reservation.id_place === place.idplace &&( horaire == "h1" || horaire == "matin" || horaire == "journee" ) && etagerecup == reservation.numetage && reservation.h1 && daterecup == reservation.date 
+                                                            ) ? "de 8:00 à 10:00." : reservations.some(
+                                                                (reservation) => 
+                                                                reservation.id_place === place.idplace && (horaire == "h2"  || horaire == "matin" || horaire == "journee" ) && etagerecup == reservation.numetage && reservation.h2 && daterecup == reservation.date
+                                                            ) ? " de 10:00 à 12:00." : reservations.some(
+                                                                (reservation) => 
+                                                                reservation.id_place === place.idplace && (horaire == "h3"  || horaire == "apresmidi" || horaire == "journee") && etagerecup == reservation.numetage && reservation.h3 && daterecup == reservation.date 
+                                                            ) ? " de 13:00 à 15:00." : reservations.some(
+                                                                (reservation) => 
+                                                                reservation.id_place === place.idplace && (horaire == "h4"  || horaire == "apresmidi" || horaire == "journee") && etagerecup == reservation.numetage && reservation.h3 && daterecup == reservation.date 
+                                                            ) ? " de 15:00 à 17:00." : reservations.some(
+                                                                (reservation) => 
+                                                                reservation.id_place === place.idplace && (horaire == "matin" || horaire == "h1" || horaire == "h2" || horaire == "journee") && etagerecup == reservation.numetage && reservation.matin  && daterecup == reservation.date
+                                                            ) ? "toute la matinée." : reservations.some(
+                                                                (reservation) => 
+                                                                reservation.id_place === place.idplace && (horaire == "apresmidi" || horaire == "h3" || horaire == "h4" || horaire == "journee") && etagerecup == reservation.numetage && reservation.apresmidi  && daterecup == reservation.date
+                                                            ) ? "tout l'apres midi." :  reservations.some(
+                                                                (reservation) => 
+                                                                reservation.id_place === place.idplace && (horaire == "h1" || horaire == "h2" ||  horaire == "h3" || horaire == "h4" || horaire == "journee" || horaire == "matin" || horaire == "apresmidi" ) && etagerecup == reservation.numetage && reservation.journee && daterecup == reservation.date
+                                                            ) ? "toute la journée." : "."
+                                                        }
                                                         modifyparentstatevalue={
                                                             setPlaceRecup
                                                         }
@@ -395,14 +435,13 @@ export default function Reservation(props) {
                                                         colorPlace={
                                                             reservations.some(
                                                                 (reservation) =>
-                                                                    reservation.id_place ===
-                                                                    place.idplace && horaire == "h1" && etagerecup == reservation.numetage && reservation.h1 && daterecup == reservation.date ||  reservation.id_place ===
-                                                                    place.idplace && horaire == "h2" && etagerecup == reservation.numetage && reservation.h2 && daterecup == reservation.date ||  reservation.id_place ===
-                                                                    place.idplace && horaire == "h3" && etagerecup == reservation.numetage && reservation.h3 && daterecup == reservation.date ||  reservation.id_place ===
-                                                                    place.idplace && horaire == "h4" && etagerecup == reservation.numetage && reservation.h4 && daterecup == reservation.date ||  reservation.id_place ===
-                                                                    place.idplace && horaire == "matin" && etagerecup == reservation.numetage && reservation.matin  && daterecup == reservation.date||  reservation.id_place ===
-                                                                    place.idplace && horaire == "apresmidi" && etagerecup == reservation.numetage && reservation.apresmidi  && daterecup == reservation.date ||  reservation.id_place ===
-                                                                    place.idplace && horaire == "journee" && etagerecup == reservation.numetage && reservation.journee && daterecup == reservation.date
+                                                                    reservation.id_place === place.idplace &&( horaire == "h1" || horaire == "matin" || horaire == "journee" ) && etagerecup == reservation.numetage && reservation.h1 && daterecup == reservation.date ||
+                                                                    reservation.id_place === place.idplace && (horaire == "h2"  || horaire == "matin" || horaire == "journee" ) && etagerecup == reservation.numetage && reservation.h2 && daterecup == reservation.date ||
+                                                                    reservation.id_place === place.idplace && (horaire == "h3"  || horaire == "apresmidi" || horaire == "journee") && etagerecup == reservation.numetage && reservation.h3 && daterecup == reservation.date ||
+                                                                    reservation.id_place === place.idplace && (horaire == "h4" || horaire == "apresmidi" || horaire == "journee" )&& etagerecup == reservation.numetage && reservation.h4 && daterecup == reservation.date ||
+                                                                    reservation.id_place === place.idplace && (horaire == "matin" || horaire == "h1" || horaire == "h2" || horaire == "journee") && etagerecup == reservation.numetage && reservation.matin  && daterecup == reservation.date||
+                                                                    reservation.id_place === place.idplace && (horaire == "apresmidi" || horaire == "h3" || horaire == "h4" || horaire == "journee") && etagerecup == reservation.numetage && reservation.apresmidi  && daterecup == reservation.date ||
+                                                                    reservation.id_place === place.idplace && (horaire == "h1" || horaire == "h2" ||  horaire == "h3" || horaire == "h4" || horaire == "journee" || horaire == "matin" || horaire == "apresmidi" ) && etagerecup == reservation.numetage && reservation.journee && daterecup == reservation.date
                                                             )
                                                                 ? "red"
                                                                 : ""

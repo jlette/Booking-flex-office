@@ -4,7 +4,7 @@ export default function ReservationLayout({ children }) {
     return (
         <div className="w-50 h-50 bg-success ">
             <div
-                className="container border border-dark flex justify-center"
+                className="container  border border-dark flex justify-center"
                 style={{ padding: 25 }}
             >
                 {children}

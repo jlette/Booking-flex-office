@@ -6,7 +6,7 @@ import { Tooltip as ReactTooltip } from "react-tooltip";
 
 export default function Place(props) {
     
-    const { numplace, placeid, onPlaceSelect, colorPlace } = props;
+    const { numplace, placeid, onPlaceSelect, colorPlace, message } = props;
 
     // const { places } = props;
     //console.log(props);
@@ -24,7 +24,7 @@ export default function Place(props) {
 
     const handleSelectPlace = () => {
         if (colorPlace == 'red') {
-            alert("La place est déjà occupée")
+            alert(`La place est déjà occupée ${message}`)
         } else{
             onPlaceSelect(placeid);
             console.log(`Vous avez selectionner la place ${numplace} avec son ID ${placeid} et cette place ${colorPlace}`);
