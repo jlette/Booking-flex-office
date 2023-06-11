@@ -17,6 +17,8 @@ export default function Login({ status, canResetPassword }) {
         remember: '',
     });
 
+    //console.log(status);
+
     useEffect(() => {
         return () => {
             reset('password');

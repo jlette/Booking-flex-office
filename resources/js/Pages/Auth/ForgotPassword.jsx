@@ -22,6 +22,7 @@ export default function ForgotPassword({ status }) {
     return (
         <GuestLayout>
             <Head title="Forgot Password" />
+            <div className="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
 
             <div className="mb-4 text-sm text-gray-600">
             Mot de passe oublié? Aucun problème. Indiquez-nous simplement votre adresse e-mail et 
@@ -49,6 +50,7 @@ export default function ForgotPassword({ status }) {
                     </PrimaryButton>
                 </div>
             </form>
+            </div>
         </GuestLayout>
     );
 }

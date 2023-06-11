@@ -5,6 +5,11 @@ import Register from './Auth/Register';
 import Login from './Auth/Login';
 
 export default function Welcome(props) {
+
+    const canResetPassword = props.canResetPassword;
+    console.log(canResetPassword);
+
+
     return (
         <>
             <Head title="Welcome" />
@@ -15,7 +20,7 @@ export default function Welcome(props) {
             <GuestLayout>
                 <Accordion >
                     <AccordionItem header="Connexion" className="w-full font-weight-bold sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                        <Login />
+                    <Login canResetPassword={canResetPassword} />
                     </AccordionItem>
                     <AccordionItem header="Inscription" className="w-full sm:max-w-md mt-4 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                         <Register />
