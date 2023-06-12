@@ -4,9 +4,13 @@ import Table from '@/components/Table';
 import TableRow from '@/components/TableRow';
 import TableHeadCell from '@/components/TableHeadCell';
 import TableDataCell from '@/components/TableDataCell';
+import { Inertia } from "@inertiajs/inertia";
+
+
+
+
 export default function MesReservations(props) {
-    const {places, reservations } = usePage().props;
-    
+    const {places, reservations } = usePage().props;   
 
     return (
         <AuthenticatedLayout

@@ -51,6 +51,9 @@ Route::middleware(['auth', 'verified', 'restrictAdminAccess'])->group(function (
 
     Route::get('/reservationcollegue/{id}', [ReservationPlaceController::class, 'showReservationCollegue'])
         ->name('reservationClient');
+
+    Route::delete('/mesreservations/{id}', [ReservationPlaceController::class, 'destroy'])
+        ->name('reservation.destroy');
 });
 
 

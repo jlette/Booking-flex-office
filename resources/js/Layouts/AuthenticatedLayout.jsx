@@ -10,7 +10,8 @@ export default function Authenticated({ auth, header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
-    const flash = usePage().props.flash;
+    const { flash } = usePage().props;
+
 
     const [theme, setTheme] = useState(
         localStorage.getItem("theme") ? localStorage.getItem("theme") : "system"
@@ -278,16 +279,16 @@ export default function Authenticated({ auth, header, children }) {
                 </div>
             </nav>
 
-            {flash.message && (
-                <div class="bg-emerald-400 p-3">{flash.message}</div>
-            )}
-
             {header && (
                 <header className="bg-white shadow dark:bg-gray-900">
                     <div className="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {header}
                     </div>
                 </header>
+            )}
+
+            {flash.message && (
+                <div class="bg-emerald-400 p-3">{flash.message}</div>
             )}
 
             <main>{children}</main>

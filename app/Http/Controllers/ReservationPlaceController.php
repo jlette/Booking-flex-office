@@ -107,7 +107,8 @@ class ReservationPlaceController extends Controller
     public function destroy($id){
         $reservation = Reservation::findOrFail($id);
         $reservation->delete();
-        return redirect()->route('mesreservations');
+        return redirect()->route('mesreservations')->with('message', 'La réservation a bien été supprimée');    
+
     }
 
 }
