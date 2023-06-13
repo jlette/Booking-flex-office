@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 
 class ReservationAController extends Controller
 {
+    // afficher les reservations
     public function index(){
 
         $reservationsUser = DB::table('reservation')
@@ -26,6 +27,7 @@ class ReservationAController extends Controller
     
     }
 
+    // supprimer reservation
     public function destroy($id){
 
         $reservation = Reservation::findOrFail($id);
