@@ -13,6 +13,7 @@ class DashboardAdminController extends Controller
 {
     public function index(){
 
+        // Statistiques utilisateurs inscrits sur le mois
         $statUserLastMonth = DB::table('users')
         ->select(
             DB::raw('COUNT(*) AS nombre_utilisateurs_inscrits_mois'),
@@ -21,6 +22,7 @@ class DashboardAdminController extends Controller
         ->where('created_at', '>=', DB::raw('DATE(CONCAT(YEAR(CURDATE()), "-", MONTH(CURDATE()), "-01"))'))
         ->get();
 
+        // Statistiques utilisateurs inscrits sur la semaine
         $statUserLastWeek = DB::table('users')
         ->select(
             DB::raw('COUNT(*) AS nombre_utilisateurs_inscrits_semaine'),
@@ -29,6 +31,7 @@ class DashboardAdminController extends Controller
         ->where('created_at', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL DAYOFWEEK(CURDATE())-1 DAY)'))
         ->get();  
 
+        // Statistiques réservation effectuée sur le mois
         $statReservationLastMonth = DB::table('reservation')
                 ->select(
                 DB::raw('count(*) as nombre_reservation_mois'),
@@ -37,6 +40,7 @@ class DashboardAdminController extends Controller
                 ->where('cree_le', '>=', DB::raw('DATE(CONCAT(YEAR(CURDATE()), "-", MONTH(CURDATE()), "-01"))'))
                 ->get();
 
+        // Statistiques réservation effectuée sur la semaine
         $statReservationLastWeek = DB::table('reservation')
                 ->select(
                 DB::raw('count(*) as nombre_reservation_semaine'),
@@ -45,6 +49,7 @@ class DashboardAdminController extends Controller
                 ->where('cree_le', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL DAYOFWEEK(CURDATE())-1 DAY)'))
                 ->get();
 
+        // Liste des utilisateurs inscrits sur le mois
         $statListUserLast = DB::table('users')
                 ->select('*')
                 ->where('created_at', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 1 MONTH)')
@@ -56,6 +61,7 @@ class DashboardAdminController extends Controller
                 ->orderBy('created_at', 'DESC')
                 ->get();
 
+        // Liste des réservations effectuées sur le mois
         $statListReservationLast = DB::table('reservation')
             ->select('*')
             ->join('users', 'iduser', '=', 'reservation.id_user')
@@ -65,6 +71,7 @@ class DashboardAdminController extends Controller
             ->orderBy('cree_le', 'DESC') // Ajout de la colonne 'id' pour le tri
             ->get();
 
+        // Liste des places créées sur le mois
         $statPlaceLast = DB::table('place')
             ->select('*')
             ->where('created_at', '>=', DB::raw('DATE_SUB(CURDATE(), INTERVAL 1 MONTH)')

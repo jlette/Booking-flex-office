@@ -16,6 +16,7 @@ use App\Notifications\ReservationConfirmationNotification;
 class ReservationPlaceController extends Controller
 {
     
+    // afficher les reservations de la personne connectée
     public function mesreservations(){
 
         $reservations = Reservation::where('id_user', Auth::id())->get();
@@ -27,6 +28,7 @@ class ReservationPlaceController extends Controller
         ]);
     }
 
+    // selectionner une place
     public function selectplace(){
         $places = DB::table('place')
                 ->select('*') 
@@ -55,6 +57,8 @@ class ReservationPlaceController extends Controller
         ]);
     }
 
+
+    // reserver une place
    public function reserverplace(Request $request){
 
         $request->validate([
@@ -91,6 +95,7 @@ class ReservationPlaceController extends Controller
     }
 
 
+    // recherche de collegue
     public function showReservationCollegue($id){
         $resultatSearch = DB::table('reservation')
                 ->select('*')
@@ -104,6 +109,7 @@ class ReservationPlaceController extends Controller
         ]);
     }
 
+    // suppression de la réservation
     public function destroy($id){
         $reservation = Reservation::findOrFail($id);
         $reservation->delete();
