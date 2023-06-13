@@ -1,12 +1,16 @@
 import AdminLayout from '@/Layouts/AdminLayout';
 import { Head, Link, useForm, usePage } from '@inertiajs/react';
 import React, { useEffect, useState } from "react";
+import { Inertia } from '@inertiajs/inertia';
 
 
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
+import Select from "react-select";
+import { set } from 'lodash';
+
 
 
 export default function UserEdit(props) {
@@ -17,17 +21,50 @@ export default function UserEdit(props) {
         name: users.name,
         username: users.username,
         email: users.email,
+        fonction: users.fonction,
 
     });
 
-    console.log(users.name);
+    const [selectedFonction, setSelectedFonction] = useState([users.fonction]);
+    
+    const optionFonction = [
+        { label: "Architecte logiciel", value: "architecte logiciel" },
+        { label: "Artiste", value: "artiste" },
+        { label: "Avocat(e)", value: "avocat" },
+        { label: "Chef de projet", value: "chef de projet" },
+        { label: "Comptable", value: "comptable" },
+        { label: "Développeur(se)", value: "developpeur" },
+        { label: "Designer graphique", value: "designer graphique" },
+        { label: "Enseignant(e)", value: "enseignant" },
+        { label: "Ingénieur(e) en génie civil", value: "ingenieur genie civil" },
+        { label: "Ingénieur(e) en informatique", value: "ingenieur informatique" },
+        { label: "Infirmier(ère)", value: "infirmier" },
+        { label: "Médecin", value: "medecin" },
+        { label: "Photographe", value: "photographe" },
+        { label: "Autre(s)", value: "autres" },
+    ];
 
-        
+    useEffect(() => {
+        setSelectedFonction(users.fonction);
+    }, [users.fonction]);
+
+
+    const handleFonctionChange = (selectedOption) => {
+        setSelectedFonction(selectedOption.label);
+      };
+
     const submit = (e) => {
         e.preventDefault();
-        put(route('useradmin.update', users.iduser));
-    };
-    
+      
+        const updatedData = {
+          ...data,
+          fonction: selectedFonction
+        };
+        setData(updatedData);
+        Inertia.put(route('useradmin.update', users.iduser), updatedData)
+         
+      };
+      
 
     return (
         <AdminLayout
@@ -62,7 +99,7 @@ export default function UserEdit(props) {
                         <div className='mt-5'>
                             <InputLabel htmlFor="username" value="Prénom" className='dark:text-white'/>
                             <TextInput
-                                id="name"
+                                id="username"
                                 type="text"
                                 name="username"
                                 value={data.username}
@@ -90,6 +127,18 @@ export default function UserEdit(props) {
                             />
                             <InputError message={errors.email} className="mt-2" />
                         </div>
+
+                        <div className="mt-5">
+                            <InputLabel htmlFor="fonction" value="Fonction" />
+                            <Select
+                            id="id"
+                            name="fonction"
+                            onChange={handleFonctionChange}
+                            value={selectedFonction ? { label: selectedFonction, value: selectedFonction } : null}
+                            options={optionFonction}
+                            />
+                        </div>
+                        
 
                         <div className="flex items-center justify-end mt-4">
                             <Link

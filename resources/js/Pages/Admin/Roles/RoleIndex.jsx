@@ -93,7 +93,7 @@ export default function RoleIndex(props) {
                                     <Link 
                                         className="text-red-400 hover:text-red-600"
                                         onClick={() => {
-                                            if (confirm("Voulez-vous vraiment supprimer cette place ?")) {
+                                            if (confirm("Voulez-vous vraiment supprimer ce rôle ?")) {
                                                 Inertia.delete(route('roles.destroy', role.role_id))
                                             }
                                         }}

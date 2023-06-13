@@ -350,7 +350,15 @@ export default function DashboardA(props) {
                                                     </p>
                                                 </div>
                                                 <div class="inline-flex items-center text-base font-semibold">
-                                                    {reservationLast.matin && reservationLast.apresmidi ? "Journée" : reservationLast.matin ? "Matin" : "Apres-midi"} 
+                                                    {reservationLast.h1 ? "8h-10h" 
+                                                    : reservationLast.h2 ? "10h-12h" 
+                                                    : reservationLast.h3 ? "13h-15h" 
+                                                    : reservationLast.h4 ? "15h-17h" 
+                                                    : reservationLast.matin ? "Matin"
+                                                    : reservationLast.apresmidi ? "Après-midi"
+                                                    : reservationLast.journee ? "Journée"
+                                                    : ""
+                                                } 
                                                 </div>
                                             </div>
                                         </li>

@@ -72,7 +72,7 @@ export default function ReservationIndex(props) {
                         </Table>
                         ) : (
                             <div>
-                                <p className='p-5 bg-slate-200 border-indigo-200 dark:bg-gray-900 dark:border-gray-700 rounded'>Vous n'avez aucune réservation.</p>                                
+                                <p className='p-5 bg-slate-200 border-indigo-200 dark:bg-gray-900 dark:border-gray-700 rounded'>Il n'y a aucune réservation.</p>                                
                             </div>
                     )}
                     </div>

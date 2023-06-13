@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Role;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class RoleController extends Controller
@@ -17,7 +19,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        $roles = Role::all();
+        $roles = DB::table('roles')
+            ->select('*')
+            ->whereNotIn('role_name', ['admin', Auth::id()])
+            ->get();
 
         return Inertia::render('Admin/Roles/RoleIndex', [
             'roles' => $roles
@@ -43,7 +48,7 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'role_name' => 'required|string|max:255',
+            'role_name' => 'required|string|max:255|unique:roles',
         ]);
 
         Role::create([

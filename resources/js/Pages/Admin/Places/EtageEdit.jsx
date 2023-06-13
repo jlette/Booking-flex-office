@@ -149,14 +149,12 @@ export default function EtageEdit(props) {
                             <InputLabel htmlFor="numetage" value="Numéro étage" className='dark:text-white'/>
                             <TextInput
                                 id="numetage"
-                                type="text"
+                                type="number"
                                 name="numetage"
                                 value={data.numetage}
-                                className="mt-1 block w-full dark:text-gray-900"
+                                className="mt-1 block w-full dark:text-gray-900 bg-gray-300"
                                 autoComplete="numetage"
-                                onChange={(e) =>
-                                    setData("numetage", e.target.value)
-                                }
+                                disabled={true}
                             />
                             <InputError message={errors.numetage} className="mt-2" />
                         </div>

@@ -118,7 +118,6 @@ class PlaceController extends Controller
 
 
     
-        // process placesToRemove from the request data
         $placesToRemove = $request->get('placesToRemove');
         if (!empty($placesToRemove)) {
             foreach($placesToRemove as $placeId) {  
@@ -129,13 +128,13 @@ class PlaceController extends Controller
             }
         }
     
-        // process placesToAdd from the request data
         $placesToAdd = $request->get('placesToAdd');
         //Log::info('Received placesToAdd:', $placesToAdd);
         if ($placesToAdd > 0) {
-            // Here you should create new places. How to do this would depend on your Place model.
-            // If your place model has a numplace property that needs to be unique within a numetage, you need to calculate the next available numplace.
+            $numetage = $request->get('numetage');
+            Log::info('num etage', ['numetage' => $numetage]);
             $currentPlaceCount = Place::where('numetage', $numetage)->count();
+            Log::info('Current place count:', ['count' => $currentPlaceCount]);
             for ($i = $currentPlaceCount + 1; $i <= $currentPlaceCount + $placesToAdd; $i++) {
                 $place = new Place;
                 $place->numplace = $i;

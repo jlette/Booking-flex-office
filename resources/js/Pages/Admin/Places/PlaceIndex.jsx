@@ -23,7 +23,7 @@ export default function PlaceIndex(props) {
             <Head title="Création d'une place" />
             <div className="py-4">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <Link href={route('etageadmin.create')} class="px-3 py-2 text-white font-semibold bg-sky-600 hover:bg-sky-700 rounded">Ajouter une nouvelle place par étage</Link>
+                    <Link href={route('etageadmin.create')} class="px-3 py-2 text-white font-semibold bg-sky-600 hover:bg-sky-700 rounded">Ajouter un nouvelle étage</Link>
             
                     <div className="mt-6">
                     <Table captionText="Liste des places par étage" header={<TableRow>
