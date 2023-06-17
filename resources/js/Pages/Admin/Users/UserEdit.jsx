@@ -6,10 +6,8 @@ import { Inertia } from '@inertiajs/inertia';
 
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import Select from "react-select";
-import { set } from 'lodash';
 
 
 
@@ -53,6 +51,7 @@ export default function UserEdit(props) {
         setSelectedFonction(selectedOption.label);
       };
 
+
     const submit = (e) => {
         e.preventDefault();
       
@@ -61,10 +60,9 @@ export default function UserEdit(props) {
           fonction: selectedFonction
         };
         setData(updatedData);
-        Inertia.put(route('useradmin.update', users.iduser), updatedData)
-         
-      };
-      
+        //Inertia.put(route('useradmin.update', users.iduser), updatedData)
+        put(route('useradmin.update', users.iduser), updatedData) 
+      };      
 
     return (
         <AdminLayout

@@ -134,8 +134,14 @@ class UserAController extends Controller
     public function update($id, Request $request)
     {
         Validator::make($request->all(), [
-            'name' => ['required'],
-            'username' => ['required'],
+            'name' => 'required|string|max:255',
+            'username' => 'required',
+            'email' => ['required', 'string', 'email', 'max:255', function ($attribute, $value, $fail) {
+                $domain = explode('@', $value)[1];
+                if ($domain != 'rte-france.com') {
+                    $fail('L\'adresse mail que vous avez saisie n\'est pas autorisée à s\'enregistrer.');
+                }
+            }],            
         ])->validate();
     
         User::find($id)->update($request->all());

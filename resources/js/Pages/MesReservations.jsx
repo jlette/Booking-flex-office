@@ -22,11 +22,11 @@ export default function MesReservations(props) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    Vous avez {reservations.length} réservation(s) en cours
 
                 <div className="mt-6">
                     {reservations.length > 0 ? (
                         <Table captionText="Liste des réservations" header={<TableRow>
-                                <TableHeadCell>Reservation id</TableHeadCell>
                                 <TableHeadCell>Créneaux horaire</TableHeadCell>
                                 <TableHeadCell>Date</TableHeadCell>
                                 <TableHeadCell>Place choisi</TableHeadCell>
@@ -39,7 +39,6 @@ export default function MesReservations(props) {
                                 const numeroEtage = place ? place.numetage : 'Inconnu';
                                 return (
                             <TableRow key={reservation.idreservation} className="bg-slate-200 border-b border-indigo-200 dark:bg-gray-900 dark:border-gray-700">
-                                <TableHeadCell>{reservation.idreservation}</TableHeadCell>
                                 <TableDataCell> {
                                 reservation.h1 ? "08:00 - 10:00" 
                                 : reservation.h2 ? "10:00 - 12:00" 

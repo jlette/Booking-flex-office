@@ -34,7 +34,7 @@ export default function UserIndex(props) {
                             <TableHeadCell>Actions</TableHeadCell>
                         </TableRow>}>
                         {users.map((user) => (
-                        <TableRow key={user.id} className="bg-slate-200 border-b border-indigo-200 dark:bg-gray-900 dark:border-gray-700">
+                        <TableRow key={user.iduser} className="bg-slate-200 border-b border-indigo-200 dark:bg-gray-900 dark:border-gray-700">
                                 <TableHeadCell>{user.iduser}</TableHeadCell>
                                 <TableDataCell>{user.name}</TableDataCell>
                                 <TableDataCell>{user.username}</TableDataCell>

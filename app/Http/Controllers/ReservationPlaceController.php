@@ -95,7 +95,7 @@ class ReservationPlaceController extends Controller
     }
 
 
-    // recherche de collegue
+    // voir un collegue
     public function showReservationCollegue($id){
         $resultatSearch = DB::table('reservation')
                 ->select('*')

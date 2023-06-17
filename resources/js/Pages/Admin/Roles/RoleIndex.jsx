@@ -73,14 +73,14 @@ export default function RoleIndex(props) {
                     <div className='mt-6 max-w-6xl mx-auto'>
                     <Table captionText="Liste des roles" 
                         header={<TableRow>
-                            <TableHeadCell>User id</TableHeadCell>
+                            {/* <TableHeadCell>User id</TableHeadCell> */}
                             <TableHeadCell>Nom</TableHeadCell>
                             <TableHeadCell>Edition</TableHeadCell>
                             <TableHeadCell>Suprression</TableHeadCell>
                         </TableRow>}>
                         {roles.map((role) => (
                         <TableRow key={role.id} className="bg-slate-200 border-b border-indigo-200 dark:bg-gray-900 dark:border-gray-700">
-                                <TableHeadCell>{role.role_id}</TableHeadCell>
+                                {/* <TableHeadCell>{role.role_id}</TableHeadCell> */}
                                 <TableDataCell>{role.role_name}</TableDataCell>
                                 <TableDataCell>
                                     <Link 

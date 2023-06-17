@@ -37,7 +37,11 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Places/PlaceCreate');
+        $places = Place::all();
+        
+        return Inertia::render('Admin/Places/PlaceCreate', [
+            'places' => $places,
+        ]);
     }
 
     /**
